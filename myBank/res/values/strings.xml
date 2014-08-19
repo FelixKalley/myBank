@@ -4,5 +4,6 @@
     <string name="app_name">myBank</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="Button_OK">Ok</string>
 
 </resources>
