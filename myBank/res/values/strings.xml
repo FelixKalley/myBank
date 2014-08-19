@@ -4,6 +4,45 @@
     <string name="app_name">myBank</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="Button_OK">Ok</string>
-
+    
+    <!-- ButtonStrings -->
+   	
+    <string name="String_Button_Add_Input">Einzahlung</string>
+	<string name="String_Button_Add_Expense">Abbuchung</string>
+	<string name="String_Button_Add_Standing_Order">Plane Buchung</string>
+	<string name="String_Button_Contact_Us">Contact us</string>
+	<string name="String_Button_Feedback">Feedback</string>
+	<string name="String_Button_Settings_Banking">Banking</string>
+	<string name="String_Button_Settings_Profil">Profil</string>
+	<string name="String_Button_Settings_Verwalten">Verwaltung</string>
+	<string name="String_Button_Settings_Notifications">Benachrichtigungen</string>
+	<string name="String_Button_Delete_History">Delete History</string>
+	<string name="String_Button_Default_Settings">Default Settings</string>
+	<string name="String_Button_Edit_Profil">Edit Profil</string>
+	<string name="String_Button_Reset_Account">Reset Account</string>
+	<string name="String_Button_Set_Reminder">Setze Erinnerung</string>
+	<string name="String_Banking_Settings">Banking</string>
+	<string name="String_Profil_Settings">Profil</string>
+	<string name="String_Verwaltung_Settings">Verwaltung</string>
+	<string name="String_Notification_Settings">Benachrichtigungen</string>
+	
+	
+	
+	
+	<!-- TextViewStrings -->
+	
+	<string name="String_TextView_Total_Balance">Kontostand</string>
+	<string name="String_TextView_Scheduled_Booking">ausstehende Buchungen</string>
+	<string name="String_TextView_Goal">Ziel</string>
+	<string name="String_TextView_booking_sorted_by">Buchungen sortiert nach</string>
+	
+	<!-- SpinnerStrings -->
+	
+	<string name="String_Spinner_Booking">Buchungen</string>
+	<string name="String_Spinner_Settings">Einstellungen</string>
+	<string name="String_Spinner_History">History</string>
+	<string name="String_Spinner_Overview">Übersicht</string>
+	
+	
+	
 </resources>
