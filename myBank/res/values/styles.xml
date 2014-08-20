@@ -20,7 +20,35 @@
     <!-- Sets the Background Color of all Screens this style is applyed on to the choosen Color -->
     
     <style name="BackgroundColor" parent="@android:style/Theme.Light">
-        <item name="android:windowBackground">@color/COLOR_Background</item>
+
+        <item name="android:background"> @color/COLOR_Background </item>
     </style>
+    
+   
+    
+    <!-- Sets the Style of all "black" fonts to the specific style beneath -->
+  
+    <style name="TextViewStyleBlack" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/COLOR_Font_in_App</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+      <!-- Sets the Style of all "white" fonts to the specific style beneath -->
+    
+ <style name="TextViewStyleWhite" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/COLOR_Fonts_in_white</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+    
+   <!-- Sets the Style of all "ADD_TEXTVIEWS"  to the specific style beneath -->
+   
+    <style name="AddButtonStyle" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@color/COLOR_Buttons</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+
+
+
 
 </resources>

@@ -3,12 +3,15 @@ package com.example.mybank;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -22,6 +25,23 @@ public class MainActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		/*
+		 * NUR ZU TEST ZWECKEN UM BEIM DEBUGGEN AUF DEN N€CHSTEN SCREEN ZU KOMMEN
+		 */
+		
+		Button myButton = (Button) findViewById(R.id.nextIntentButton);
+		myButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent myIntent = new Intent(MainActivity.this, BookingActivity.class);
+				MainActivity.this.startActivity(myIntent);
+				
+				
+			}
+		});
+		
 	}
 
 	@Override
@@ -52,13 +72,8 @@ public class MainActivity extends Activity {
 		public PlaceholderFragment() {
 		}
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
+	
+	
 	}
 
 }

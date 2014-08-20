@@ -8,5 +8,6 @@
     <color name="COLOR_Fonts_in_white">#ffffff</color>
     <color name="COLOR_Buttons">#3b3e43</color>
     <color name="COLOR_Fonts_of_Buttons">#f2f2f2</color>
+    <color name="COLOR_WHITE">#ffffff</color>
     
 </resources>

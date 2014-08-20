@@ -1,7 +1,6 @@
 package com.example.mybank;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.os.Build;
 
 public class BookingActivity extends Activity {
 
@@ -20,6 +20,7 @@ public class BookingActivity extends Activity {
 	TextView TEXTVIEW_Add_Income;
 	TextView TEXTVIEW_Add_Expense;
 	TextView TEXTVIEW_Add_Scheduled_booking;
+	Spinner SPINNER_Selection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,23 @@ public class BookingActivity extends Activity {
 		 * Declaration of all Elements needed for the specific Screen
 		 */
 		DeclareAllElements();
+		
+		
+		 ArrayAdapter adapter = ArrayAdapter.createFromResource(
+		            this, R.array.Selection, android.R.layout.simple_spinner_item);
+		    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    SPINNER_Selection.setAdapter(adapter);
 
 	}
 
 	private void DeclareAllElements() {
 		DeclarationOfAllTextViews();
+		DeclarationOfAllSpinners();
+	}
+
+	private void DeclarationOfAllSpinners() {
+		SPINNER_Selection = (Spinner) findViewById(R.id.SPINNER_Selection_Booking_Screen);
+		
 	}
 
 	private void DeclarationOfAllTextViews() {
@@ -93,13 +106,7 @@ public class BookingActivity extends Activity {
 		public PlaceholderFragment() {
 		}
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_booking,
-					container, false);
-			return rootView;
-		}
+		
 	}
 
 }

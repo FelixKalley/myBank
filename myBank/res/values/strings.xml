@@ -43,5 +43,12 @@
     <string name="String_Spinner_History">History</string>
     <string name="String_Spinner_Overview">Übersicht</string>
     <string name="title_activity_booking">BookingActivity</string>
+    
+  
+   <string-array name="Selection">
+        <item>Buchungen</item>
+        <item>Verlauf</item>
+        <item>Einstellungen</item>
+</string-array> 
 
 </resources>
