@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <color name="Background">#FFFFFF</color>
+    <!-- Colors of all Elements needed! -->
+    
+    <color name="COLOR_Background">#31b6e5</color>
+    <color name="COLOR_Font_in_App">#3c3f44</color>
+    <color name="COLOR_Fonts_in_white">#ffffff</color>
+    <color name="COLOR_Buttons">#3b3e43</color>
+    <color name="COLOR_Fonts_of_Buttons">#f2f2f2</color>
     
 </resources>
