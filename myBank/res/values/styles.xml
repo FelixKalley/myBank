@@ -16,8 +16,11 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
 
+    <!-- Sets the Background Color of all Screens this style is applyed on to the choosen Color -->
     
+    <style name="BackgroundColor" parent="@android:style/Theme.Light">
+        <item name="android:windowBackground">@color/COLOR_Background</item>
+    </style>
 
 </resources>

@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mybank.BookingActivity"
+    tools:ignore="MergeRootFrame"
+    android:theme="@style/BackgroundColor" >
+
+    <TextView
+        android:id="@+id/TEXTVIEW_Kontostand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="46dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_Kontostand"
+        android:layout_below="@+id/TEXTVIEW_Kontostand"
+        android:layout_marginTop="16dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_ZIEL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+        android:layout_below="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+        android:layout_marginTop="19dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_ADD_INCOME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/TEXTVIEW_ZIEL"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_ADD_EXPENSE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/TEXTVIEW_ADD_INCOME"
+        android:layout_below="@+id/TEXTVIEW_ADD_INCOME"
+        android:layout_marginTop="27dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/TEXTVIEW_ADD_EXPENSE"
+        android:layout_below="@+id/TEXTVIEW_ADD_EXPENSE"
+        android:layout_marginTop="28dp"
+        android:text="TextView" />
+
+</RelativeLayout>
