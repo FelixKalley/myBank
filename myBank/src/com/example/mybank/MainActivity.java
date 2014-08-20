@@ -21,14 +21,13 @@ import android.widget.TextView;
 import android.os.Build;
 
 public class MainActivity extends Activity {
-	
+
 	TextView TEXTVIEW_AppName;
 	TextView TEXTVIEW_AppSlogan;
 	TextView TEXTVIEW_Autor1;
 	TextView TEXTVIEW_Autor2;
 	TextView TEXTVIEW_Autor3;
 	ProgressBar progressBar;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,52 +38,48 @@ public class MainActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
+
 		DeclarationOfAllTextViews();
 		DeclarationOfProgressBar();
-		
-	
+		TimeToChangeScreen();
+
 		TimerTask task = new TimerTask() {
 
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(MainActivity.this, BookingActivity.class);
-                startActivity(intent);
-                finishscreen();
-            }
-        };
-        Timer t = new Timer();
-        t.schedule(task, 2000);
-		
-		
-		
-		
-		/*
-		 * NUR ZU TEST ZWECKEN UM BEIM DEBUGGEN AUF DEN N€CHSTEN SCREEN ZU KOMMEN
-		 */
-		
-	
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(MainActivity.this,
+						BookingActivity.class);
+				startActivity(intent);
+				finishscreen();
+			}
+		};
+		Timer t = new Timer();
+		t.schedule(task, 2000);
+
+	}
+
+	private void TimeToChangeScreen() {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void DeclarationOfProgressBar() {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-		
-		
+
 	}
-	
-	
+
 	private void finishscreen() {
-        this.finish();
-    }
+		this.finish();
+	}
 
 	private void DeclarationOfAllTextViews() {
 		TEXTVIEW_AppName = (TextView) findViewById(R.id.TEXTVIEW_APPNAME);
 		TEXTVIEW_AppName.setText(R.string.AppName);
-		
+
 		TEXTVIEW_AppSlogan = (TextView) findViewById(R.id.TEXTVIEW_AppSlogan);
 		TEXTVIEW_AppSlogan.setText(R.string.AppSlogan);
-	
+
 	}
 
 	@Override
@@ -115,8 +110,6 @@ public class MainActivity extends Activity {
 		public PlaceholderFragment() {
 		}
 
-	
-	
 	}
 
 }

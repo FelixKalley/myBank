@@ -14,18 +14,21 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="95dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Large Text" 
+        style="@style/StartScreenTextViews"
+        android:textSize="50sp"
+     />
 
     <TextView
         android:id="@+id/TEXTVIEW_AppSlogan"
+        style="@style/StartScreenTextViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TEXTVIEW_APPNAME"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
         android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+      	android:textSize="15sp" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -34,6 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/TEXTVIEW_AppSlogan"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="35dp" />
 
 </RelativeLayout>

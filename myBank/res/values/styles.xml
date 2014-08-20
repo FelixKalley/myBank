@@ -24,6 +24,19 @@
         <item name="android:background"> @color/COLOR_Background </item>
     </style>
     
+  <!-- StartScreen Design of TextViews -->
+  
+   <style name="StartScreenTextViews" parent= "@android:style/Theme.Light">
+        <item name="android:textColor">@color/COLOR_Font_in_App</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:alpha">0.8</item>
+      
+    </style>
+  
+  
+  
+    
+    
    
     
     <!-- Sets the Style of all "black" fonts to the specific style beneath -->
