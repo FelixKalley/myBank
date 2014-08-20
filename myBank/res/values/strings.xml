@@ -5,6 +5,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- ALL STRINGS FOR STARTING-SCREEN -->
+    
+    <string name="AppName">myBank</string>
+    <string name="AppSlogan">Consistency Pays</string>
+    <string name="Autor1">Felix Kalley</string>
+    <string name="Autor2">Felix Stoisch</string>
+    <string name="Autor3">Meikel Ratz</string>
+    
     <!-- ButtonStrings -->
 
     <string name="String_Button_Add_Input">Einzahlung</string>

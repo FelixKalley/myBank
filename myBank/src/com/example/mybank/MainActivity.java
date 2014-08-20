@@ -1,9 +1,13 @@
 package com.example.mybank;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,9 +16,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.os.Build;
 
 public class MainActivity extends Activity {
+	
+	TextView TEXTVIEW_AppName;
+	TextView TEXTVIEW_AppSlogan;
+	TextView TEXTVIEW_Autor1;
+	TextView TEXTVIEW_Autor2;
+	TextView TEXTVIEW_Autor3;
+	ProgressBar progressBar;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +40,51 @@ public class MainActivity extends Activity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		
+		DeclarationOfAllTextViews();
+		DeclarationOfProgressBar();
+		
+	
+		TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(MainActivity.this, BookingActivity.class);
+                startActivity(intent);
+                finishscreen();
+            }
+        };
+        Timer t = new Timer();
+        t.schedule(task, 2000);
+		
+		
+		
+		
 		/*
 		 * NUR ZU TEST ZWECKEN UM BEIM DEBUGGEN AUF DEN N€CHSTEN SCREEN ZU KOMMEN
 		 */
 		
-		Button myButton = (Button) findViewById(R.id.nextIntentButton);
-		myButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(MainActivity.this, BookingActivity.class);
-				MainActivity.this.startActivity(myIntent);
-				
-				
-			}
-		});
+	
+	}
+
+	private void DeclarationOfProgressBar() {
+		progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 		
+		
+	}
+	
+	
+	private void finishscreen() {
+        this.finish();
+    }
+
+	private void DeclarationOfAllTextViews() {
+		TEXTVIEW_AppName = (TextView) findViewById(R.id.TEXTVIEW_APPNAME);
+		TEXTVIEW_AppName.setText(R.string.AppName);
+		
+		TEXTVIEW_AppSlogan = (TextView) findViewById(R.id.TEXTVIEW_AppSlogan);
+		TEXTVIEW_AppSlogan.setText(R.string.AppSlogan);
+	
 	}
 
 	@Override
@@ -58,7 +101,7 @@ public class MainActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.TEXTVIEW_APPNAME) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
