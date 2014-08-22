@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    style="@style/BackgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mybank.BookingActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/COLOR_WHITE"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="#000"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/Spinner_Selection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/BUTTON_BANKING"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/header"
+        android:layout_marginLeft="82dp"
+        android:layout_marginTop="120dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/BUTTON_PROFIL"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/BUTTON_BANKING"
+        android:layout_alignBottom="@+id/BUTTON_BANKING"
+        android:layout_toRightOf="@+id/BUTTON_BANKING"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/BUTTON_VERWALTUNG"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/BUTTON_NOTIFICATIONS"
+        android:layout_alignBottom="@+id/BUTTON_NOTIFICATIONS"
+        android:layout_alignLeft="@+id/BUTTON_PROFIL"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/BUTTON_FEEDBACK"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="22dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/BUTTON_CONTACT"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BUTTON_FEEDBACK"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_Setting_Name"
+        style="@style/TextViewStyleWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Large Text"
+          android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/TEXTVIEW_VERSION"
+        style="@style/TextViewStyleWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_Setting_Name"
+        android:layout_below="@+id/TEXTVIEW_Setting_Name"
+        android:text="Medium Text"
+          android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/BUTTON_NOTIFICATIONS"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/BUTTON_BANKING"
+        android:layout_below="@+id/BUTTON_BANKING"
+        android:text="Button" />
+
+</RelativeLayout>

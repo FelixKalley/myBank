@@ -26,6 +26,10 @@
             android:name="com.example.mybank.BookingActivity"
             android:label="@string/title_activity_booking" >
         </activity>
+        <activity
+            android:name="com.example.mybank.SettingsMainActivity"
+            android:label="@string/title_activity_settings_main" >
+        </activity>
     </application>
 
 </manifest>
