@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/header"
-        android:layout_marginLeft="82dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="120dp"
         android:text="Button" />
 

@@ -66,7 +66,7 @@
      
      <style name="Button_General" parent="@android:style/TextAppearance">
         <item name="android:background">@color/COLOR_Buttons</item>
-        <itam name="android:textColor">@color/COLOR_WHITE</itam>
+        <item name="android:textColor">@color/COLOR_WHITE</item>
         <item name="android:typeface">monospace</item>
         <item name="android:layout_marginBottom">1dp</item>
           <item name="android:layout_marginLeft">1dp</item>

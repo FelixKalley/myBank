@@ -30,6 +30,10 @@
             android:name="com.example.mybank.SettingsMainActivity"
             android:label="@string/title_activity_settings_main" >
         </activity>
+        <activity
+            android:name="com.example.mybank.Settings_profil_Activity"
+            android:label="@string/title_activity_settings_profil_" >
+        </activity>
     </application>
 
 </manifest>

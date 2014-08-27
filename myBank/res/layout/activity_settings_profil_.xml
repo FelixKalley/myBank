@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    style="@style/BackgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mybank.BookingActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/COLOR_WHITE"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="#000"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TEXTVIEW_profil_screen_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/textView1"
+            android:text="TextView" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_Vname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/header"
+        android:layout_marginRight="66dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_Nname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/TEXTVIEW_profil_Vname"
+        android:layout_below="@+id/TEXTVIEW_profil_Vname"
+        android:layout_marginTop="22dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TEXTVIEW_profil_Nname"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_Member_since"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_profil_age"
+        android:layout_below="@+id/TEXTVIEW_profil_age"
+        android:layout_marginTop="25dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_complete_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_profil_Member_since"
+        android:layout_below="@+id/TEXTVIEW_profil_Member_since"
+        android:layout_marginTop="26dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_complete_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_profil_complete_input"
+        android:layout_below="@+id/TEXTVIEW_profil_complete_input"
+        android:layout_marginTop="18dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_complete_savings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TEXTVIEW_profil_complete_output"
+        android:layout_below="@+id/TEXTVIEW_profil_complete_output"
+        android:layout_marginTop="22dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/BUTTON_profil_edit_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/TEXTVIEW_profil_complete_savings"
+        android:layout_marginTop="27dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/BUTTON_profil_reset_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/BUTTON_profil_edit_profil"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_age_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TEXTVIEW_profil_age"
+        android:layout_alignBottom="@+id/TEXTVIEW_profil_age"
+        android:layout_alignRight="@+id/TEXTVIEW_profil_Nname"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_member_since_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TEXTVIEW_profil_Member_since"
+        android:layout_alignLeft="@+id/TEXTVIEW_profil_age_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_complete_input_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TEXTVIEW_profil_complete_input"
+        android:layout_alignBottom="@+id/TEXTVIEW_profil_complete_input"
+        android:layout_alignRight="@+id/TEXTVIEW_profil_member_since_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_complete_output_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TEXTVIEW_profil_complete_output"
+        android:layout_alignBottom="@+id/TEXTVIEW_profil_complete_output"
+        android:layout_alignLeft="@+id/TEXTVIEW_profil_complete_input_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/TEXTVIEW_profil_complete_savings_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BUTTON_profil_edit_profil"
+        android:layout_alignRight="@+id/TEXTVIEW_profil_complete_output_content"
+        android:text="TextView" />
+
+    </RelativeLayout>
