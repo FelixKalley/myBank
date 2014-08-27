@@ -25,16 +25,18 @@
 
         <TextView
             android:id="@+id/TEXTVIEW_profil_screen_name"
+            style="@style/TextViewStyleBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignTop="@+id/textView1"
-            android:text="TextView" />
-
+            android:text="TextView"
+            android:textSize="20dp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_Vname"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -44,6 +46,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_Nname"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/TEXTVIEW_profil_Vname"
@@ -53,6 +56,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_age"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -63,6 +67,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_Member_since"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TEXTVIEW_profil_age"
@@ -72,6 +77,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_complete_input"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TEXTVIEW_profil_Member_since"
@@ -81,6 +87,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_complete_output"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TEXTVIEW_profil_complete_input"
@@ -90,6 +97,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_complete_savings"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TEXTVIEW_profil_complete_output"
@@ -99,6 +107,7 @@
 
     <Button
         android:id="@+id/BUTTON_profil_edit_profil"
+        style="@style/Button_General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -109,6 +118,7 @@
 
     <Button
         android:id="@+id/BUTTON_profil_reset_profil"
+        style="@style/Button_General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -118,6 +128,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_age_content"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/TEXTVIEW_profil_age"
@@ -127,6 +138,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_member_since_content"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/TEXTVIEW_profil_Member_since"
@@ -135,6 +147,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_complete_input_content"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/TEXTVIEW_profil_complete_input"
@@ -144,6 +157,7 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_complete_output_content"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/TEXTVIEW_profil_complete_output"
@@ -153,10 +167,11 @@
 
     <TextView
         android:id="@+id/TEXTVIEW_profil_complete_savings_content"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/BUTTON_profil_edit_profil"
         android:layout_alignRight="@+id/TEXTVIEW_profil_complete_output_content"
         android:text="TextView" />
 
-    </RelativeLayout>
+</RelativeLayout>

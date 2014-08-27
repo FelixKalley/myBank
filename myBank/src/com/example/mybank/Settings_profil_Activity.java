@@ -58,39 +58,45 @@ public class Settings_profil_Activity extends Activity {
 	private void DeclareAllButtons() {
 		Button_Profil_Change_Profil = (Button) findViewById(R.id.BUTTON_profil_edit_profil);
 		Button_Profil_Change_Profil.setText(R.string.String_Button_Edit_Profil);
-		
+
 		Button_Profil_Reset_Profil = (Button) findViewById(R.id.BUTTON_profil_reset_profil);
-		Button_Profil_Reset_Profil.setText(R.string.String_Button_Reset_Account);
+		Button_Profil_Reset_Profil
+				.setText(R.string.String_Button_Reset_Account);
 	}
 
 	private void DeclareAllTextViews() {
-		
+
 		TextView_Profil_Screen_Name = (TextView) findViewById(R.id.TEXTVIEW_profil_screen_name);
-		TextView_Profil_Screen_Name.setText(R.string.String_TextView_Profil_ScreenName);
-		
+		TextView_Profil_Screen_Name
+				.setText(R.string.String_TextView_Profil_ScreenName);
+
 		TextView_Profil_VName = (TextView) findViewById(R.id.TEXTVIEW_profil_Vname);
 		TextView_Profil_Nname = (TextView) findViewById(R.id.TEXTVIEW_profil_Nname);
-		
+
 		TextView_Profil_Age = (TextView) findViewById(R.id.TEXTVIEW_profil_age);
 		TextView_Profil_Age.setText(R.string.String_TextView_Profil_Age);
-		
+
 		TextView_Profil_Age_Content = (TextView) findViewById(R.id.TEXTVIEW_profil_age_content);
-		
+
 		TextView_Profil_Complete_Input = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_input);
-		TextView_Profil_Complete_Input.setText(R.string.String_TextView_Profil_complete_income);
-		
+		TextView_Profil_Complete_Input
+				.setText(R.string.String_TextView_Profil_complete_income);
+
 		TextView_Profil_Complete_Output = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_output);
-		TextView_Profil_Complete_Output.setText(R.string.String_TextView_Profil_complete_expense);
-		
+		TextView_Profil_Complete_Output
+				.setText(R.string.String_TextView_Profil_complete_expense);
+
 		TextView_Profil_Complete_Input_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_input_content);
 		TextView_Profil_Complete_Output_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_output_content);
 		TextView_Profil_Member_Since = (TextView) findViewById(R.id.TEXTVIEW_profil_Member_since);
-		TextView_Profil_Member_Since.setText(R.string.String_TextView_Profil_Member_since);
+		TextView_Profil_Member_Since
+				.setText(R.string.String_TextView_Profil_Member_since);
 		TextView_Profil_Member_Since_content = (TextView) findViewById(R.id.TEXTVIEW_profil_member_since_content);
 		TextView_Profil_Complete_Savings = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_savings);
-		TextView_Profil_Complete_Savings.setText(R.string.String_TextView_Profil_Complete_savings);
+		TextView_Profil_Complete_Savings
+				.setText(R.string.String_TextView_Profil_Complete_savings);
 		TextView_Profil_Complete_Savings_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_savings_content);
-		
+
 	}
 
 	@Override

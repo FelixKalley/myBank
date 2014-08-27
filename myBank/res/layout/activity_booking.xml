@@ -27,9 +27,9 @@
         android:id="@+id/SPINNER_Selection_Booking_Screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop ="15dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:id="@+id/TEXTVIEW_ADD_EXPENSE"
