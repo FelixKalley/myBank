@@ -33,6 +33,7 @@
     <string name="String_Profil_Settings">Profil</string>
     <string name="String_Verwaltung_Settings">Verwaltung</string>
     <string name="String_Notification_Settings">Benachrichtigungen</string>
+    <string name="String_Notifications_Daily_reminder">Set Daily Reminder</string>
 
     <!-- TextViewStrings -->
 
@@ -45,15 +46,23 @@
     <string name="String_TextView_Add_Scheduled_Booking">plane Buchung</string>
     <string name="String_Version">v1.0</string>
     <string name="String_TextView_Profil_ScreenName">Einstellungen</string>
-	<string name="String_TextView_Profil_Age">Alter</string>
-	<string name="String_TextView_Profil_Member_since">Member seit</string>
-	<string name="String_TextView_Profil_complete_income">Complete Income</string>
-	<string name="String_TextView_Profil_complete_expense">Complete Expense</string>
-	<string name="String_TextView_Profil_Complete_savings">Complete Savings</string>
+    <string name="String_TextView_Settings_Notification">Notifications</string>
+    <string name="String_TextView_Profil_Age">Alter</string>
+    <string name="String_TextView_Profil_Member_since">Member seit</string>
+    <string name="String_TextView_Profil_complete_income">Complete Income</string>
+    <string name="String_TextView_Profil_complete_expense">Complete Expense</string>
+    <string name="String_TextView_Profil_Complete_savings">Complete Savings</string>
+    
+    
+    <!-- SwitchStrings -->
+    
+    <string name="String_Switch_Notification_on">Set Notification</string>
+	<string name="String_Switch_Notification_server">Saved to Server</string>
+	<string name="String_Switch_Notification_goal_reached">Goal Reached</string>
+	<string name="String_Switch_Notification_limit_reached">Limit Reached</string>
+	<string name="String_Switch_Notification_daily_reminder">Daily Reminder</string>
 	
-		
-	
-	<!-- SpinnerStrings -->
+    <!-- SpinnerStrings -->
 
     <string name="String_Spinner_Booking">Buchungen</string>
     <string name="String_Spinner_Settings">Einstellungen</string>
@@ -69,5 +78,6 @@
 
     <string name="title_activity_settings_main">SettingsMainActivity</string>
     <string name="title_activity_settings_profil_">Settings_profil_Activity</string>
+    <string name="title_activity_settings__notification_">Settings_Notification_Activity</string>
 
 </resources>
