@@ -93,4 +93,24 @@
         android:layout_below="@+id/header"
         android:layout_toRightOf="@+id/TextView_Banking_Choose_Currency" />
 
+    <Button
+        android:id="@+id/Button_Settings_banking_default_settings"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/Button_Settings_banking_delete_history"
+        style="@style/Button_General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button_Settings_banking_default_settings"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Button" />
+
 </RelativeLayout>
