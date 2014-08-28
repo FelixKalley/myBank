@@ -2,12 +2,14 @@ package com.example.mybank;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
-
-
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,10 +40,7 @@ public class BookingActivity extends Activity {
 		DeclareAllElements();
 		
 		
-		 ArrayAdapter adapter = ArrayAdapter.createFromResource(
-		            this, R.array.Selection, android.R.layout.simple_spinner_item);
-		    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		    SPINNER_Selection.setAdapter(adapter);
+		
 
 	}
 
@@ -52,7 +51,37 @@ public class BookingActivity extends Activity {
 
 	private void DeclarationOfAllSpinners() {
 		SPINNER_Selection = (Spinner) findViewById(R.id.SPINNER_Selection_Booking_Screen);
+		FillSpinnerWithArrayContent();
 		
+		
+	}
+
+	private void FillSpinnerWithArrayContent() {
+		 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+		            this, R.array.Selection, android.R.layout.simple_spinner_item);
+		    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    
+		    SPINNER_Selection.setAdapter(adapter);	
+		    SPINNER_Selection.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+				public void onItemSelected(AdapterView<?> selection, View arg1,
+						int pos, long id) {
+						if(selection.getItemAtPosition(pos).toString().equals("Einstellungen")){
+							 Intent i = new Intent(getApplicationContext(),
+					                    SettingsMainActivity.class);
+					            startActivity(i);
+					            finish();
+						}
+						
+									}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+		    
 	}
 
 	private void DeclarationOfAllTextViews() {
