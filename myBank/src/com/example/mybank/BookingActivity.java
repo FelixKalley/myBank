@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -72,6 +71,18 @@ public class BookingActivity extends Activity {
 					            startActivity(i);
 					            finish();
 						}
+						
+						/*
+						 * NOCH AUSKOMMENTIERT DA KLASSE HISTORY NOCH NICHT EXISTIERT!
+						 * 
+						  if(selection.getItemAtPosition(pos).toString().equals("History")){
+						 
+							 Intent i = new Intent(getApplicationContext(),
+					                    HistoryActivity.class);
+					            startActivity(i);
+					            finish();
+						}*/
+						
 						
 									}
 
