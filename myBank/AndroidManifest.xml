@@ -38,6 +38,10 @@
             android:name="com.example.mybank.Settings_Notification_Activity"
             android:label="@string/title_activity_settings__notification_" >
         </activity>
+        <activity
+            android:name="com.example.mybank.Settings_Banking_Activity"
+            android:label="@string/title_activity_settings__banking_" >
+        </activity>
     </application>
 
 </manifest>

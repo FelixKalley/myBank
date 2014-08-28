@@ -14,7 +14,7 @@
     <string name="Autor3">Meikel Ratz</string>
 
     <!-- ButtonStrings -->
-
+	<string name="AddButton_String_Plus">+</string>
     <string name="String_Button_Add_Input">Einzahlung</string>
     <string name="String_Button_Add_Expense">Abbuchung</string>
     <string name="String_Button_Add_Standing_Order">Plane Buchung</string>
@@ -52,16 +52,18 @@
     <string name="String_TextView_Profil_complete_income">Complete Income</string>
     <string name="String_TextView_Profil_complete_expense">Complete Expense</string>
     <string name="String_TextView_Profil_Complete_savings">Complete Savings</string>
-    
-    
+    <string name="String_TextView_Settings_Banking_Change_Currency">Währung</string>
+    <string name="String_TextView_Settings_Banking_Change_Limit">Ändere Limit</string>
+    <string name="String_TextView_Settings_Banking_Change_Goal">Ändere Ziel</string>
+	<string name="String_TextView_Settings_Banking_Screen_Name">Banking</string>
     <!-- SwitchStrings -->
-    
+
     <string name="String_Switch_Notification_on">Set Notification</string>
-	<string name="String_Switch_Notification_server">Saved to Server</string>
-	<string name="String_Switch_Notification_goal_reached">Goal Reached</string>
-	<string name="String_Switch_Notification_limit_reached">Limit Reached</string>
-	<string name="String_Switch_Notification_daily_reminder">Daily Reminder</string>
-	
+    <string name="String_Switch_Notification_server">Saved to Server</string>
+    <string name="String_Switch_Notification_goal_reached">Goal Reached</string>
+    <string name="String_Switch_Notification_limit_reached">Limit Reached</string>
+    <string name="String_Switch_Notification_daily_reminder">Daily Reminder</string>
+
     <!-- SpinnerStrings -->
 
     <string name="String_Spinner_Booking">Buchungen</string>
@@ -69,15 +71,24 @@
     <string name="String_Spinner_History">History</string>
     <string name="String_Spinner_Overview">Übersicht</string>
     <string name="title_activity_booking">BookingActivity</string>
+    
+    <!-- Arrays -->
 
     <string-array name="Selection">
         <item>Buchungen</item>
         <item>Verlauf</item>
         <item>Einstellungen</item>
     </string-array>
+    
+    <string-array name="Currency">
+        <item>EUR</item>
+        <item>USD</item>
+       
+    </string-array>
 
     <string name="title_activity_settings_main">SettingsMainActivity</string>
     <string name="title_activity_settings_profil_">Settings_profil_Activity</string>
     <string name="title_activity_settings__notification_">Settings_Notification_Activity</string>
+    <string name="title_activity_settings__banking_">Settings_Banking_Activity</string>
 
 </resources>
