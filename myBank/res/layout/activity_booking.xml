@@ -1,13 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/AddButton_Goal"
-    style="@style/BackgroundColor"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.mybank.BookingActivity"
-    tools:ignore="MergeRootFrame" >
-
+    android:layout_height="match_parent" >
+    
+    
     <RelativeLayout
+         android:id="@+id/mainContent"
+           style="@style/BackgroundColor"
+         android:layout_width="match_parent"
+   		 android:layout_height="match_parent"
+   		  >
+   		  
+          <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,141 +20,150 @@
         android:gravity="center" >
 
         <TextView
+            android:id="@+id/listdrawerlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textColor="#000"
             android:textSize="30sp" />
-    </RelativeLayout>
+        
+        </RelativeLayout>
+   		  
+            <TextView
+            android:id="@+id/TEXTVIEW_ADD_EXPENSE"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TEXTVIEW_ADD_INCOME"
+            android:layout_alignTop="@+id/TEXTVIEW_ADD_INCOME"
+            android:layout_marginTop="49dp"
+            android:text="Ausgabe" />
 
-    <Spinner
-        android:id="@+id/SPINNER_Selection_Booking_Screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TEXTVIEW_ADD_EXPENSE"
+            android:layout_below="@+id/TEXTVIEW_ADD_EXPENSE"
+            android:layout_marginTop="28dp"
+            android:text="Plane Buchung" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ADD_EXPENSE"
-        style="@style/TextViewStyleBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TEXTVIEW_ADD_INCOME"
-        android:layout_alignTop="@+id/TEXTVIEW_ADD_INCOME"
-        android:layout_marginTop="49dp"
-        android:text="Ausgabe" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ADD_BUTTON_1"
+            style="@style/AddButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_INCOME"
+            android:layout_alignBottom="@+id/TEXTVIEW_ADD_INCOME"
+            android:layout_alignLeft="@+id/TEXTVIEW_ZIEL"
+            android:text="+"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-        style="@style/TextViewStyleBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TEXTVIEW_ADD_EXPENSE"
-        android:layout_below="@+id/TEXTVIEW_ADD_EXPENSE"
-        android:layout_marginTop="28dp"
-        android:text="Plane Buchung" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ADD_BUTTON_2"
+            style="@style/AddButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_EXPENSE"
+            android:layout_alignBottom="@+id/TEXTVIEW_ADD_EXPENSE"
+            android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_1"
+            android:text="+"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ADD_BUTTON_1"
-        style="@style/AddButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TEXTVIEW_ADD_INCOME"
-        android:layout_alignBottom="@+id/TEXTVIEW_ADD_INCOME"
-        android:layout_alignLeft="@+id/TEXTVIEW_ZIEL"
-        android:text="+"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ADD_BUTTON_3"
+            style="@style/AddButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+            android:layout_alignBottom="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+            android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_2"
+            android:text="+"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ADD_BUTTON_2"
-        style="@style/AddButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TEXTVIEW_ADD_EXPENSE"
-        android:layout_alignBottom="@+id/TEXTVIEW_ADD_EXPENSE"
-        android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_1"
-        android:text="+"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ADD_INCOME"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="153dp"
+            android:layout_toRightOf="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+            android:text="Einnahme" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ADD_BUTTON_3"
-        style="@style/AddButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-        android:layout_alignBottom="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-        android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_2"
-        android:text="+"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/TEXTVIEW_Kontostand"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="112dp"
+            android:text="Kontostand" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ADD_INCOME"
-        style="@style/TextViewStyleBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="153dp"
-        android:layout_toRightOf="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-        android:text="Einnahme" />
+        <TextView
+            android:id="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/TEXTVIEW_Kontostand"
+            android:layout_marginLeft="37dp"
+            android:text="Ausstehend" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_Kontostand"
-        style="@style/TextViewStyleBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="112dp"
-        android:text="Kontostand" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ZIEL"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+            android:layout_marginLeft="37dp"
+            android:text="Ziel" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-        style="@style/TextViewStyleBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TEXTVIEW_Kontostand"
-        android:layout_marginLeft="37dp"
-        android:text="Ausstehend" />
+        <TextView
+            android:id="@+id/TEXTVIEW_KONTOSTAND_CONTENT"
+            style="@style/TextViewStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+            android:layout_alignRight="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+            android:text="+3050,55" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_ZIEL"
-        style="@style/TextViewStyleBlack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-        android:layout_marginLeft="37dp"
-        android:text="Ziel" />
+        <TextView
+            android:id="@+id/TEXTVIEW_AUSSTEHEND_CONTENT"
+            style="@style/TextViewStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/TEXTVIEW_ZIEL"
+            android:layout_alignBottom="@+id/TEXTVIEW_ZIEL"
+            android:layout_alignLeft="@+id/TEXTVIEW_ZIEL_CONTENT"
+            android:text="-404,55" />
 
-    <TextView
-        android:id="@+id/TEXTVIEW_KONTOSTAND_CONTENT"
-        style="@style/TextViewStyleWhite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-        android:layout_alignRight="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-        android:text="+3050,55" />
+        <TextView
+            android:id="@+id/TEXTVIEW_ZIEL_CONTENT"
+            style="@style/TextViewStyleWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/TEXTVIEW_ZIEL"
+            android:layout_alignRight="@+id/TEXTVIEW_KONTOSTAND_CONTENT"
+            android:text="+750,00" />
+   		 
+ 
+        
+        </RelativeLayout>
+    
+      <ExpandableListView android:id="@+id/drawerList"
+        android:groupIndicator="@android:color/transparent"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="@color/COLOR_WHITE"
+      	/>
 
-    <TextView
-        android:id="@+id/TEXTVIEW_AUSSTEHEND_CONTENT"
-        style="@style/TextViewStyleWhite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TEXTVIEW_ZIEL"
-        android:layout_alignBottom="@+id/TEXTVIEW_ZIEL"
-        android:layout_alignLeft="@+id/TEXTVIEW_ZIEL_CONTENT"
-        android:text="-404,55" />
-
-    <TextView
-        android:id="@+id/TEXTVIEW_ZIEL_CONTENT"
-        style="@style/TextViewStyleWhite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/TEXTVIEW_ZIEL"
-        android:layout_alignRight="@+id/TEXTVIEW_KONTOSTAND_CONTENT"
-        android:text="+750,00" />
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

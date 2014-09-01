@@ -2,16 +2,18 @@ package com.example.mybank;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
 	TextView TEXTVIEW_AppName;
 	TextView TEXTVIEW_AppSlogan;
@@ -25,14 +27,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.AddButton_Goal, new PlaceholderFragment()).commit();
-		}
 
 		DeclarationOfAllTextViews();
 		DeclarationOfProgressBar();
 		TimeToChangeScreen();
+		
+	
 
 		TimerTask task = new TimerTask() {
 

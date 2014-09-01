@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.mybank.MainActivity"
     tools:ignore="MergeRootFrame" >
+    
+
 
     <TextView
         android:id="@+id/TEXTVIEW_APPNAME"

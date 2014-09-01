@@ -3,16 +3,22 @@ package com.example.mybank;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.os.Build;
 
 public class Settings_Banking_Activity extends Activity {
@@ -26,6 +32,10 @@ public class Settings_Banking_Activity extends Activity {
 	Spinner Spinner_Change_Currency;
 	Button Button_Default_Settings;
 	Button Button_Delete_History;
+	DrawerLayout drawerLayout;
+	ListView drawerListView;
+	String[] SelectionArray;
+	ActionBarDrawerToggle drawerlistener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,33 +44,73 @@ public class Settings_Banking_Activity extends Activity {
 
 		
 		DeclareAllElements();
+		SetAdapterToListView();
 		
 	}
 
 	private void DeclareAllElements() {
 		DeclareAllTextViews();
 		DeclareAllButtons();
-		DeclareAllSpinners();
+		DeclareDrawerElements();
+		DeclareStringArrays();
+		DeclareDrawerListner();
+	}
+	
+	private void SetAdapterToListView() {
+		drawerListView.setAdapter(new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, SelectionArray));
+		drawerListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				if (SelectionArray[position].equals("Buchungen")) {
+					Intent intent = new Intent(Settings_Banking_Activity.this,
+							BookingActivity.class);
+					startActivity(intent);
+					finish();
+
+				}
+
+				/*
+				 * if(SelectionArray[position].equals("Verlauf")){ Intent intent
+				 * = new Intent(BookingActivity.this,
+				 * SettingsMainActivity.class); startActivity(intent); finish();
+				 */
+
+			}
+
+		});
+
+	}
+	
+	private void DeclareDrawerListner() {
+		drawerlistener = new ActionBarDrawerToggle(this, drawerLayout,
+				R.drawable.ic_navigation_drawer, R.string.String_drawer_open,
+				R.string.String_drawer_open) {
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				// TODO Auto-generated method stub
+				super.onDrawerClosed(drawerView);
+			}
+
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				// TODO Auto-generated method stub
+				super.onDrawerOpened(drawerView);
+			}
+		};
 	}
 
-	private void DeclareAllSpinners() {
-			Spinner_Change_Currency = (Spinner) findViewById(R.id.Spinner_Banking_Currency);
-			FillSpinnerWithArray();
-			
-			
-
+	
+	private void DeclareStringArrays() {
+		SelectionArray = getResources().getStringArray(R.array.Selection);
 	}
-			
-		
+
 	
 
-	private void FillSpinnerWithArray() {
-		ArrayAdapter adapter = ArrayAdapter.createFromResource(
-	            this, R.array.Currency, android.R.layout.simple_spinner_item);
-	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    Spinner_Change_Currency.setAdapter(adapter);		
-	}
-
+	
 	private void DeclareAllButtons() {
 		AddButton_Goal = (TextView) findViewById(R.id.AddButton_Banking_Limit);
 		AddButton_Goal.setText(R.string.AddButton_String_Plus);
@@ -95,6 +145,13 @@ public class Settings_Banking_Activity extends Activity {
 		
 	}
 
+	private void DeclareDrawerElements() {
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		drawerLayout.setDrawerListener(drawerlistener);
+		drawerListView = (ListView) findViewById(R.id.drawerList);
+
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -103,17 +160,8 @@ public class Settings_Banking_Activity extends Activity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+
+	
 
 	/**
 	 * A placeholder fragment containing a simple view.

@@ -5,16 +5,19 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    
+    <!-- DrawerNavigation Sound Strings -->
+    
+    <string name="String_drawer_open">Open Navigation Drawer</string>
+    <string name="String_drawer_closed">Close Navigation Drawer</string>
+    
     <!-- ALL STRINGS FOR STARTING-SCREEN -->
 
     <string name="AppName">myBank</string>
     <string name="AppSlogan">Consistency Pays</string>
-    <string name="Autor1">Felix Kalley</string>
-    <string name="Autor2">Felix Stoisch</string>
-    <string name="Autor3">Meikel Ratz</string>
-
+  
     <!-- ButtonStrings -->
-	<string name="AddButton_String_Plus">+</string>
+    <string name="AddButton_String_Plus">+</string>
     <string name="String_Button_Add_Input">Einzahlung</string>
     <string name="String_Button_Add_Expense">Abbuchung</string>
     <string name="String_Button_Add_Standing_Order">Plane Buchung</string>
@@ -55,7 +58,7 @@
     <string name="String_TextView_Settings_Banking_Change_Currency">Währung</string>
     <string name="String_TextView_Settings_Banking_Change_Limit">Ändere Limit</string>
     <string name="String_TextView_Settings_Banking_Change_Goal">Ändere Ziel</string>
-	<string name="String_TextView_Settings_Banking_Screen_Name">Banking</string>
+    <string name="String_TextView_Settings_Banking_Screen_Name">Banking</string>
     <!-- SwitchStrings -->
 
     <string name="String_Switch_Notification_on">Set Notification</string>
@@ -64,31 +67,43 @@
     <string name="String_Switch_Notification_limit_reached">Limit Reached</string>
     <string name="String_Switch_Notification_daily_reminder">Daily Reminder</string>
 
-    <!-- SpinnerStrings -->
-
-    <string name="String_Spinner_Booking">Buchungen</string>
-    <string name="String_Spinner_Settings">Einstellungen</string>
-    <string name="String_Spinner_History">History</string>
-    <string name="String_Spinner_Overview">Übersicht</string>
-    <string name="title_activity_booking">BookingActivity</string>
+    <!-- ExpandableViewListStrings -->
     
+    <string name="List_Einstellung_Verwaltung">Verwaltung</string>
+	    <string name="List_Einstellung_Profil">Profil</string>
+	        <string name="List_Einstellung_Bencharichtigungen">Benachrichtigungen</string>
+	            <string name="List_Einstellung_Banking">Banking</string>
+	        
+	    
+    
+
+
     <!-- Arrays -->
 
     <string-array name="Selection">
         <item>Buchungen</item>
         <item>Verlauf</item>
         <item>Einstellungen</item>
+        <item>Übersicht</item>
     </string-array>
-    
     <string-array name="Currency">
         <item>EUR</item>
         <item>USD</item>
-       
     </string-array>
+    
+    <string-array name="Sub_Options">
+        <item>Benachrichtigungen</item>
+         <item>Verwaltung</item>
+         <item>Profil</item>
+         <item>Banking</item>
+    </string-array>
+    
+  
 
     <string name="title_activity_settings_main">SettingsMainActivity</string>
     <string name="title_activity_settings_profil_">Settings_profil_Activity</string>
     <string name="title_activity_settings__notification_">Settings_Notification_Activity</string>
     <string name="title_activity_settings__banking_">Settings_Banking_Activity</string>
+    <string name="title_activity_screen_slide_pager">ScreenSlidePagerActivity</string>
 
 </resources>
