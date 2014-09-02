@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.View;
-
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.TextView;
@@ -33,6 +32,8 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		setContentView(R.layout.activity_booking);
 
 		DeclareAllElements();
+		SeeIfListItemIsClicked();
+
 
 	}
 
@@ -44,29 +45,33 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
 
-		SeeIfListItemIsClicked();
 
 	}
 
 	private void SeeIfListItemIsClicked() {
+		
+ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
+			
+			@Override
+			public boolean onGroupClick(ExpandableListView parent, View v,
+					int groupPosition, long id) {
+				isGroupClicked(groupPosition);
+				return false;
+			}
+		});
 
 		ExpandList.setOnChildClickListener(new OnChildClickListener() {
 
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-				
-				
-				isChildSettingClicked(groupPosition,childPosition);
-				//isGroupClicked(groupPosition);
 
+				isChildSettingClicked(groupPosition, childPosition);
+			
 
 				return false;
 			}
 
-			
-				
-			
 		});
 
 		ExpandList.setOnGroupExpandListener(new OnGroupExpandListener() {
@@ -88,86 +93,87 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		});
 
 	}
-	
-	
-	/*	private void isGroupClicked(int groupPosition) {
-		
-		
-		final int HISTORY = 1;
-		final int OVERVIEW = 3;
 
 
 	
+	
+	  private void isGroupClicked(int groupPosition) {
+			final  int HISTORY = 1; final  int OVERVIEW = 3; final int BOOKING = 0;
+			  
+			  
+			 
+			/*  switch (groupPosition) {
+			  
+			  case HISTORY:
+			  
+			  
+			  
+			  Intent i = new Intent(Settings_Banking_Activity.this, HistoryActivity.class);
+			  startActivity(i); finish(); break;
+			  
+			  case OVERVIEW:
+			  
+			  Intent j = new Intent(Settings_Banking_Activity.this, OverviewActivity.class);
+			  startActivity(j); finish(); break;
+			  case VERWALTUNG:
+				  
+				  Intent k = new Intent(BookingActivity.this, VerwaltungActivity.class);
+				  startActivity(k);
+				  finish();
+				  break;
+				  
+			 
+				  
+				  */
+				  
+			  }
+			  
+			  
+		  
+	  
+
+	private void isChildSettingClicked(int groupPosition, int childPosition) {
+		// Groups
+
+		final int Einstellungen = 2;
+
+		// Childs
+
+		final int NOTIFICATION = 0;
+		final int PROFIL = 1;
+		final int BANKING = 2;
+		final int VERWALTUNG = 3;
+
 		switch (groupPosition) {
-		case HISTORY:
-			
-			
-			Intent i = new Intent(BookingActivity.this,
-						HistoryActivity.class);
+		case Einstellungen:
+			switch (childPosition) {
+			case NOTIFICATION:
+				Intent i = new Intent(BookingActivity.this,
+						Settings_Notification_Activity.class);
 				startActivity(i);
 				finish();
 				break;
-				
-		case OVERVIEW:
-			
-			Intent j = new Intent(BookingActivity.this,
-					OverviewActivity.class);
-			startActivity(j);
-			finish();
-			break;
-			
-		
-		}
-	}*/
 
-	
+			case PROFIL:
+				Intent j = new Intent(BookingActivity.this,
+						Settings_profil_Activity.class);
+				startActivity(j);
+				finish();
+				break;
+			case BANKING:
+				Intent k = new Intent(BookingActivity.this,
+						Settings_Banking_Activity.class);
+				startActivity(k);
+				finish();
+				/*
+				 * case VERWALTUNG: Intent l = new Intent(BookingActivity.this,
+				 * Settings_Verwaltung_Activity.class); startActivity(l);
+				 * finish(); break;
+				 */
 
-private void isChildSettingClicked(int groupPosition,
-		int childPosition) {
-	// Groups
-
-	final int Einstellungen = 2;
-
-	// Childs
-
-	final int NOTIFICATION = 0;
-	final int PROFIL = 1;
-	final int BANKING = 2;
-	final int VERWALTUNG = 3;
-
-	switch (groupPosition) {
-	case Einstellungen:
-		switch (childPosition) {
-		case NOTIFICATION:
-			Intent i = new Intent(BookingActivity.this,
-					Settings_Notification_Activity.class);
-			startActivity(i);
-			finish();
-			break;
-
-		case PROFIL:
-			Intent j = new Intent(BookingActivity.this,
-					Settings_profil_Activity.class);
-			startActivity(j);
-			finish();
-			break;
-		case BANKING:
-			Intent k= new Intent(BookingActivity.this,
-					Settings_Banking_Activity.class);
-			startActivity(k);
-			finish();
-		/*case VERWALTUNG:
-			Intent l = new Intent(BookingActivity.this,
-					Settings_Verwaltung_Activity.class);
-			startActivity(l);
-			finish();
-			break;
-			*/
-			
-			
+			}
 		}
 	}
-}
 
 	public ArrayList<ExpListGroups> SetStandardGroups() {
 

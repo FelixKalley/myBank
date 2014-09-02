@@ -74,8 +74,11 @@ public class Settings_Notification_Activity extends Activity {
 	}
 
 	private void DeclareAllTextViews() {
-		TextView_Settings_Notification_Screen_Name = (TextView) findViewById(R.id.TEXTVIEW_Notification_screen_name);
-		TextView_Settings_Notification_Screen_Name.setText(R.string.String_TextView_Settings_Notification);
+	/*
+	 * HIER K…NNTE IHR CODE STEHEN
+	 * 
+	 * 
+	 */
 	}
 
 	@Override
