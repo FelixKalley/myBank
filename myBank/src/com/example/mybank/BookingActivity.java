@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -21,6 +22,10 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	TextView TEXTVIEW_Add_Income;
 	TextView TEXTVIEW_Add_Expense;
 	TextView TEXTVIEW_Add_Scheduled_booking;
+	TextView Button_Add_Income;
+	TextView Button_Add_Expense;
+	TextView Button_Add_Sheduled_booking;
+
 
 	private ExpandableDrawerAdapter ExpAdapter;
 	private ArrayList<ExpListGroups> ExpListItems;
@@ -33,8 +38,35 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 
 		DeclareAllElements();
 		SeeIfListItemIsClicked();
+		PerformActionIfButtonIsClicked();
 
 
+	}
+
+	private void PerformActionIfButtonIsClicked() {
+		BookIncome();
+		//BookExpense();
+		//SheduleBooking();
+		
+	}
+
+	private void BookIncome() {
+		
+		Button_Add_Income.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				CustomDialogClass addIncome = new CustomDialogClass(BookingActivity.this);	
+				addIncome.show();
+			}
+		});
+		
+	
+				
+			
+			
+			
+		
 	}
 
 	private void DeclareMenuDrawer() {
@@ -260,6 +292,18 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 		TEXTVIEW_Add_Scheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_PLANE_BUCHUNG);
 		TEXTVIEW_Add_Scheduled_booking
 				.setText(R.string.String_TextView_Add_Scheduled_Booking);
+		
+		Button_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_1);
+	
+
+		Button_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_2);
+		
+
+		Button_Add_Sheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_3);
+		
+		
+		
+		
 
 	}
 

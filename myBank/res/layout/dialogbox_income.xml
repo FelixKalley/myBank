@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:background="#3E80B4"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/booking_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="Machen sie eine Einzahlung"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="5dp"
+          android:layout_marginLeft="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/booking_dialog"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:text="Ok"
+        android:textColor="#5DBCD2"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBottom="@+id/button_ok"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/button_ok"
+        android:background="@color/COLOR_WHITE"
+        android:textColor="#000000"
+        android:ems="10"
+        android:inputType="number" />
+
+</RelativeLayout>
