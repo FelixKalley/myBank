@@ -2,8 +2,11 @@ package com.example.mybank;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +28,9 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	TextView Button_Add_Income;
 	TextView Button_Add_Expense;
 	TextView Button_Add_Sheduled_booking;
+	ActionBarDrawerToggle mDrawerToggle;
+
+	
 
 
 	private ExpandableDrawerAdapter ExpAdapter;
@@ -49,6 +55,45 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		//SheduleBooking();
 		
 	}
+	
+	private void setUpDrawerToggle(){
+		
+		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		
+	    ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+	    actionBar.setHomeButtonEnabled(true);
+	    
+	    mDrawerToggle = new ActionBarDrawerToggle(
+	            this,                             /* host Activity */
+	            mDrawerLayout,                    /* DrawerLayout object */
+	            R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
+	            R.string.action_settings,  /* "open drawer" description for accessibility */
+	            R.string.AddButton_String_Plus  /* "close drawer" description for accessibility */
+	    ) {
+	        @Override
+	        public void onDrawerClosed(View drawerView) {
+	            invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+	        }
+
+	        @Override
+	        public void onDrawerOpened(View drawerView) {
+	            invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+	        }
+	    };
+
+	    // Defer code dependent on restoration of previous instance state.
+	    // NB: required for the drawer indicator to show up!
+	    mDrawerLayout.post(new Runnable() {
+	        @Override
+	        public void run() {
+	            mDrawerToggle.syncState();
+	        }
+	    });
+
+	    mDrawerLayout.setDrawerListener(mDrawerToggle);
+	}
+	
 
 	private void BookIncome() {
 		
@@ -70,6 +115,8 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void DeclareMenuDrawer() {
+		
+		setUpDrawerToggle();
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
@@ -207,7 +254,7 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 		}
 	}
 
-	public ArrayList<ExpListGroups> SetStandardGroups() {
+	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
@@ -268,7 +315,7 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 	private void DeclareAllElements() {
 		DeclarationOfAllTextViews();
 		DeclareMenuDrawer();
-
+		
 	}
 
 	private void DeclarationOfAllTextViews() {

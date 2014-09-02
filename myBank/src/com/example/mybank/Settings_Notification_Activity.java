@@ -8,6 +8,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,9 @@ public class Settings_Notification_Activity extends Activity {
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
+	
+	ActionBarDrawerToggle mDrawerToggle;
+
 	
 	
 
@@ -72,6 +76,8 @@ public class Settings_Notification_Activity extends Activity {
 	
 	
 	private void DeclareMenuDrawer() {
+		
+		setUpDrawerToggle();
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
@@ -80,6 +86,44 @@ public class Settings_Notification_Activity extends Activity {
 		ExpandList.setAdapter(ExpAdapter);
 
 
+	}
+	
+		private void setUpDrawerToggle(){
+		
+		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		
+	    ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+	    actionBar.setHomeButtonEnabled(true);
+	    
+	    mDrawerToggle = new ActionBarDrawerToggle(
+	            this,                             /* host Activity */
+	            mDrawerLayout,                    /* DrawerLayout object */
+	            R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
+	            R.string.action_settings,  /* "open drawer" description for accessibility */
+	            R.string.AddButton_String_Plus  /* "close drawer" description for accessibility */
+	    ) {
+	        @Override
+	        public void onDrawerClosed(View drawerView) {
+	            invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+	        }
+
+	        @Override
+	        public void onDrawerOpened(View drawerView) {
+	            invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+	        }
+	    };
+
+	    // Defer code dependent on restoration of previous instance state.
+	    // NB: required for the drawer indicator to show up!
+	    mDrawerLayout.post(new Runnable() {
+	        @Override
+	        public void run() {
+	            mDrawerToggle.syncState();
+	        }
+	    });
+
+	    mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
 	
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
