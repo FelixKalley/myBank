@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:id="@+id/booking_prompt_info_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/booking_prompt_info_text"
+        />
+    
+    <EditText 
+        android:id="@+id/booking_prompt_amount_input_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/booking_prompt_amount_input_hint_text"
+        />
+    
+    <EditText 
+        android:id="@+id/booking_prompt_title_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/booking_prompt_title_hint_text"
+        />
+    
+    <!--<Spinner
+            android:id="@+id/booking_prompt_spinner_categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+    -->
+
+</LinearLayout>

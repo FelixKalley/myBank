@@ -3,13 +3,20 @@ package com.example.mybank;
 import java.util.ArrayList;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -33,6 +40,9 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
+	
+	public MyBankDatabase db;
+	final Context context = this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +52,178 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		DeclareAllElements();
 		SeeIfListItemIsClicked();
 		
+		//---------------------------------------------------------------------------------------------------  					
+		// Test: OnClickListener on INCOME-textview & open prompt for user data input (store data in DB)
+		    
+		TEXTVIEW_Add_Income.setOnClickListener(new OnClickListener(){
+
+		@Override
+		public void onClick(View arg0) {
+			
+			LayoutInflater li = LayoutInflater.from(context);
+			View promptsView = li.inflate(R.layout.booking_prompt, null);
+										
+			
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			
+			//set view on prompt
+			alertDialogBuilder.setView(promptsView);
+			
+			//elements to appear in prompt
+			final TextView infoText = (TextView) promptsView.findViewById(R.id.booking_prompt_info_textview);
+			final EditText editText_inputAmount = (EditText) promptsView.findViewById(R.id.booking_prompt_amount_input_edittext);
+			final EditText editText_inputTitle = (EditText) promptsView.findViewById(R.id.booking_prompt_title_edittext);
+			
+			alertDialogBuilder
+					.setCancelable(false)
+					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							
+							String title = editText_inputTitle.getText().toString();
+							double amount = Double.parseDouble(editText_inputAmount.getText().toString());
+							
+							// fetch data from edittext's & store into database
+							// --> write insertData method in database class!
+							
+							//create new BookingItem out of user input
+							//insert this item into db
+							
+							
+							
+							
+							//Test
+							BookingItem item = new BookingItem(title, "Kategorie", amount, "+");
+							db.insertBookingItem(item);
+							
+							//db.updateBalancePositive(item);
+							//Log.d("","Log update return: " + db.updateBalancePositive(item));
+							
+							//currentBalance = db.getCurrentBalance();
+							
+							//TextView updaten
+							//TEXTVIEW_AccountBalance.setText(currentBalance);
+							
+							
+							//TEXTVIEW_AccountBalance.setText(""+item.getAmount());
+							
+							
+							
+							
+							Log.d("BookingItem Count", "BookingItem Count: " + db.getAllBookingItems().size());
+							//Log.d("CurrentBalance", "CurrentBalance: "+ db.getCurrentBalance());
+						}
+					})
+					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							
+						}
+					});
+			
+			//create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			
+			alertDialog.show();
+			
+		}
+		
+	});
+		    
+	//-----------------------------------------------------------------------------------------------------
+		//Test: OnClickListener on EXPENSE-textview & open prompt (store data in DB)
+		
+		TEXTVIEW_Add_Expense.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				LayoutInflater li = LayoutInflater.from(context);
+				View promptsView = li.inflate(R.layout.booking_prompt, null);
+											
+				
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+				
+				//set view on prompt
+				alertDialogBuilder.setView(promptsView);
+				
+				//elements to appear in prompt
+				final TextView infoText = (TextView) promptsView.findViewById(R.id.booking_prompt_info_textview);
+				final EditText editText_inputAmount = (EditText) promptsView.findViewById(R.id.booking_prompt_amount_input_edittext);
+				final EditText editText_inputTitle = (EditText) promptsView.findViewById(R.id.booking_prompt_title_edittext);
+				
+				alertDialogBuilder
+				.setCancelable(false)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						
+						String title = editText_inputTitle.getText().toString();
+						double amount = Double.parseDouble(editText_inputAmount.getText().toString());
+						
+						// fetch data from edittext's & store into database
+						// --> write insertData method in database class!
+						
+						
+						
+						//create new BookingItem out of user input
+						//insert this item into db
+
+						BookingItem item = new BookingItem(title, "Kategorie", amount, "-");
+						db.insertBookingItem(item);
+						
+						//db.updateBalancePositive(item);
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						Log.d("BookingItem Count", "BookingItem Count: " + db.getAllBookingItems().size());
+					}
+				})
+				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						
+					}
+				});
+		
+		//create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		
+		alertDialog.show();
+		
 	}
+			
+		});
+		
+	/*	Button button = (Button) findViewById(R.id.link_button);
+		button.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Log.d("Button", "Button Click");
+				Intent intent = new Intent(BookingActivity.this, HistoryActivity.class);
+				startActivity(intent);
+				
+				
+			}
+			
+		});*/
+
+	}
+		
+	
 
 	
 		
@@ -156,25 +337,29 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		final int OVERVIEW = 3;
 		final int BOOKING = 0;
 
-		/*
-		 * switch (groupPosition) {
-		 * 
-		 * case HISTORY:
-		 * 
-		 * 
-		 * 
-		 * Intent i = new Intent(Settings_Banking_Activity.this,
-		 * HistoryActivity.class); startActivity(i); finish(); break;
-		 * 
-		 * case OVERVIEW:
-		 * 
-		 * Intent j = new Intent(Settings_Banking_Activity.this,
-		 * OverviewActivity.class); startActivity(j); finish(); break; case
-		 * VERWALTUNG:
-		 * 
-		 * Intent k = new Intent(BookingActivity.this,
-		 * VerwaltungActivity.class); startActivity(k); finish(); break;
-		 */
+		
+		  switch (groupPosition) {
+		  
+		  case HISTORY:
+		  
+		  
+		  
+		  Intent i = new Intent(BookingActivity.this,
+		  HistoryActivity.class);
+		  startActivity(i);
+		  finish();
+		  break;
+		  }
+		  
+	/*	 case OVERVIEW:
+		 
+		Intent j = new Intent(Settings_Banking_Activity.this,
+		 OverviewActivity.class); startActivity(j); finish(); break; case
+		 VERWALTUNG:
+		 
+		  Intent k = new Intent(BookingActivity.this,
+		  VerwaltungActivity.class); startActivity(k); finish(); break; */
+		 
 
 	}
 
@@ -280,10 +465,22 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void DeclareAllElements() {
+		initDb();
 		DeclarationOfAllTextViews();
 		DeclareMenuDrawer();
 
 	}
+
+	private void initDb() {
+		db = new MyBankDatabase(this);
+		db.open();
+		
+	}
+
+
+
+
+
 
 	private void DeclarationOfAllTextViews() {
 
