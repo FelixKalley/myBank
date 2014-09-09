@@ -30,12 +30,9 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	TextView Button_Add_Sheduled_booking;
 	ActionBarDrawerToggle mDrawerToggle;
 
-	
-
-
-	private ExpandableDrawerAdapter ExpAdapter;
-	private ArrayList<ExpListGroups> ExpListItems;
-	private ExpandableListView ExpandList;
+	ExpandableDrawerAdapter ExpAdapter;
+	ArrayList<ExpListGroups> ExpListItems;
+	ExpandableListView ExpandList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,78 +41,61 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 
 		DeclareAllElements();
 		SeeIfListItemIsClicked();
-		PerformActionIfButtonIsClicked();
-
-
-	}
-
-	private void PerformActionIfButtonIsClicked() {
-		BookIncome();
-		//BookExpense();
-		//SheduleBooking();
 		
 	}
+
 	
-	private void setUpDrawerToggle(){
 		
+
+	
+
+	private void setUpDrawerToggle() {
+
 		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		
-	    ActionBar actionBar = getActionBar();
-	    actionBar.setDisplayHomeAsUpEnabled(true);
-	    actionBar.setHomeButtonEnabled(true);
-	    
-	    mDrawerToggle = new ActionBarDrawerToggle(
-	            this,                             /* host Activity */
-	            mDrawerLayout,                    /* DrawerLayout object */
-	            R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
-	            R.string.action_settings,  /* "open drawer" description for accessibility */
-	            R.string.AddButton_String_Plus  /* "close drawer" description for accessibility */
-	    ) {
-	        @Override
-	        public void onDrawerClosed(View drawerView) {
-	            invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-	        }
 
-	        @Override
-	        public void onDrawerOpened(View drawerView) {
-	            invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-	        }
-	    };
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
 
-	    // Defer code dependent on restoration of previous instance state.
-	    // NB: required for the drawer indicator to show up!
-	    mDrawerLayout.post(new Runnable() {
-	        @Override
-	        public void run() {
-	            mDrawerToggle.syncState();
-	        }
-	    });
-
-	    mDrawerLayout.setDrawerListener(mDrawerToggle);
-	}
-	
-
-	private void BookIncome() {
-		
-		Button_Add_Income.setOnClickListener(new OnClickListener() {
-			
+		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+		mDrawerLayout, /* DrawerLayout object */
+		R.drawable.ic_navigation_drawer, /*
+										 * nav drawer image to replace 'Up'
+										 * caret
+										 */
+		R.string.action_settings, /* "open drawer" description for accessibility */
+		R.string.AddButton_String_Plus /*
+										 * "close drawer" description for
+										 * accessibility
+										 */
+		) {
 			@Override
-			public void onClick(View v) {
-				CustomDialogClass addIncome = new CustomDialogClass(BookingActivity.this);	
-				addIncome.show();
+			public void onDrawerClosed(View drawerView) {
+				invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+			}
+
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+			}
+		};
+
+		// Defer code dependent on restoration of previous instance state.
+		// NB: required for the drawer indicator to show up!
+		mDrawerLayout.post(new Runnable() {
+			@Override
+			public void run() {
+				mDrawerToggle.syncState();
 			}
 		});
-		
-	
-				
-			
-			
-			
-		
+
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
 
+	
+
 	private void DeclareMenuDrawer() {
-		
+
 		setUpDrawerToggle();
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
@@ -124,13 +104,12 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
 
-
 	}
 
 	private void SeeIfListItemIsClicked() {
-		
-ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
-			
+
+		ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
+
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
@@ -146,7 +125,6 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 					int groupPosition, int childPosition, long id) {
 
 				isChildSettingClicked(groupPosition, childPosition);
-			
 
 				return false;
 			}
@@ -157,7 +135,7 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 
 			@Override
 			public void onGroupExpand(int groupPosition) {
-				String group_name = ExpListItems.get(groupPosition).getName();
+			//	String group_name = ExpListItems.get(groupPosition).getName();
 
 			}
 		});
@@ -166,50 +144,39 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				String group_name = ExpListItems.get(groupPosition).getName();
+			//	String group_name = ExpListItems.get(groupPosition).getName();
 
 			}
 		});
 
 	}
 
+	private void isGroupClicked(int groupPosition) {
+		final int HISTORY = 1;
+		final int OVERVIEW = 3;
+		final int BOOKING = 0;
 
-	
-	
-	  private void isGroupClicked(int groupPosition) {
-			final  int HISTORY = 1; final  int OVERVIEW = 3; final int BOOKING = 0;
-			  
-			  
-			 
-			/*  switch (groupPosition) {
-			  
-			  case HISTORY:
-			  
-			  
-			  
-			  Intent i = new Intent(Settings_Banking_Activity.this, HistoryActivity.class);
-			  startActivity(i); finish(); break;
-			  
-			  case OVERVIEW:
-			  
-			  Intent j = new Intent(Settings_Banking_Activity.this, OverviewActivity.class);
-			  startActivity(j); finish(); break;
-			  case VERWALTUNG:
-				  
-				  Intent k = new Intent(BookingActivity.this, VerwaltungActivity.class);
-				  startActivity(k);
-				  finish();
-				  break;
-				  
-			 
-				  
-				  */
-				  
-			  }
-			  
-			  
-		  
-	  
+		/*
+		 * switch (groupPosition) {
+		 * 
+		 * case HISTORY:
+		 * 
+		 * 
+		 * 
+		 * Intent i = new Intent(Settings_Banking_Activity.this,
+		 * HistoryActivity.class); startActivity(i); finish(); break;
+		 * 
+		 * case OVERVIEW:
+		 * 
+		 * Intent j = new Intent(Settings_Banking_Activity.this,
+		 * OverviewActivity.class); startActivity(j); finish(); break; case
+		 * VERWALTUNG:
+		 * 
+		 * Intent k = new Intent(BookingActivity.this,
+		 * VerwaltungActivity.class); startActivity(k); finish(); break;
+		 */
+
+	}
 
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
 		// Groups
@@ -221,7 +188,7 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
-		final int VERWALTUNG = 3;
+		//final int VERWALTUNG = 3;
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -299,7 +266,7 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 		// Setting Group 4
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
-		gru4.setName("†bersicht");
+		gru4.setName("Ãœbersicht");
 		gru4.setItems(child_list);
 
 		// listing all groups
@@ -315,7 +282,7 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 	private void DeclareAllElements() {
 		DeclarationOfAllTextViews();
 		DeclareMenuDrawer();
-		
+
 	}
 
 	private void DeclarationOfAllTextViews() {
@@ -339,18 +306,12 @@ ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
 		TEXTVIEW_Add_Scheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_PLANE_BUCHUNG);
 		TEXTVIEW_Add_Scheduled_booking
 				.setText(R.string.String_TextView_Add_Scheduled_Booking);
-		
+
 		Button_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_1);
-	
 
 		Button_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_2);
-		
 
 		Button_Add_Sheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_3);
-		
-		
-		
-		
 
 	}
 
