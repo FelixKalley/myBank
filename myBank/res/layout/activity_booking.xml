@@ -28,7 +28,14 @@
             android:textSize="30sp" />
         
         </RelativeLayout>
-   		  
+   		 
+          <Button 
+              android:id="@+id/link_button"
+              android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:text="OutlayHistory"
+              />
+          
             <TextView
             android:id="@+id/TEXTVIEW_ADD_EXPENSE"
             style="@style/TextViewStyleBlack"
@@ -49,6 +56,16 @@
             android:layout_marginTop="28dp"
             android:text="Plane Buchung" />
 
+        <TextView
+            android:id="@+id/TEXTVIEW_ADD_SETZE_ZIEL"
+            style="@style/TextViewStyleBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+            android:layout_below="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
+            android:layout_marginTop="28dp"
+            android:text="Ziel setzen" />
+        
         <TextView
             android:id="@+id/TEXTVIEW_ADD_BUTTON_1"
             style="@style/AddButtonStyle"
@@ -81,6 +98,17 @@
             android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_2"
             android:text="+"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+         <TextView
+            android:id="@+id/TEXTVIEW_ADD_BUTTON_4"
+            style="@style/AddButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_SETZE_ZIEL"
+            android:layout_alignBottom="@+id/TEXTVIEW_ADD_SETZE_ZIEL"
+            android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_3"
+            android:text="+"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
             android:id="@+id/TEXTVIEW_ADD_INCOME"
@@ -111,12 +139,12 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/TEXTVIEW_Kontostand"
             android:layout_marginLeft="37dp"
-            android:text="Ausstehend" />
+            android:text="Geplante Ausgaben" />
 
         <TextView
             android:id="@+id/TEXTVIEW_ZIEL"
             style="@style/TextViewStyleBlack"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"

@@ -48,8 +48,17 @@
         </activity>
         <activity
             android:name="com.example.mybank.HistoryActivity"
-            android:label="@string/title_activity_hisotry" >
+            android:label="@string/title_activity_history" >
         </activity>
+        <activity 
+            android:name="com.example.mybank.OutlayActivity"
+            android:label="@string/title_activity_outlay">
+        </activity>
+        <activity
+            android:name="com.example.mybank.ChartActivity"
+            android:label="@string/title_activity_chart">
+        </activity>
+        
     </application>
 
 </manifest>

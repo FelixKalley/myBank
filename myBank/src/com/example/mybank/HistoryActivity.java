@@ -1,6 +1,9 @@
 package com.example.mybank;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -37,6 +40,23 @@ public class HistoryActivity extends Activity {
 		initUI();
 		initTasklist();
 	}
+	
+	
+	//vll noch ne int-Column 'id' erstellen. beim vorherigen bookingitem abfrage welche id schon ist, dann um 1 erhšhen =
+	// neue id. dann kšnnt ich id vgl. zum sortieren
+	/*
+	public class BookingItemComparator implements Comparator<BookingItem> {
+		
+
+		public int compare(BookingItem item1, BookingItem item2) {
+			int a = Integer.parseInt(item1.getDate());
+		    int b = Integer.parseInt(item2.getDate());
+		    return a < b ? 1 : (a == b ? 0 : -1);
+		}
+    }
+    */
+	
+	
 
 	private void SeeIfListItemIsClicked() {
 		ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
@@ -213,12 +233,15 @@ public class HistoryActivity extends Activity {
 
 	private void initListView() {
 		ListView listview = (ListView) findViewById(R.id.bookingitem_listview);
+		
 	}
 
 	private void updateList() {
 		bookings.clear();
 		bookings.addAll(db.getAllBookingItems());
+		//Collections.sort(bookings, new BookingItemComparator());
 		bookings_adapter.notifyDataSetChanged();
+		
 	}
 	
 	private void isGroupClicked(int groupPosition) {

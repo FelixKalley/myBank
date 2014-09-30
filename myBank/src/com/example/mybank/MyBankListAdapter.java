@@ -1,8 +1,10 @@
 package com.example.mybank;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,8 @@ public class MyBankListAdapter extends ArrayAdapter<BookingItem> {
 		
 	}
 	
+	
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -40,18 +44,19 @@ public class MyBankListAdapter extends ArrayAdapter<BookingItem> {
 			TextView bookingTitle = (TextView) v.findViewById(R.id.booking_title);
 			TextView bookingCategory = (TextView) v.findViewById(R.id.booking_category);
 			TextView bookingAmount = (TextView) v.findViewById(R.id.booking_amount);
+			TextView bookingDate = (TextView) v.findViewById(R.id.booking_date);
 			
-			
-			
-			//hier noch: if-Abfrage ob 'Diff' - oder + ist; dementsprechend --> setText();
 			
 			bookingTitle.setText(item.getTitle());
 			bookingCategory.setText(item.getCategory());
+			bookingDate.setText(item.getDate());
 			String amount;
 			if(item.getDiff().equals("+")){
 				amount = "+ " + Double.toString(item.getAmount());
+				bookingAmount.setTextColor(Color.GREEN);
 			} else {
 				amount = "- " + Double.toString(item.getAmount());
+				bookingAmount.setTextColor(Color.RED);
 			}
 			
 			

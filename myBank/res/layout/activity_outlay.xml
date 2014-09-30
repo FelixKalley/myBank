@@ -1,0 +1,52 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+     		  
+    
+     <LinearLayout 
+         android:id="@+id/lin_layout_for_listview"
+         style="@style/BackgroundColor"
+         android:layout_width="match_parent"
+   		 android:layout_height="match_parent"
+         android:orientation="vertical">
+            
+        	<Button 
+              android:id="@+id/link_button2"
+              android:layout_width="wrap_content"
+    		  android:layout_height="wrap_content"
+    		  android:text="zur BookingHistory"
+              />
+		<TextView 
+		    android:id="@+id/infotext_above_outlay_listview"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_horizontal"
+		    android:textSize="17sp"
+		    android:text="@string/infotext_outlay"
+		    />
+        
+         <ListView
+	        android:id="@+id/outlayitem_listview"
+	        android:background="@android:color/transparent"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_margin="5dp" >
+   		 </ListView>
+    
+        </LinearLayout> 
+    
+    
+
+   <ExpandableListView android:id="@+id/drawerList"
+        android:groupIndicator="@android:color/transparent"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="@color/COLOR_WHITE"
+      	/>
+
+    </android.support.v4.widget.DrawerLayout>

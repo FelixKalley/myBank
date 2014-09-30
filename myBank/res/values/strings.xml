@@ -39,10 +39,27 @@
 
     <!-- TextViewStrings -->
     
-    <string name="booking_prompt_info_text">Wieviel möchten Sie ein/abbuchen?</string>
-     <string name="booking_prompt_amount_input_hint_text">Euro</string>
-      <string name="booking_prompt_title_hint_text">Wofür?</string>
-
+    <string name="booking_prompt_ask_amount_text">Wieviel möchten Sie abbuchen?</string>
+    <string name="income_booking_prompt_ask_amount_text">Wieviel möchten Sie einbuchen?</string>
+    <string name="booking_prompt_ask_title_text">Zu welchem Zweck?</string>
+    <string name="booking_prompt_ask_category_text">In welcher Ausgaben-Kategorie?</string>
+    <string name="booking_prompt_amount_input_hint_text">Euro</string>
+    <string name="booking_prompt_title_hint_text">Wofür?</string>
+    <string name="outlay_prompt_ask_amount_text">Wieviel möchten Sie beiseite legen?</string>
+    <string name="outlay_prompt_amount_input_hint_text">Euro</string>
+    <string name="outlay_prompt_ask_title_text">Für welche zukünftige Ausgabe?</string>
+    <string name="outlay_prompt_title_input_hint_text">Zu welchem Zweck?</string>
+	<string name="outlay_delete_prompt_text">Haben Sie die Auslage nun auch ausgegeben?</string>
+	<string name="infotext_outlay">Sie löschen einzelne Auslagen durch einen langen Klick</string>
+	<string name="goal_prompt_ask_amount_text">Wie möchten Sie ihr Ziel setzen/erhöhen?</string>
+	<string name="goal_prompt_amount_input_hint_text">Euro</string>
+	<string name="income_booking_prompt_title">Einbuchen</string>
+	<string name="expense_booking_prompt_title">Abbuchen</string>
+	<string name="outlay_prompt_title">Etwas beiseite legen</string>
+	<string name="goal_update_prompt_title">Ein Ziel setzen</string>
+	
+	
+    
     <string name="String_TextView_Total_Balance">Kontostand</string>
     <string name="String_TextView_Scheduled_Booking">ausstehende Buchungen</string>
     <string name="String_TextView_Goal">Ziel</string>
@@ -96,11 +113,36 @@
         <item>Banking</item>
     </string-array>
 
+    <!-- Activity Strings -->
+    
     <string name="title_activity_settings_main">SettingsMainActivity</string>
     <string name="title_activity_settings_profil_">Settings_profil_Activity</string>
     <string name="title_activity_settings__notification_">Settings_Notification_Activity</string>
     <string name="title_activity_settings__banking_">Settings_Banking_Activity</string>
     <string name="title_activity_screen_slide_pager">ScreenSlidePagerActivity</string>
-    <string name="title_activity_hisotry">HisotryActivity</string>
-
+    <string name="title_activity_history">HistoryActivity</string>
+	<string name="title_activity_outlay">OutlayActivity</string>
+	<string name="title_activity_chart">ChartActivity</string>
+    
+    <!-- Booking Prompt Category Spinner Strings -->
+    
+    <string name="category_spinner_header_text">Wählen Sie eine Kategorie</string>
+    
+    <string-array name="categories_array">
+        <item>Freizeit</item>
+        <item>Sport</item>
+        <item>Sonstiges</item>
+        <item>Universität</item>
+        <item>Wohnung</item>
+        
+    </string-array>
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </resources>

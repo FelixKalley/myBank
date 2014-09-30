@@ -5,10 +5,11 @@
     android:orientation="vertical" >
     
     <TextView 
-        android:id="@+id/booking_prompt_info_textview"
+        android:id="@+id/booking_prompt_ask_amount_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/booking_prompt_info_text"
+        android:layout_marginLeft="5dp"
+        android:text="@string/booking_prompt_ask_amount_text"
         />
     
     <EditText 
@@ -18,6 +19,14 @@
         android:hint="@string/booking_prompt_amount_input_hint_text"
         />
     
+    <TextView 
+        android:id="@+id/booking_prompt_ask_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/booking_prompt_ask_title_text"
+        />
+    
     <EditText 
         android:id="@+id/booking_prompt_title_edittext"
         android:layout_width="match_parent"
@@ -25,12 +34,20 @@
         android:hint="@string/booking_prompt_title_hint_text"
         />
     
-    <!--<Spinner
-            android:id="@+id/booking_prompt_spinner_categories"
+    <TextView 
+        android:id="@+id/booking_prompt_ask_category_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/booking_prompt_ask_category_text"
+        />
+    
+    <Spinner
+            android:id="@+id/booking_prompt_spinner_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
-    -->
+            android:prompt="@string/category_spinner_header_text"
+            android:entries="@array/categories_array" />
+    
 
 </LinearLayout>
