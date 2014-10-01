@@ -16,6 +16,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.text.InputFilter.LengthFilter;
@@ -57,10 +58,10 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
-	
+	String regExDecimal = "^[1-9]+[0-9]*[.]?[0-9]?[0-9]?$";
 	
 	private ArrayList<BalanceItem> balances = new ArrayList<BalanceItem>();
-	
+	final Handler handler = new Handler();
 	public MyBankDatabase db;
 	final Context context = this;
 
@@ -124,7 +125,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							
-							if (!editText_inputAmount.getText().toString().matches("")) {
+							if (!editText_inputAmount.getText().toString().matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
 							// fetch data from edittext's
 							double amount = Double.parseDouble(editText_inputAmount.getText().toString());
 							
@@ -169,9 +170,13 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 							Toast.makeText(getApplicationContext(), "Sie haben "+amount+" Euro eingebucht!", Toast.LENGTH_SHORT).show();
 							checkGoalReachability();
 						}
-						 else {
-							Toast.makeText(getApplicationContext(), "Kein Geldbetrag eingetragen!", Toast.LENGTH_SHORT).show();
-						}}
+						 else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gültigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+						}
+						 else if (editText_inputAmount.getText().toString().matches("")) {
+							 Toast.makeText(getApplicationContext(), "Sie haben nichts eingegeben!", Toast.LENGTH_SHORT).show();
+						 }
+						}
 					})
 					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 						
@@ -221,7 +226,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						
-						if(!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && db.getCurrentBalance() >= Double.parseDouble(editText_inputAmount.getText().toString())){
+						if(!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() >= Double.parseDouble(editText_inputAmount.getText().toString())){
 							
 						double amount = Double.parseDouble(editText_inputAmount.getText().toString());
 						String title = editText_inputTitle.getText().toString();
@@ -253,15 +258,21 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						checkGoalReachability();
 						
 						}
-						
+						else if(!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
+							
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gültigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							return;
+						}
 						//if conditions to book are not complied because current balance is not enough
-						else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && db.getCurrentBalance() < Double.parseDouble(editText_inputAmount.getText().toString())){
+						else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() < Double.parseDouble(editText_inputAmount.getText().toString())){
 							
 							Toast.makeText(getApplicationContext(), "Sie haben nicht ausreichend Guthaben!", Toast.LENGTH_SHORT).show();
+							return;
 						}
 						//if conditions to book are not complied because not all fields are filled
 						else if (editText_inputAmount.getText().toString().matches("") || editText_inputTitle.getText().toString().matches("") || !String.valueOf(categorySpinner.getSelectedItem()).matches("")){
 							Toast.makeText(getApplicationContext(), "Alle Felder müssen ausgefüllt sein!", Toast.LENGTH_SHORT).show();
+							return;
 						}
 					}
 				})
@@ -311,7 +322,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						
-						if(!editText_inputOutlayAmount.getText().toString().matches("") && !editText_inputOutlayTitle.getText().toString().matches("") && db.getCurrentBalance() >= Double.parseDouble(editText_inputOutlayAmount.getText().toString())) {
+						if(!editText_inputOutlayAmount.getText().toString().matches("") && !editText_inputOutlayTitle.getText().toString().matches("") && editText_inputOutlayAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() >= Double.parseDouble(editText_inputOutlayAmount.getText().toString())) {
 						
 						double amountOutlay = Double.parseDouble(editText_inputOutlayAmount.getText().toString());
 						String titleOutlay = editText_inputOutlayTitle.getText().toString();
@@ -340,11 +351,16 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						
 						Toast.makeText(getApplicationContext(), "Sie haben " +amountOutlay+ " Euro beiseite gelegt!", Toast.LENGTH_SHORT).show();
 						}
+						else if (!editText_inputOutlayAmount.getText().toString().matches("") && !editText_inputOutlayTitle.getText().toString().matches("") && !editText_inputOutlayAmount.getText().toString().trim().matches(regExDecimal)) {
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gültigen Betrag eingeben!", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						
 						else if (editText_inputOutlayAmount.getText().toString().matches("") || editText_inputOutlayTitle.getText().toString().matches("")){
 							Toast.makeText(getApplicationContext(), "Alle Felder müssen ausgefüllt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
-						else if (db.getCurrentBalance() < Double.parseDouble(editText_inputOutlayAmount.getText().toString())){
+						else if (!editText_inputOutlayAmount.getText().toString().matches("") && !editText_inputOutlayTitle.getText().toString().matches("") && editText_inputOutlayAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() < Double.parseDouble(editText_inputOutlayAmount.getText().toString())){
 							Toast.makeText(getApplicationContext(), "Ihr Kontostand ist nicht ausreichend!", Toast.LENGTH_SHORT).show();
 							return;
 						}
@@ -389,7 +405,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						
-						if (!editText_inputGoalAmount.getText().toString().matches("")) {
+						if (!editText_inputGoalAmount.getText().toString().matches("") && editText_inputGoalAmount.getText().toString().trim().matches(regExDecimal)) {
 							
 						double amountGoal = Double.parseDouble(editText_inputGoalAmount.getText().toString());
 						
@@ -406,10 +422,14 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 							Toast.makeText(getApplicationContext(), "Sie haben " +amountGoal+ " als neues Ziel gesetzt!", Toast.LENGTH_SHORT).show();
 							checkGoalReachability();
 						}
-						else {	
-							Toast.makeText(getApplicationContext(), "Kein Geldbetrag eingetragen!", Toast.LENGTH_SHORT).show();
+						else if (!editText_inputGoalAmount.getText().toString().matches("") && !editText_inputGoalAmount.getText().toString().trim().matches(regExDecimal)) {	
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gültigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}	
+						else if (editText_inputGoalAmount.getText().toString().matches("")) {
+							Toast.makeText(getApplicationContext(), "Das Feld muss ausgefüllt sein!", Toast.LENGTH_SHORT).show();
+							return;
+						}
 					}
 				})
 				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -482,9 +502,17 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			Toast.makeText(getApplicationContext(), "Sie laufen Gefahr ihr Sparziel nicht zu erreichen!", Toast.LENGTH_SHORT).show();
 		}
 		else {
-			TEXTVIEW_Goal_Content.setTextColor(Color.WHITE);
+			TEXTVIEW_Goal_Content.setTextColor(Color.GREEN);
+			handler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					TEXTVIEW_Goal_Content.setTextColor(Color.WHITE);
+				}
+				}, 2000);
 		}
 	}
+	
 	
 	
 

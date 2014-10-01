@@ -51,7 +51,7 @@
     <string name="outlay_prompt_title_input_hint_text">Zu welchem Zweck?</string>
 	<string name="outlay_delete_prompt_text">Haben Sie die Auslage nun auch ausgegeben?</string>
 	<string name="infotext_outlay">Sie löschen einzelne Auslagen durch einen langen Klick</string>
-	<string name="goal_prompt_ask_amount_text">Wie möchten Sie ihr Ziel setzen/erhöhen?</string>
+	<string name="goal_prompt_ask_amount_text">Was möchten Sie als ihr (neues) Ziel setzen?</string>
 	<string name="goal_prompt_amount_input_hint_text">Euro</string>
 	<string name="income_booking_prompt_title">Einbuchen</string>
 	<string name="expense_booking_prompt_title">Abbuchen</string>
