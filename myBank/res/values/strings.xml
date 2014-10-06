@@ -5,144 +5,137 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <!-- DrawerNavigation Sound Strings -->
-
+    
+    
+    <!-- ALL STRINGS FOR DRAWER NAVIGATION -->
     <string name="String_drawer_open">Open Navigation Drawer</string>
     <string name="String_drawer_closed">Close Navigation Drawer</string>
-
+		
+        <!-- ALL STRINGS FOR EXPANDABLE LIST VIEW -->
+        <string name="List_Buchung">Buchungen</string>
+        <string name="List_Verlauf">Verlauf</string>
+        <string name="List_Geplant">Geplant</string>
+        <string name="List_Einstellungen">Einstellungen</string>
+	    <string name="List_Einstellung_Verwaltung">Allgemein</string>
+	    <string name="List_Einstellung_Profil">Profil</string>
+	    <string name="List_Einstellung_Bencharichtigungen">Benachrichtigungen</string>
+	    <string name="List_Einstellung_Banking">Buchung</string>
+	    <string name="List_Uebersicht">Übersicht</string>
+    
+	    
+    
+    <!-- ALL STRINGS FOR ACTIVITY NAMES -->
+    <string name="title_activity_booking">Buchung</string>
+    <string name="title_activity_settings_profile">Profileinstellungen</string>
+    <string name="title_activity_settings_notifications">Benachrichtigungseinstellungen</string>
+    <string name="title_activity_settings_banking">Buchung</string>
+    <string name="title_activity_history">Verlauf</string>
+	<string name="title_activity_outlay">Geplant</string>
+	<string name="title_activity_chart">Übersicht</string>
+    
+	
+	
     <!-- ALL STRINGS FOR STARTING-SCREEN -->
-
     <string name="AppName">myBank</string>
     <string name="AppSlogan">Consistency Pays</string>
-
-    <!-- ButtonStrings -->
-    <string name="AddButton_String_Plus">+</string>
-    <string name="String_Button_Add_Input">Einzahlung</string>
-    <string name="String_Button_Add_Expense">Abbuchung</string>
-    <string name="String_Button_Add_Standing_Order">Plane Buchung</string>
-    <string name="String_Button_Contact_Us">Contact us</string>
-    <string name="String_Button_Feedback">Feedback</string>
-    <string name="String_Button_Settings_Banking">Banking</string>
-    <string name="String_Button_Settings_Profil">Profil</string>
-    <string name="String_Button_Settings_Verwalten">Verwaltung</string>
-    <string name="String_Button_Settings_Notifications">Benachrichtigungen</string>
-    <string name="String_Button_Delete_History">Delete History</string>
-    <string name="String_Button_Default_Settings">Default Settings</string>
-    <string name="String_Button_Edit_Profil">Edit Profil</string>
-    <string name="String_Button_Reset_Account">Reset Account</string>
-    <string name="String_Button_Set_Reminder">Setze Erinnerung</string>
-    <string name="String_Banking_Settings">Banking</string>
-    <string name="String_Profil_Settings">Profil</string>
-    <string name="String_Verwaltung_Settings">Verwaltung</string>
-    <string name="String_Notification_Settings">Benachrichtigungen</string>
-    <string name="String_Notifications_Daily_reminder">Set Daily Reminder</string>
-
-    <!-- TextViewStrings -->
     
-    <string name="booking_prompt_ask_amount_text">Wieviel möchten Sie abbuchen?</string>
-    <string name="income_booking_prompt_ask_amount_text">Wieviel möchten Sie einbuchen?</string>
-    <string name="booking_prompt_ask_title_text">Zu welchem Zweck?</string>
-    <string name="booking_prompt_ask_category_text">In welcher Ausgaben-Kategorie?</string>
-    <string name="booking_prompt_amount_input_hint_text">Euro</string>
-    <string name="booking_prompt_title_hint_text">Wofür?</string>
-    <string name="outlay_prompt_ask_amount_text">Wieviel möchten Sie beiseite legen?</string>
-    <string name="outlay_prompt_amount_input_hint_text">Euro</string>
-    <string name="outlay_prompt_ask_title_text">Für welche zukünftige Ausgabe?</string>
-    <string name="outlay_prompt_title_input_hint_text">Zu welchem Zweck?</string>
-	<string name="outlay_delete_prompt_text">Haben Sie die Auslage nun auch ausgegeben?</string>
-	<string name="infotext_outlay">Sie löschen einzelne Auslagen durch einen langen Klick</string>
-	<string name="goal_prompt_ask_amount_text">Was möchten Sie als ihr (neues) Ziel setzen?</string>
-	<string name="goal_prompt_amount_input_hint_text">Euro</string>
-	<string name="income_booking_prompt_title">Einbuchen</string>
-	<string name="expense_booking_prompt_title">Abbuchen</string>
-	<string name="outlay_prompt_title">Etwas beiseite legen</string>
-	<string name="goal_update_prompt_title">Ein Ziel setzen</string>
-	
-	
     
+    
+    <!-- ALL STRINGS FOR BOOKING-SCREEN -->
     <string name="String_TextView_Total_Balance">Kontostand</string>
     <string name="String_TextView_Scheduled_Booking">ausstehende Buchungen</string>
     <string name="String_TextView_Goal">Ziel</string>
-    <string name="String_TextView_booking_sorted_by">Buchungen sortiert nach</string>
-    <string name="String_TextView_Add_Income">Einnahme</string>
-    <string name="String_TextView_Add_Expense">Ausgabe</string>
-    <string name="String_TextView_Add_Scheduled_Booking">plane Buchung</string>
-    <string name="String_Version">v1.0</string>
-    <string name="String_TextView_Profil_ScreenName">Einstellungen</string>
-    <string name="String_TextView_Settings_Notification">Notifications</string>
-    <string name="String_TextView_Profil_Age">Alter</string>
-    <string name="String_TextView_Profil_Member_since">Member seit</string>
-    <string name="String_TextView_Profil_complete_income">Complete Income</string>
-    <string name="String_TextView_Profil_complete_expense">Complete Expense</string>
-    <string name="String_TextView_Profil_Complete_savings">Complete Savings</string>
-    <string name="String_TextView_Settings_Banking_Change_Currency">Währung</string>
-    <string name="String_TextView_Settings_Banking_Change_Limit">Ändere Limit</string>
-    <string name="String_TextView_Settings_Banking_Change_Goal">Ändere Ziel</string>
-    <string name="String_TextView_Settings_Banking_Screen_Name">Banking</string>
-    <!-- SwitchStrings -->
+    <string name="AddButton_String_Plus">+</string>
+    <string name="String_Button_Add_Input">Einzahlung</string>
+    <string name="String_Button_Add_Expense">Abbuchung</string>
+    <string name="String_Button_Add_Standing_Order">Plane Buchung</string>	
+    	
+    	<!-- ALL STRINGS FOR INCOME BOOKING PROMPT -->
+    	<string name="income_booking_prompt_title">Einbuchen</string>
+    	<string name="income_booking_prompt_ask_amount_text">Wieviel möchten Sie einbuchen?</string>
+    	<string name="income_booking_prompt_amount_input_hint_text">Euro</string>
+    	
+    	<!-- ALL STRINGS FOR EXPENSE BOOKING PROMPT -->
+    	<string name="expense_booking_prompt_title">Abbuchen</string>
+    	<string name="booking_prompt_amount_input_hint_text">Euro</string>
+		<string name="booking_prompt_ask_amount_text">Wieviel möchten Sie abbuchen?</string>
+	    <string name="booking_prompt_ask_title_text">Zu welchem Zweck?</string>
+	    <string name="booking_prompt_ask_category_text">In welcher Ausgaben-Kategorie?</string>
+	    <string name="booking_prompt_title_hint_text">Wofür?</string>
+    
+	    <!-- ALL STRINGS FOR EXPENSEBOOKING PROMPT CATEGORY SPINNER -->
+	    <string name="category_spinner_header_text">Wählen Sie eine Kategorie</string>
+	    <string-array name="categories_array">
+	        <item>Beruf</item>
+	        <item>Studium</item>
+	        <item>Freizeit</item>
+	        <item>Haushalt</item>
+	        <item>Hobbys</item>
+	        <item>Sonstiges</item>        
+	    </string-array>
+    	
+    	<!-- ALL STRINGS FOR PLANNED OUTLAY PROMPT  -->
+    	<string name="outlay_prompt_title">Etwas beiseite legen</string>
+    	<string name="outlay_prompt_ask_amount_text">Wieviel möchten Sie beiseite legen?</string>
+	    <string name="outlay_prompt_amount_input_hint_text">Euro</string>
+	    <string name="outlay_prompt_ask_title_text">Für welche zukünftige Ausgabe?</string>
+	    <string name="outlay_prompt_title_input_hint_text">Zu welchem Zweck?</string>
+    
+	    <!-- ALL STRINGS FOR GOAL PROMPT  -->
+	    <string name="goal_update_prompt_title">Ein Ziel setzen</string>
+		<string name="goal_prompt_ask_amount_text">Was möchten Sie als ihr (neues) Ziel setzen?</string>
+		<string name="goal_prompt_amount_input_hint_text">Euro</string>
+		    
+	    
+    
+	<!-- ALL STRINGS FOR HISTORY-SCREEN -->
+	
+	
+	
+	<!-- ALL STRINGS FOR OUTLAY-SCREEN -->
+	<string name="infotext_outlay">Sie löschen einzelne Auslagen durch einen langen Klick</string>
+		
+		<!-- ALL STRINGS FOR GOAL PROMPT  -->
+		<string name="outlay_delete_prompt_text">Haben Sie die Auslage nun auch ausgegeben?</string>
+	
+	
+		
+	<!-- ALL STRINGS FOR CHART-SCREEN -->
+	
+	
+	
+	<!-- ALL STRINGS FOR SETTINGS-NOTIFICATION-SCREEN -->
+	<string name="Switch_Notification_on">Benachrichtigung festlegen</string>
+    <string name="Switch_Notification_server">Auf Server speichern</string>
+    <string name="Switch_Notification_goal_reached">Ziel erreicht</string>
+    <string name="Switch_Notification_limit_reached">Limit erreicht</string>
+    <string name="Switch_Notification_daily_reminder">Tägliche Erinnerung</string>
+    <string name="Button_Set_Reminder">Erinnerung festlegen</string>
 
-    <string name="String_Switch_Notification_on">Set Notification</string>
-    <string name="String_Switch_Notification_server">Saved to Server</string>
-    <string name="String_Switch_Notification_goal_reached">Goal Reached</string>
-    <string name="String_Switch_Notification_limit_reached">Limit Reached</string>
-    <string name="String_Switch_Notification_daily_reminder">Daily Reminder</string>
+    
+    
+	<!-- ALL STRINGS FOR SETTINGS-PROFILE-SCREEN -->
+	<string name="TextView_Profile_Age">Alter</string>
+    <string name="TextView_Profile_Member_Since">Mitglied seit</string>
+    <string name="TextView_Profile_Complete_Income">Gesamte Einzahlungen</string>
+    <string name="TextView_Profile_Complete_Expense">Gesamte Ausgaben</string>
+    <string name="TextView_Profile_Complete_Savings">Gesamte Ersparnisse</string>
+	<string name="Button_Edit_Profile">Profil bearbeiten</string>
+    <string name="Button_Reset_Account">Profil zurücksetzen</string>
+    
+    
+    
+	<!-- ALL STRINGS FOR SETTINGS-BOOKING-SCREEN -->
+	<string name="TextView_Settings_Banking_Change_Currency">Währung</string>
+    <string name="TextView_Settings_Banking_Change_Limit">Limit ändern</string>
+    <string name="TextView_Settings_Banking_Change_Goal">Ziel ändern</string>
+    <string name="Button_Delete_History">Delete History</string>
+    <string name="Button_Default_Settings">Default Settings</string>
+	
+	
+	
+	<!-- ALL STRINGS FOR SETTINGS-GENERAL-SCREEN -->
 
-    <!-- ExpandableViewListStrings -->
 
-    <string name="List_Einstellung_Verwaltung">Verwaltung</string>
-    <string name="List_Einstellung_Profil">Profil</string>
-    <string name="List_Einstellung_Bencharichtigungen">Benachrichtigungen</string>
-    <string name="List_Einstellung_Banking">Banking</string>
-
-    <!-- Arrays -->
-
-    <string-array name="Selection">
-        <item>Buchungen</item>
-        <item>Verlauf</item>
-        <item>Einstellungen</item>
-        <item>Übersicht</item>
-    </string-array>
-    <string-array name="Currency">
-        <item>EUR</item>
-        <item>USD</item>
-    </string-array>
-    <string-array name="Sub_Options">
-        <item>Benachrichtigungen</item>
-        <item>Verwaltung</item>
-        <item>Profil</item>
-        <item>Banking</item>
-    </string-array>
-
-    <!-- Activity Strings -->
-    
-    <string name="title_activity_settings_main">SettingsMainActivity</string>
-    <string name="title_activity_settings_profil_">Settings_profil_Activity</string>
-    <string name="title_activity_settings__notification_">Settings_Notification_Activity</string>
-    <string name="title_activity_settings__banking_">Settings_Banking_Activity</string>
-    <string name="title_activity_screen_slide_pager">ScreenSlidePagerActivity</string>
-    <string name="title_activity_history">HistoryActivity</string>
-	<string name="title_activity_outlay">OutlayActivity</string>
-	<string name="title_activity_chart">ChartActivity</string>
-    
-    <!-- Booking Prompt Category Spinner Strings -->
-    
-    <string name="category_spinner_header_text">Wählen Sie eine Kategorie</string>
-    
-    <string-array name="categories_array">
-        <item>Freizeit</item>
-        <item>Sport</item>
-        <item>Sonstiges</item>
-        <item>Universität</item>
-        <item>Wohnung</item>
-        
-    </string-array>
-    
-    
-    
-    
-    
-    
-    
-    
     
 </resources>

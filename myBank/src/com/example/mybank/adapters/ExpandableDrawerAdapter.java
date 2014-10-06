@@ -1,6 +1,13 @@
-package com.example.mybank;
+package com.example.mybank.adapters;
 
 import java.util.ArrayList;
+
+import com.example.mybank.ExpListChild;
+import com.example.mybank.ExpListGroups;
+import com.example.mybank.R;
+import com.example.mybank.R.id;
+import com.example.mybank.R.layout;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,9 +1,14 @@
-package com.example.mybank;
+package com.example.mybank.data;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
+import com.example.mybank.items.BalanceItem;
+import com.example.mybank.items.BookingItem;
+import com.example.mybank.items.GoalItem;
+import com.example.mybank.items.OutlayItem;
 
 import android.content.ContentValues;
 import android.content.Context;

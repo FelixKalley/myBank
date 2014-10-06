@@ -1,6 +1,20 @@
-package com.example.mybank;
+package com.example.mybank.settings;
 
 import java.util.ArrayList;
+
+import com.example.mybank.BookingActivity;
+import com.example.mybank.ChartActivity;
+import com.example.mybank.ExpListChild;
+import com.example.mybank.ExpListGroups;
+import com.example.mybank.HistoryActivity;
+import com.example.mybank.OutlayActivity;
+import com.example.mybank.R;
+import com.example.mybank.R.drawable;
+import com.example.mybank.R.id;
+import com.example.mybank.R.layout;
+import com.example.mybank.R.menu;
+import com.example.mybank.R.string;
+import com.example.mybank.adapters.ExpandableDrawerAdapter;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -20,7 +34,7 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 
 
-public class Settings_profil_Activity extends Activity {
+public class SettingsProfileActivity extends Activity {
 
 	TextView TextView_Profil_Screen_Name;
 	TextView TextView_Profil_VName;
@@ -74,11 +88,11 @@ public class Settings_profil_Activity extends Activity {
 
 	private void DeclareAllButtons() {
 		Button_Profil_Change_Profil = (Button) findViewById(R.id.BUTTON_profil_edit_profil);
-		Button_Profil_Change_Profil.setText(R.string.String_Button_Edit_Profil);
+		Button_Profil_Change_Profil.setText(R.string.Button_Edit_Profile);
 
 		Button_Profil_Reset_Profil = (Button) findViewById(R.id.BUTTON_profil_reset_profil);
 		Button_Profil_Reset_Profil
-				.setText(R.string.String_Button_Reset_Account);
+				.setText(R.string.Button_Reset_Account);
 	}
 	
 	private void DeclareMenuDrawer() {
@@ -87,7 +101,7 @@ public class Settings_profil_Activity extends Activity {
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(Settings_profil_Activity.this,
+		ExpAdapter = new ExpandableDrawerAdapter(SettingsProfileActivity.this,
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
 
@@ -148,21 +162,21 @@ private void setUpDrawerToggle(){
 		case Einstellungen:
 			switch (childPosition) {
 			case NOTIFICATION:
-				Intent i = new Intent(Settings_profil_Activity.this,
-						Settings_Notification_Activity.class);
+				Intent i = new Intent(SettingsProfileActivity.this,
+						SettingsNotificationsActivity.class);
 				startActivity(i);
 				finish();
 				break;
 
 			case PROFIL:
-				Intent j = new Intent(Settings_profil_Activity.this,
-						Settings_profil_Activity.class);
+				Intent j = new Intent(SettingsProfileActivity.this,
+						SettingsProfileActivity.class);
 				startActivity(j);
 				finish();
 				break;
 			case BANKING:
-				Intent k = new Intent(Settings_profil_Activity.this,
-						Settings_Banking_Activity.class);
+				Intent k = new Intent(SettingsProfileActivity.this,
+						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
 				/*
@@ -175,42 +189,43 @@ private void setUpDrawerToggle(){
 		}
 	}
 	
-	 private void isGroupClicked(int groupPosition) {
-			final  int HISTORY = 1; final  int OVERVIEW = 3; final int BOOKING = 0;
-			  
-			  
-			 
-			  switch (groupPosition) {
-			  
-			  case HISTORY:
-			/*  
-			  
-			  
-			  Intent i = new Intent(Settings_Banking_Activity.this, HistoryActivity.class);
-			  startActivity(i); finish(); break;
-			  
-			  case OVERVIEW:
-			  
-			  Intent j = new Intent(Settings_Banking_Activity.this, OverviewActivity.class);
-			  startActivity(j); finish(); break;
-			  case VERWALTUNG:
-				  
-				  Intent k = new Intent(BookingActivity.this, VerwaltungActivity.class);
-				  startActivity(k);
-				  finish();
-				  break;
+	private void isGroupClicked(int groupPosition) {
+		final int BOOKING = 0;
+		final int HISTORY = 1;
+		final int OUTLAY = 3;
+		final int OVERVIEW = 4;
 
-				  */
-			
-	 			case BOOKING:
+
+		
+		  switch (groupPosition) {
 		  
-	 			Intent k = new Intent(Settings_profil_Activity.this, BookingActivity.class);
-	 			startActivity(k);
-	 			finish();
-	 			break;
-			  }
-				  
+		  case BOOKING:
+			  Intent i = new Intent(SettingsProfileActivity.this, HistoryActivity.class);
+			  startActivity(i);
+			  finish();
+			  break;
+		  
+		  case HISTORY:
+			  Intent j = new Intent(SettingsProfileActivity.this, HistoryActivity.class);
+			  startActivity(j);
+			  finish();
+			  break;
+		  
+		  
+		  case OUTLAY:
+			  Intent k = new Intent(SettingsProfileActivity.this, OutlayActivity.class);
+			  startActivity(k);
+			  finish();
+			  break; 
+		 
+		  case OVERVIEW:
+			  Intent l = new Intent(SettingsProfileActivity.this, ChartActivity.class);
+			  startActivity(l);
+			  finish();
+			  break;
+		 
 		  }
+	}
 			  
 	
 	private void SeeIfListItemIsClicked() {
@@ -258,7 +273,8 @@ private void setUpDrawerToggle(){
 				});
 
 			}
-	public ArrayList<ExpListGroups> SetStandardGroups() {
+	
+	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
@@ -266,51 +282,61 @@ private void setUpDrawerToggle(){
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru1 = new ExpListGroups();
-		gru1.setName("Buchungen");
+		gru1.setName(getString(R.string.List_Buchung));
 
 		gru1.setItems(child_list);
 
 		// Setting Group 2
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru2 = new ExpListGroups();
-		gru2.setName("Verlauf");
+		gru2.setName(getString(R.string.List_Verlauf));
 
 		gru2.setItems(child_list);
 
 		// Setting Group 3
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru3 = new ExpListGroups();
-		gru3.setName("Einstellungen");
-
-		ExpListChild ch3_1 = new ExpListChild();
-		ch3_1.setName("Benachrichtigungen");
-		child_list.add(ch3_1);
-
-		ExpListChild ch3_2 = new ExpListChild();
-		ch3_2.setName("Profil");
-		child_list.add(ch3_2);
-
-		ExpListChild ch3_3 = new ExpListChild();
-		ch3_3.setName("Banking");
-		child_list.add(ch3_3);
-
-		ExpListChild ch3_4 = new ExpListChild();
-		ch3_4.setName("Verwaltung");
-		child_list.add(ch3_4);
+		gru3.setName(getString(R.string.List_Geplant));
 
 		gru3.setItems(child_list);
 
+		
 		// Setting Group 4
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
-		gru4.setName("†bersicht");
+		gru4.setName(getString(R.string.List_Einstellungen));
+
+		ExpListChild ch4_1 = new ExpListChild();
+		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
+		child_list.add(ch4_1);
+
+		ExpListChild ch4_2 = new ExpListChild();
+		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
+		child_list.add(ch4_2);
+
+		ExpListChild ch4_3 = new ExpListChild();
+		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
+		child_list.add(ch4_3);
+
+		ExpListChild ch4_4 = new ExpListChild();
+		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
+		child_list.add(ch4_4);
+
 		gru4.setItems(child_list);
+
+		// Setting Group 5
+		child_list = new ArrayList<ExpListChild>();
+		ExpListGroups gru5 = new ExpListGroups();
+		gru5.setName(getString(R.string.List_Uebersicht));
+		
+		gru5.setItems(child_list);
 
 		// listing all groups
 		group_list.add(gru1);
 		group_list.add(gru2);
 		group_list.add(gru3);
 		group_list.add(gru4);
+		group_list.add(gru5);
 
 		return group_list;
 
@@ -321,36 +347,31 @@ private void setUpDrawerToggle(){
 	
 
 	private void DeclareAllTextViews() {
-
-		TextView_Profil_Screen_Name = (TextView) findViewById(R.id.TEXTVIEW_profil_screen_name);
-		TextView_Profil_Screen_Name
-				.setText(R.string.String_TextView_Profil_ScreenName);
-
 		TextView_Profil_VName = (TextView) findViewById(R.id.TEXTVIEW_profil_Vname);
 		TextView_Profil_Nname = (TextView) findViewById(R.id.TEXTVIEW_profil_Nname);
 
 		TextView_Profil_Age = (TextView) findViewById(R.id.TEXTVIEW_profil_age);
-		TextView_Profil_Age.setText(R.string.String_TextView_Profil_Age);
+		TextView_Profil_Age.setText(R.string.TextView_Profile_Age);
 
 		TextView_Profil_Age_Content = (TextView) findViewById(R.id.TEXTVIEW_profil_age_content);
 
 		TextView_Profil_Complete_Input = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_input);
 		TextView_Profil_Complete_Input
-				.setText(R.string.String_TextView_Profil_complete_income);
+				.setText(R.string.TextView_Profile_Complete_Income);
 
 		TextView_Profil_Complete_Output = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_output);
 		TextView_Profil_Complete_Output
-				.setText(R.string.String_TextView_Profil_complete_expense);
+				.setText(R.string.TextView_Profile_Complete_Expense);
 
 		TextView_Profil_Complete_Input_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_input_content);
 		TextView_Profil_Complete_Output_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_output_content);
 		TextView_Profil_Member_Since = (TextView) findViewById(R.id.TEXTVIEW_profil_Member_since);
 		TextView_Profil_Member_Since
-				.setText(R.string.String_TextView_Profil_Member_since);
+				.setText(R.string.TextView_Profile_Member_Since);
 		TextView_Profil_Member_Since_content = (TextView) findViewById(R.id.TEXTVIEW_profil_member_since_content);
 		TextView_Profil_Complete_Savings = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_savings);
 		TextView_Profil_Complete_Savings
-				.setText(R.string.String_TextView_Profil_Complete_savings);
+				.setText(R.string.TextView_Profile_Complete_Savings);
 		TextView_Profil_Complete_Savings_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_savings_content);
 
 	}

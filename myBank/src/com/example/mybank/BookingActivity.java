@@ -9,6 +9,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import com.example.mybank.adapters.ExpandableDrawerAdapter;
+import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.items.BalanceItem;
+import com.example.mybank.items.BookingItem;
+import com.example.mybank.items.GoalItem;
+import com.example.mybank.items.OutlayItem;
+import com.example.mybank.settings.SettingsBankingActivity;
+import com.example.mybank.settings.SettingsNotificationsActivity;
+import com.example.mybank.settings.SettingsProfileActivity;
+
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -448,20 +458,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			}
 			
 		});
-		
-		
-		
-		Button button = (Button) findViewById(R.id.link_button);
-		//Button button2 = (Button) findViewById(R.id.link_button2);
-		button.setOnClickListener(new OnClickListener(){
 
-			@Override
-			public void onClick(View v) {
-				Log.d("Button", "Button Click");
-				Intent intent = new Intent(BookingActivity.this, OutlayActivity.class);
-				startActivity(intent);	
-			}
-		});
 	}
 		
 	
@@ -621,34 +618,35 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void isGroupClicked(int groupPosition) {
-		final int HISTORY = 1;
-		final int OVERVIEW = 3;
 		final int BOOKING = 0;
+		final int HISTORY = 1;
+		final int OUTLAY = 3;
+		final int OVERVIEW = 4;
+
 
 		
 		  switch (groupPosition) {
 		  
 		  case HISTORY:
+			  Intent i = new Intent(BookingActivity.this, HistoryActivity.class);
+			  startActivity(i);
+			  finish();
+			  break;
 		  
 		  
-		  
-		  Intent i = new Intent(BookingActivity.this,
-		  HistoryActivity.class);
-		  startActivity(i);
-		  finish();
-		  break;
+		  case OUTLAY:
+			  Intent j = new Intent(BookingActivity.this, OutlayActivity.class);
+			  startActivity(j);
+			  finish();
+			  break; 
+		 
+		  case OVERVIEW:
+			  Intent k = new Intent(BookingActivity.this, ChartActivity.class);
+			  startActivity(k);
+			  finish();
+			  break;
+		 
 		  }
-		  
-	/*	 case OVERVIEW:
-		 
-		Intent j = new Intent(Settings_Banking_Activity.this,
-		 OverviewActivity.class); startActivity(j); finish(); break; case
-		 VERWALTUNG:
-		 
-		  Intent k = new Intent(BookingActivity.this,
-		  VerwaltungActivity.class); startActivity(k); finish(); break; */
-		 
-
 	}
 
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
@@ -668,20 +666,20 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			switch (childPosition) {
 			case NOTIFICATION:
 				Intent i = new Intent(BookingActivity.this,
-						Settings_Notification_Activity.class);
+						SettingsNotificationsActivity.class);
 				startActivity(i);
 				finish();
 				break;
 
 			case PROFIL:
 				Intent j = new Intent(BookingActivity.this,
-						Settings_profil_Activity.class);
+						SettingsProfileActivity.class);
 				startActivity(j);
 				finish();
 				break;
 			case BANKING:
 				Intent k = new Intent(BookingActivity.this,
-						Settings_Banking_Activity.class);
+						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
 				/*
@@ -702,51 +700,61 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru1 = new ExpListGroups();
-		gru1.setName("Buchungen");
+		gru1.setName(getString(R.string.List_Buchung));
 
 		gru1.setItems(child_list);
 
 		// Setting Group 2
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru2 = new ExpListGroups();
-		gru2.setName("Verlauf");
+		gru2.setName(getString(R.string.List_Verlauf));
 
 		gru2.setItems(child_list);
 
 		// Setting Group 3
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru3 = new ExpListGroups();
-		gru3.setName("Einstellungen");
-
-		ExpListChild ch3_1 = new ExpListChild();
-		ch3_1.setName("Benachrichtigungen");
-		child_list.add(ch3_1);
-
-		ExpListChild ch3_2 = new ExpListChild();
-		ch3_2.setName("Profil");
-		child_list.add(ch3_2);
-
-		ExpListChild ch3_3 = new ExpListChild();
-		ch3_3.setName("Banking");
-		child_list.add(ch3_3);
-
-		ExpListChild ch3_4 = new ExpListChild();
-		ch3_4.setName("Verwaltung");
-		child_list.add(ch3_4);
+		gru3.setName(getString(R.string.List_Geplant));
 
 		gru3.setItems(child_list);
 
+		
 		// Setting Group 4
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
-		gru4.setName("Uebersicht");
+		gru4.setName(getString(R.string.List_Einstellungen));
+
+		ExpListChild ch4_1 = new ExpListChild();
+		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
+		child_list.add(ch4_1);
+
+		ExpListChild ch4_2 = new ExpListChild();
+		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
+		child_list.add(ch4_2);
+
+		ExpListChild ch4_3 = new ExpListChild();
+		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
+		child_list.add(ch4_3);
+
+		ExpListChild ch4_4 = new ExpListChild();
+		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
+		child_list.add(ch4_4);
+
 		gru4.setItems(child_list);
+
+		// Setting Group 5
+		child_list = new ArrayList<ExpListChild>();
+		ExpListGroups gru5 = new ExpListGroups();
+		gru5.setName(getString(R.string.List_Uebersicht));
+		
+		gru5.setItems(child_list);
 
 		// listing all groups
 		group_list.add(gru1);
 		group_list.add(gru2);
 		group_list.add(gru3);
 		group_list.add(gru4);
+		group_list.add(gru5);
 
 		return group_list;
 
@@ -784,13 +792,13 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		TEXTVIEW_Goal_Content = (TextView) findViewById(R.id.TEXTVIEW_AUSSTEHEND_CONTENT);
 		
 		TEXTVIEW_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_INCOME);
-		TEXTVIEW_Add_Income.setText(R.string.String_TextView_Add_Income);
+		TEXTVIEW_Add_Income.setText(R.string.String_Button_Add_Input);
 
 		TEXTVIEW_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_EXPENSE);
-		TEXTVIEW_Add_Expense.setText(R.string.String_TextView_Add_Expense);
+		TEXTVIEW_Add_Expense.setText(R.string.String_Button_Add_Expense);
 
 		TEXTVIEW_Add_Scheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_PLANE_BUCHUNG);
-		TEXTVIEW_Add_Scheduled_booking.setText(R.string.String_TextView_Add_Scheduled_Booking);
+		TEXTVIEW_Add_Scheduled_booking.setText(R.string.String_Button_Add_Standing_Order);
 
 		TEXT_Add_Goal = (TextView) findViewById(R.id.TEXTVIEW_ADD_SETZE_ZIEL);
 		
