@@ -72,10 +72,11 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		
 		//Reihenfolge der Methodenaufrufe nicht ändern wegen DB-Zugriffen !!
 		initDb();
+		/*
 		if(!db.getAllBookingItems().isEmpty()){
 			checkForNewMonth();
 		}
-		
+		*/
 		
 		if(db.getAllBalanceItems().isEmpty()){
 			BalanceItem item = new BalanceItem(0);
@@ -116,6 +117,8 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			//elements to appear in prompt
 			final TextView askAmountTV = (TextView) promptsView.findViewById(R.id.income_booking_prompt_ask_amount_textview);
 			final EditText editText_inputAmount = (EditText) promptsView.findViewById(R.id.income_booking_prompt_amount_input_edittext);
+			final TextView askTitleTV = (TextView) promptsView.findViewById(R.id.income_booking_prompt_ask_title_textview);
+			final EditText editText_inputTitle = (EditText) promptsView.findViewById(R.id.income_booking_prompt_title_input_edittext);
 			
 			alertDialogBuilder
 					.setCancelable(false)
@@ -128,11 +131,11 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 							if (!editText_inputAmount.getText().toString().matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
 							// fetch data from edittext's
 							double amount = Double.parseDouble(editText_inputAmount.getText().toString());
-							
+							String title = editText_inputTitle.getText().toString();
 							
 							//create new BookingItem out of user input
 							
-							BookingItem item = new BookingItem("Einzahlung", "", amount, getDateTime(), "+");
+							BookingItem item = new BookingItem(title, "", amount, getDateTime(), "+");
 							//insert BookingItem into db
 							db.insertBookingItem(item);
 							
@@ -226,12 +229,14 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						
-						if(!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() >= Double.parseDouble(editText_inputAmount.getText().toString())){
+						if(!editText_inputAmount.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() >= Double.parseDouble(editText_inputAmount.getText().toString())){
 							
 						double amount = Double.parseDouble(editText_inputAmount.getText().toString());
 						String title = editText_inputTitle.getText().toString();
 						String category = String.valueOf(categorySpinner.getSelectedItem());
-						
+						if(title.matches("")){
+							title = "Kein Zweck angegeben";
+						}
 						
 				
 						//create BookingItem
@@ -258,19 +263,19 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						checkGoalReachability();
 						
 						}
-						else if(!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
+						else if(!editText_inputAmount.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
 							
 							Toast.makeText(getApplicationContext(), "Sie haben keinen gültigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						//if conditions to book are not complied because current balance is not enough
-						else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputTitle.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() < Double.parseDouble(editText_inputAmount.getText().toString())){
+						else if (!editText_inputAmount.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() < Double.parseDouble(editText_inputAmount.getText().toString())){
 							
 							Toast.makeText(getApplicationContext(), "Sie haben nicht ausreichend Guthaben!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						//if conditions to book are not complied because not all fields are filled
-						else if (editText_inputAmount.getText().toString().matches("") || editText_inputTitle.getText().toString().matches("") || !String.valueOf(categorySpinner.getSelectedItem()).matches("")){
+						else if (editText_inputAmount.getText().toString().matches("") || !String.valueOf(categorySpinner.getSelectedItem()).matches("")){
 							Toast.makeText(getApplicationContext(), "Alle Felder müssen ausgefüllt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
@@ -449,7 +454,9 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			
 		});
 		
+			
 		
+			
 		
 		Button button = (Button) findViewById(R.id.link_button);
 		//Button button2 = (Button) findViewById(R.id.link_button2);
@@ -458,7 +465,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				Log.d("Button", "Button Click");
-				Intent intent = new Intent(BookingActivity.this, OutlayActivity.class);
+				Intent intent = new Intent(BookingActivity.this, ChartActivity.class);
 				startActivity(intent);	
 			}
 		});
@@ -821,15 +828,29 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		int lastBookingItemMonth = cal.get(Calendar.MONTH);
 		Log.d("", "int lastAddedMonth: "+lastBookingItemMonth);
 		
-		//TABLE BOOKINGS & TABLE GOAL drop
+		//drop TABLE GOAL
 		if(currentMonth != lastBookingItemMonth){
-			db.deleteBookingsTable();
+			informUserAboutGoal();
 			db.deleteGoalTable();
+			if(currentMonth - lastBookingItemMonth == 2){
+				db.deleteBookingsTable();
+			}
 		}
 		
 		
 	}
 	
+	private void informUserAboutGoal() {
+		if(db.getCurrentBalance() >= db.getCurrentGoal()){
+			Toast.makeText(getApplicationContext(), "Glückwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
+		}
+		else {
+			Toast.makeText(getApplicationContext(), "Schade, Sparziel letzten Monat leider nicht erreicht!", Toast.LENGTH_SHORT).show();
+			
+		}
+	}
+
+
 	//get current date as a string
 	private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(

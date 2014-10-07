@@ -8,26 +8,27 @@ import android.widget.RelativeLayout;
 
 
 
-public class ChartActivity extends Activity {
+public class ChartCategoriesActivity extends Activity {
 
 	RelativeLayout LayoutToDisplayChart;
     /** Called when the activity is first created. */
 	public MyBankDatabase db;
-	int balance;
-	int expense;
-	int correctBalance;
+	int cat1;
+	int cat2;
+	int cat3;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chartactivity);
         LayoutToDisplayChart=(RelativeLayout)findViewById(R.id.relative_layout_chart);
         initDb();
-        this.balance = (int) db.getCurrentBalance();
-        this.expense = (int) db.getAllExpenses();
-        Log.d("", "balance: "+balance);
-        Log.d("", "expense: "+expense);
+        this.cat1 = db.getCategoryOccurenceInBookings("Freizeit");
+        this.cat2 = db.getCategoryOccurenceInBookings("Geschäftlich");
+        Log.d("", "cat1: "+cat1);
+        Log.d("", "cat2: "+cat2);
         
-        Intent achartIntent = new OverviewChart(balance, expense).execute(ChartActivity.this,LayoutToDisplayChart);
+        Intent achartIntent = new CategoriesChart(cat1, cat2).execute(ChartCategoriesActivity.this,LayoutToDisplayChart);
         
         
     }
@@ -42,7 +43,4 @@ public class ChartActivity extends Activity {
 		db.close();
 		super.onDestroy();
 	}
-    
-	
-	
 }

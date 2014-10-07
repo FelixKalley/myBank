@@ -105,6 +105,23 @@ public class MyBankDatabase {
 		
 	}
 	
+	public int getCategoryOccurenceInBookings(String category) {
+		int occurrence = 0;
+		
+		Cursor cursor = db.query(TABLE_BOOKINGS, new String[] {KEY_ID,
+				KEY_TITLE, KEY_CATEGORY, KEY_AMOUNT, KEY_DATE, KEY_DIFF }, null, null, null, null, null);
+		
+		if(cursor.moveToFirst()) {
+			do {
+				String cat = cursor.getString(COLUMN_CATEGORY_INDEX);
+				if(category.matches(cat)){
+					occurrence++;
+				}
+			} while (cursor.moveToNext());
+		}
+		return occurrence;
+	}
+	
 
 	public double getCurrentBalance(){
 		double balance = 0;
@@ -382,8 +399,10 @@ public class MyBankDatabase {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKINGS);
 			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_BALANCE);
-			
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_OUTLAYS);
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOAL);
 			//onCreate(db);
 			
 		}

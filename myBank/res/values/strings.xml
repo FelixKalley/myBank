@@ -41,6 +41,7 @@
     
     <string name="booking_prompt_ask_amount_text">Wieviel möchten Sie abbuchen?</string>
     <string name="income_booking_prompt_ask_amount_text">Wieviel möchten Sie einbuchen?</string>
+    <string name="income_booking_prompt_ask_title_text">Woher?</string>
     <string name="booking_prompt_ask_title_text">Zu welchem Zweck?</string>
     <string name="booking_prompt_ask_category_text">In welcher Ausgaben-Kategorie?</string>
     <string name="booking_prompt_amount_input_hint_text">Euro</string>
@@ -130,9 +131,13 @@
     
     <string-array name="categories_array">
         <item>Freizeit</item>
-        <item>Sport</item>
+        <item>Geschäftlich</item>
+        <item>Haushalt</item>
+        <item>Privat</item>
+        <item>Schule</item>
         <item>Sonstiges</item>
-        <item>Universität</item>
+        <item>Sport</item>
+        <item>Studium</item>
         <item>Wohnung</item>
         
     </string-array>
