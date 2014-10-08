@@ -1,6 +1,20 @@
-package com.example.mybank;
+package com.example.mybank.settings;
 
 import java.util.ArrayList;
+
+import com.example.mybank.BookingActivity;
+import com.example.mybank.ChartActivity;
+import com.example.mybank.ExpListChild;
+import com.example.mybank.ExpListGroups;
+import com.example.mybank.HistoryActivity;
+import com.example.mybank.OutlayActivity;
+import com.example.mybank.R;
+import com.example.mybank.R.drawable;
+import com.example.mybank.R.id;
+import com.example.mybank.R.layout;
+import com.example.mybank.R.menu;
+import com.example.mybank.R.string;
+import com.example.mybank.adapters.ExpandableDrawerAdapter;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -24,7 +38,7 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.os.Build;
 
-public class Settings_Notification_Activity extends Activity {
+public class SettingsNotificationsActivity extends Activity {
 
 	TextView TextView_Settings_Notification_Screen_Name;
 	Switch Switch_Limit_Reached;
@@ -81,7 +95,7 @@ public class Settings_Notification_Activity extends Activity {
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(Settings_Notification_Activity.this,
+		ExpAdapter = new ExpandableDrawerAdapter(SettingsNotificationsActivity.this,
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
 
@@ -142,21 +156,21 @@ public class Settings_Notification_Activity extends Activity {
 		case Einstellungen:
 			switch (childPosition) {
 			case NOTIFICATION:
-				Intent i = new Intent(Settings_Notification_Activity.this,
-						Settings_Notification_Activity.class);
+				Intent i = new Intent(SettingsNotificationsActivity.this,
+						SettingsNotificationsActivity.class);
 				startActivity(i);
 				finish();
 				break;
 
 			case PROFIL:
-				Intent j = new Intent(Settings_Notification_Activity.this,
-						Settings_profil_Activity.class);
+				Intent j = new Intent(SettingsNotificationsActivity.this,
+						SettingsProfileActivity.class);
 				startActivity(j);
 				finish();
 				break;
 			case BANKING:
-				Intent k = new Intent(Settings_Notification_Activity.this,
-						Settings_Banking_Activity.class);
+				Intent k = new Intent(SettingsNotificationsActivity.this,
+						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
 				/*
@@ -169,42 +183,43 @@ public class Settings_Notification_Activity extends Activity {
 		}
 	}
 	
-	 private void isGroupClicked(int groupPosition) {
-			final  int HISTORY = 1; final  int OVERVIEW = 3; final int BOOKING = 0;
-			  
-			  
-			 
-			  switch (groupPosition) {
-			  
-			  case HISTORY:
-			/*  
-			  
-			  
-			  Intent i = new Intent(Settings_Banking_Activity.this, HistoryActivity.class);
-			  startActivity(i); finish(); break;
-			  
-			  case OVERVIEW:
-			  
-			  Intent j = new Intent(Settings_Banking_Activity.this, OverviewActivity.class);
-			  startActivity(j); finish(); break;
-			  case VERWALTUNG:
-				  
-				  Intent k = new Intent(BookingActivity.this, VerwaltungActivity.class);
-				  startActivity(k);
-				  finish();
-				  break;
+	private void isGroupClicked(int groupPosition) {
+		final int BOOKING = 0;
+		final int HISTORY = 1;
+		final int OUTLAY = 3;
+		final int OVERVIEW = 4;
 
-				  */
-			
-	 			case BOOKING:
+
+		
+		  switch (groupPosition) {
 		  
-	 			Intent k = new Intent(Settings_Notification_Activity.this, BookingActivity.class);
-	 			startActivity(k);
-	 			finish();
-	 			break;
-			  }
-				  
+		  case BOOKING:
+			  Intent i = new Intent(SettingsNotificationsActivity.this, HistoryActivity.class);
+			  startActivity(i);
+			  finish();
+			  break;
+		  
+		  case HISTORY:
+			  Intent j = new Intent(SettingsNotificationsActivity.this, HistoryActivity.class);
+			  startActivity(j);
+			  finish();
+			  break;
+		  
+		  
+		  case OUTLAY:
+			  Intent k = new Intent(SettingsNotificationsActivity.this, OutlayActivity.class);
+			  startActivity(k);
+			  finish();
+			  break; 
+		 
+		  case OVERVIEW:
+			  Intent l = new Intent(SettingsNotificationsActivity.this, ChartActivity.class);
+			  startActivity(l);
+			  finish();
+			  break;
+		 
 		  }
+	}
 			  
 	
 	private void SeeIfListItemIsClicked() {
@@ -252,7 +267,7 @@ public class Settings_Notification_Activity extends Activity {
 				});
 
 			}
-	public ArrayList<ExpListGroups> SetStandardGroups() {
+	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
@@ -260,51 +275,61 @@ public class Settings_Notification_Activity extends Activity {
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru1 = new ExpListGroups();
-		gru1.setName("Buchungen");
+		gru1.setName(getString(R.string.List_Buchung));
 
 		gru1.setItems(child_list);
 
 		// Setting Group 2
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru2 = new ExpListGroups();
-		gru2.setName("Verlauf");
+		gru2.setName(getString(R.string.List_Verlauf));
 
 		gru2.setItems(child_list);
 
 		// Setting Group 3
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru3 = new ExpListGroups();
-		gru3.setName("Einstellungen");
-
-		ExpListChild ch3_1 = new ExpListChild();
-		ch3_1.setName("Benachrichtigungen");
-		child_list.add(ch3_1);
-
-		ExpListChild ch3_2 = new ExpListChild();
-		ch3_2.setName("Profil");
-		child_list.add(ch3_2);
-
-		ExpListChild ch3_3 = new ExpListChild();
-		ch3_3.setName("Banking");
-		child_list.add(ch3_3);
-
-		ExpListChild ch3_4 = new ExpListChild();
-		ch3_4.setName("Verwaltung");
-		child_list.add(ch3_4);
+		gru3.setName(getString(R.string.List_Geplant));
 
 		gru3.setItems(child_list);
 
+		
 		// Setting Group 4
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
-		gru4.setName("†bersicht");
+		gru4.setName(getString(R.string.List_Einstellungen));
+
+		ExpListChild ch4_1 = new ExpListChild();
+		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
+		child_list.add(ch4_1);
+
+		ExpListChild ch4_2 = new ExpListChild();
+		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
+		child_list.add(ch4_2);
+
+		ExpListChild ch4_3 = new ExpListChild();
+		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
+		child_list.add(ch4_3);
+
+		ExpListChild ch4_4 = new ExpListChild();
+		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
+		child_list.add(ch4_4);
+
 		gru4.setItems(child_list);
+
+		// Setting Group 5
+		child_list = new ArrayList<ExpListChild>();
+		ExpListGroups gru5 = new ExpListGroups();
+		gru5.setName(getString(R.string.List_Uebersicht));
+		
+		gru5.setItems(child_list);
 
 		// listing all groups
 		group_list.add(gru1);
 		group_list.add(gru2);
 		group_list.add(gru3);
 		group_list.add(gru4);
+		group_list.add(gru5);
 
 		return group_list;
 
@@ -315,29 +340,29 @@ public class Settings_Notification_Activity extends Activity {
 
 	private void DeclareAllButtons() {
 		Button_set_daily_reminder = (Button) findViewById(R.id.Button_set_reminder_time);
-		Button_set_daily_reminder.setText(R.string.String_Button_Set_Reminder);
+		Button_set_daily_reminder.setText(R.string.Button_Set_Reminder);
 	}
 
 	private void DeclareALlSwitches() {
 		Switch_Goal_Reached = (Switch) findViewById(R.id.Switch_goal_reached_notification);
 		Switch_Goal_Reached
-				.setText(R.string.String_Switch_Notification_goal_reached);
+				.setText(R.string.Switch_Notification_goal_reached);
 
 		Switch_Limit_Reached = (Switch) findViewById(R.id.Switch_Limit_reached_notification);
 		Switch_Limit_Reached
-				.setText(R.string.String_Switch_Notification_limit_reached);
+				.setText(R.string.Switch_Notification_limit_reached);
 
 		Switch_Saved_to_server = (Switch) findViewById(R.id.Switch_saved_to_server_notfification);
 		Switch_Saved_to_server
-				.setText(R.string.String_Switch_Notification_server);
+				.setText(R.string.Switch_Notification_server);
 
 		Switch_Notifications_on_off = (Switch) findViewById(R.id.SWITCH_pushNotifications);
 		Switch_Notifications_on_off
-				.setText(R.string.String_Switch_Notification_on);
+				.setText(R.string.Switch_Notification_on);
 
 		Switch_daily_reminder = (Switch) findViewById(R.id.Switch_Daily_reminder);
 		Switch_daily_reminder
-				.setText(R.string.String_Switch_Notification_daily_reminder);
+				.setText(R.string.Switch_Notification_daily_reminder);
 
 	}
 

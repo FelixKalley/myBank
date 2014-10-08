@@ -1,18 +1,23 @@
-package com.example.mybank;
+package com.example.mybank.data;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import java.util.Date;
+import java.util.Locale;
 
 import com.example.mybank.items.BalanceItem;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.ClipData.Item;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class MyBankDatabase {
 
@@ -103,23 +108,6 @@ public class MyBankDatabase {
 		}
 		return expense;
 		
-	}
-	
-	public int getCategoryOccurenceInBookings(String category) {
-		int occurrence = 0;
-		
-		Cursor cursor = db.query(TABLE_BOOKINGS, new String[] {KEY_ID,
-				KEY_TITLE, KEY_CATEGORY, KEY_AMOUNT, KEY_DATE, KEY_DIFF }, null, null, null, null, null);
-		
-		if(cursor.moveToFirst()) {
-			do {
-				String cat = cursor.getString(COLUMN_CATEGORY_INDEX);
-				if(category.matches(cat)){
-					occurrence++;
-				}
-			} while (cursor.moveToNext());
-		}
-		return occurrence;
 	}
 	
 
@@ -256,7 +244,7 @@ public class MyBankDatabase {
 		
 		if(cursor.moveToFirst()) {
 			do {
-				double amount = cursor.getDouble(COLUMN_OUTLAY_AMOUNT_INDEX);
+				Double amount = cursor.getDouble(COLUMN_OUTLAY_AMOUNT_INDEX);
 				totalOutlays += amount;
 			} while (cursor.moveToNext());
 		}
@@ -390,15 +378,17 @@ public class MyBankDatabase {
 			db.execSQL(CREATE_TABLE_OUTLAY);
 			db.execSQL(CREATE_TABLE_GOAL);
 			
+			//db.insert, um allererstes 0,00Euro BalanceItem einzufügen
+			//ContentValues values = new ContentValues();
+			//values.put(KEY_CURRENT_BALANCE, 0);
+			//db.insert(TABLE_BALANCE, null, values);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKINGS);
 			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_BALANCE);
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_OUTLAYS);
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOAL);
+			
 			//onCreate(db);
 			
 		}

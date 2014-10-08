@@ -1,6 +1,11 @@
-package com.example.mybank;
+package com.example.mybank.adapters;
 
 import java.util.ArrayList;
+
+import com.example.mybank.R;
+import com.example.mybank.R.id;
+import com.example.mybank.R.layout;
+import com.example.mybank.items.OutlayItem;
 
 import android.content.Context;
 import android.graphics.Color;

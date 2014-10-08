@@ -1,4 +1,4 @@
-package com.example.mybank;
+package com.example.mybank.items;
 
 import java.util.Date;
 

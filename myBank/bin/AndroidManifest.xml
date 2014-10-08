@@ -24,27 +24,19 @@
         </activity>
         <activity
             android:name="com.example.mybank.BookingActivity"
-            android:label="Booking" >
+            android:label="@string/title_activity_booking">
         </activity>
         <activity
-            android:name="com.example.mybank.SettingsMainActivity"
-            android:label="@string/title_activity_settings_main" >
+            android:name="com.example.mybank.settings.SettingsProfileActivity"
+            android:label="@string/title_activity_settings_profile" >
         </activity>
         <activity
-            android:name="com.example.mybank.Settings_profil_Activity"
-            android:label="@string/title_activity_settings_profil_" >
+            android:name="com.example.mybank.settings.SettingsNotificationsActivity"
+            android:label="@string/title_activity_settings_notifications" >
         </activity>
         <activity
-            android:name="com.example.mybank.Settings_Notification_Activity"
-            android:label="@string/title_activity_settings__notification_" >
-        </activity>
-        <activity
-            android:name="com.example.mybank.Settings_Banking_Activity"
-            android:label="@string/title_activity_settings__banking_" >
-        </activity>
-        <activity
-            android:name="com.example.mybank.ScreenSlidePagerActivity"
-            android:label="@string/title_activity_screen_slide_pager" >
+            android:name="com.example.mybank.settings.SettingsBankingActivity"
+            android:label="@string/title_activity_settings_banking" >
         </activity>
         <activity
             android:name="com.example.mybank.HistoryActivity"
