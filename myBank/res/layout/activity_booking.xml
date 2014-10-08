@@ -11,12 +11,6 @@
    		 android:layout_height="match_parent"
    		  >
    		 
-          <Button 
-              android:id="@+id/link_button"
-              android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="OutlayHistory"
-              />
           
             <TextView
             android:id="@+id/TEXTVIEW_ADD_EXPENSE"

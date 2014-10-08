@@ -89,13 +89,14 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		
 		
 		if(db.getAllBalanceItems().isEmpty()){
-			BalanceItem item = new BalanceItem(0);
+			BalanceItem item = new BalanceItem(0.00);
 			db.insertBalanceItem(item);
 		}
 		if(db.getAllGoalItems().isEmpty()) {
-			GoalItem item = new GoalItem(0);
+			GoalItem item = new GoalItem(0.00);
 			db.insertGoalItem(item);
 		}
+		
 		
 		DeclareAllElements();
 		initBalance();
@@ -466,21 +467,6 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		
 			
 		
-			
-		/*
-		Button button = (Button) findViewById(R.id.link_button);
-		//Button button2 = (Button) findViewById(R.id.link_button2);
-		button.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				Log.d("Button", "Button Click");
-				Intent intent = new Intent(BookingActivity.this, ChartActivity.class);
-				startActivity(intent);	
-			}
-		});
-		*/
-		
 	}
 		
 	
@@ -499,18 +485,18 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	private void updateBalance() {
 		balances.clear();
 		balances.addAll(db.getAllBalanceItems());
-		TEXTVIEW_AccountBalance_Content.setText("+" + Double.toString(balances.get(balances.size()-1).getAmount()));
+		TEXTVIEW_AccountBalance_Content.setText("+" + String.format("%.2f", balances.get(balances.size()-1).getAmount()));
 		
 	}
 	
 	//update the outlay textView
 	private void updateOutlay() {
-		TEXTVIEW_Outlay_Content.setText("+" + Double.toString(db.getTotalOutlays()));
+		TEXTVIEW_Outlay_Content.setText("+" + String.format("%.2f", db.getTotalOutlays()));
 	}
 	
 	//update the goal textview
 	private void updateGoal() {
-		TEXTVIEW_Goal_Content.setText("+" + Double.toString(db.getCurrentGoal()));
+		TEXTVIEW_Goal_Content.setText("+" + String.format("%.2f", db.getCurrentGoal()));
 	}
 
 	//check if the goal set is currently reachable
