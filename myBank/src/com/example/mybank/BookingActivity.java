@@ -469,6 +469,8 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 				startActivity(intent);	
 			}
 		});
+		
+		
 	}
 		
 	
@@ -766,7 +768,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 
 	}
 	
-	
+	//initialize Database
 	private void initDb() {
 		db = new MyBankDatabase(this);
 		db.open();
@@ -828,7 +830,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		int lastBookingItemMonth = cal.get(Calendar.MONTH);
 		Log.d("", "int lastAddedMonth: "+lastBookingItemMonth);
 		
-		//drop TABLE GOAL
+		//drop TABLE GOAL every and TABLE BOOKINGS every two month
 		if(currentMonth != lastBookingItemMonth){
 			informUserAboutGoal();
 			db.deleteGoalTable();
@@ -840,6 +842,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		
 	}
 	
+	//inform user if monthly goal has been reached
 	private void informUserAboutGoal() {
 		if(db.getCurrentBalance() >= db.getCurrentGoal()){
 			Toast.makeText(getApplicationContext(), "Glückwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
