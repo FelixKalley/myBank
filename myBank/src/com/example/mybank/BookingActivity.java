@@ -467,7 +467,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 			
 		
 			
-		
+		/*
 		Button button = (Button) findViewById(R.id.link_button);
 		//Button button2 = (Button) findViewById(R.id.link_button2);
 		button.setOnClickListener(new OnClickListener(){
@@ -479,7 +479,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 				startActivity(intent);	
 			}
 		});
-		
+		*/
 		
 	}
 		

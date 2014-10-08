@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.Toast;
 
 
 
@@ -35,23 +37,29 @@ public class ChartActivity extends Activity {
 	RelativeLayout LayoutToDisplayChart;
     /** Called when the activity is first created. */
 	public MyBankDatabase db;
-	int balance;
-	int expense;
-	int correctBalance;
+	int balance, expense;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chartactivity);
         LayoutToDisplayChart=(RelativeLayout)findViewById(R.id.relative_layout_chart);
         initDb();
-        balance = (int) db.getCurrentBalance();
-        expense = (int) db.getAllExpenses();
-        correctBalance = balance - expense;
-        Intent achartIntent = new OverviewChart(correctBalance, expense).execute(ChartActivity.this,LayoutToDisplayChart);
-        DeclareMenuDrawer();
+        this.balance = (int) db.getCurrentBalance();
+        this.expense = (int) db.getAllExpenses();
+        Log.d("", "balance: "+balance);
+        Log.d("", "expense: "+expense);
+        
+        if(balance == 0 && expense == 0){
+        	Toast.makeText(getApplicationContext(), "Sie haben haben noch keine Buchungen vollzogen!", Toast.LENGTH_LONG).show();
+        }
+        
+        Intent achartIntent = new OverviewChart(balance, expense).execute(ChartActivity.this,LayoutToDisplayChart);
+        
         
     }
 	
+    //initialize Databse
     private void initDb() {
 		db = new MyBankDatabase(this);
 		db.open();

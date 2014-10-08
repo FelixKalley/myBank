@@ -1,5 +1,7 @@
 package com.example.mybank;
 
+import com.example.mybank.data.MyBankDatabase;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
