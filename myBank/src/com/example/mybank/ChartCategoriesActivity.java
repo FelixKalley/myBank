@@ -13,9 +13,8 @@ public class ChartCategoriesActivity extends Activity {
 	RelativeLayout LayoutToDisplayChart;
     /** Called when the activity is first created. */
 	public MyBankDatabase db;
-	int cat1;
-	int cat2;
-	int cat3;
+	int cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9;
+
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,10 +24,18 @@ public class ChartCategoriesActivity extends Activity {
         initDb();
         this.cat1 = db.getCategoryOccurenceInBookings("Freizeit");
         this.cat2 = db.getCategoryOccurenceInBookings("Geschäftlich");
+        this.cat3 = db.getCategoryOccurenceInBookings("Haushalt");
+        this.cat4 = db.getCategoryOccurenceInBookings("Privat");
+        this.cat5 = db.getCategoryOccurenceInBookings("Schule");
+        this.cat6 = db.getCategoryOccurenceInBookings("Sonstiges");
+        this.cat7 = db.getCategoryOccurenceInBookings("Sport");
+        this.cat8 = db.getCategoryOccurenceInBookings("Studium");
+        this.cat9 = db.getCategoryOccurenceInBookings("Wohnung");
+        
         Log.d("", "cat1: "+cat1);
         Log.d("", "cat2: "+cat2);
         
-        Intent achartIntent = new CategoriesChart(cat1, cat2).execute(ChartCategoriesActivity.this,LayoutToDisplayChart);
+        Intent achartIntent = new CategoriesChart(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9).execute(ChartCategoriesActivity.this,LayoutToDisplayChart);
         
         
     }

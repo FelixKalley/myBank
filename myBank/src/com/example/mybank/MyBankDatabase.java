@@ -256,7 +256,7 @@ public class MyBankDatabase {
 		
 		if(cursor.moveToFirst()) {
 			do {
-				Double amount = cursor.getDouble(COLUMN_OUTLAY_AMOUNT_INDEX);
+				double amount = cursor.getDouble(COLUMN_OUTLAY_AMOUNT_INDEX);
 				totalOutlays += amount;
 			} while (cursor.moveToNext());
 		}
@@ -390,10 +390,6 @@ public class MyBankDatabase {
 			db.execSQL(CREATE_TABLE_OUTLAY);
 			db.execSQL(CREATE_TABLE_GOAL);
 			
-			//db.insert, um allererstes 0,00Euro BalanceItem einzufügen
-			//ContentValues values = new ContentValues();
-			//values.put(KEY_CURRENT_BALANCE, 0);
-			//db.insert(TABLE_BALANCE, null, values);
 		}
 
 		@Override

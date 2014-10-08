@@ -72,11 +72,11 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 		
 		//Reihenfolge der Methodenaufrufe nicht Šndern wegen DB-Zugriffen !!
 		initDb();
-		/*
+		
 		if(!db.getAllBookingItems().isEmpty()){
 			checkForNewMonth();
 		}
-		*/
+		
 		
 		if(db.getAllBalanceItems().isEmpty()){
 			BalanceItem item = new BalanceItem(0);
