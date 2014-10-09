@@ -8,12 +8,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -46,10 +48,16 @@ public class OutlayActivity extends Activity {
 	private Context context = this;
 	
 	ActionBarDrawerToggle mDrawerToggle;
-
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
+	
+    public DrawerLayout drawerLayout;
+    
+  
+    public String[] layers;
+    private ActionBarDrawerToggle drawerToggle;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,7 @@ public class OutlayActivity extends Activity {
 		
 		initUI();
 		initTasklist();
+		SeeIfListItemIsClicked();
 		
 		Button button = (Button) findViewById(R.id.link_button2);
 		button.setOnClickListener(new OnClickListener(){
@@ -97,7 +106,7 @@ public class OutlayActivity extends Activity {
 		initTextViews();
 		initListView();
 		initListAdapter();
-		DeclareMenuDrawer();
+		initMenuDrawer();
 	}
 
 	private void initTextViews() {
@@ -111,6 +120,73 @@ public class OutlayActivity extends Activity {
 		outlays_adapter = new MyBankOutlayAdapter(this, outlays);
 		listview.setAdapter(outlays_adapter);
 	}
+	
+	private void initMenuDrawer() {
+		  // R.id.drawer_layout should be in every activity with exactly the same id.
+		
+
+		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+		ExpListItems = SetStandardGroups();
+		ExpAdapter = new ExpandableDrawerAdapter(OutlayActivity.this,
+				ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
+		
+		setUpDrawerToggle();
+
+		
+      drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+      drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
+      {
+          public void onDrawerClosed(View view) 
+          {
+              getActionBar().setTitle(R.string.app_name);
+          }
+
+          public void onDrawerOpened(View drawerView) 
+          {
+              getActionBar().setTitle("Menü");
+          }
+      };
+      drawerLayout.setDrawerListener(drawerToggle);
+
+      getActionBar().setDisplayHomeAsUpEnabled(true);
+      getActionBar().setHomeButtonEnabled(true);
+
+      layers = getResources().getStringArray(R.array.Menu_items);
+      ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+      
+      
+    
+ 
+ 
+
+		
+	}
+	
+	@Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+      if (drawerToggle.onOptionsItemSelected(item)) {
+          return true;
+      }
+      return super.onOptionsItemSelected(item);
+
+  }
+
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+      super.onPostCreate(savedInstanceState);
+      drawerToggle.syncState();
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      drawerToggle.onConfigurationChanged(newConfig);
+  }
+
+
 
 	private void initListView() {
 		ListView listview = (ListView) findViewById(R.id.outlayitem_listview);
@@ -237,17 +313,7 @@ public class OutlayActivity extends Activity {
 
 	
 
-	private void DeclareMenuDrawer() {
-
-		setUpDrawerToggle();
-
-		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(OutlayActivity.this,
-				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
-
-	}
+	
 
 	private void SeeIfListItemIsClicked() {
 
@@ -297,7 +363,7 @@ public class OutlayActivity extends Activity {
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
 		final int HISTORY = 1;
-		final int OUTLAY = 3;
+
 		final int OVERVIEW = 4;
 
 
@@ -328,14 +394,14 @@ public class OutlayActivity extends Activity {
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
 		// Groups
 
-		final int Einstellungen = 2;
+		final int Einstellungen = 3;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
-		//final int VERWALTUNG = 3;
+		
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -358,11 +424,7 @@ public class OutlayActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-				/*
-				 * case VERWALTUNG: Intent l = new Intent(BookingActivity.this,
-				 * Settings_Verwaltung_Activity.class); startActivity(l);
-				 * finish(); break;
-				 */
+			
 
 			}
 		}

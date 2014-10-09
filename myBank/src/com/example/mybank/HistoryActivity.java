@@ -16,9 +16,11 @@ import com.example.mybank.settings.SettingsProfileActivity;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -35,6 +37,10 @@ public class HistoryActivity extends Activity {
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
 	ActionBarDrawerToggle mDrawerToggle;
+    public String[] layers;
+    private ActionBarDrawerToggle drawerToggle;
+    public DrawerLayout drawerLayout;
+
 
 
 	@Override
@@ -43,15 +49,15 @@ public class HistoryActivity extends Activity {
 		setContentView(R.layout.activity_history);
 		db = new MyBankDatabase(this);
 		db.open();
-		DeclareMenuDrawer();
+		initMenuDrawer();
 		SeeIfListItemIsClicked();
 		initUI();
 		initTasklist();
 	}
 	
 	
-	//vll noch ne int-Column 'id' erstellen. beim vorherigen bookingitem abfrage welche id schon ist, dann um 1 erhšhen =
-	// neue id. dann kšnnt ich id vgl. zum sortieren
+	//vll noch ne int-Column 'id' erstellen. beim vorherigen bookingitem abfrage welche id schon ist, dann um 1 erhï¿½hen =
+	// neue id. dann kï¿½nnt ich id vgl. zum sortieren
 	/*
 	public class BookingItemComparator implements Comparator<BookingItem> {
 		
@@ -65,6 +71,76 @@ public class HistoryActivity extends Activity {
     */
 	
 	
+
+	private void initMenuDrawer() {
+		  // R.id.drawer_layout should be in every activity with exactly the same id.
+		
+
+				ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+				ExpListItems = SetStandardGroups();
+				ExpAdapter = new ExpandableDrawerAdapter(HistoryActivity.this,
+						ExpListItems);
+				ExpandList.setAdapter(ExpAdapter);
+				
+				setUpDrawerToggle();
+
+				
+		        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+		        drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
+		        {
+		            public void onDrawerClosed(View view) 
+		            {
+		                getActionBar().setTitle(R.string.app_name);
+		            }
+
+		            public void onDrawerOpened(View drawerView) 
+		            {
+		                getActionBar().setTitle("MenÃ¼");
+		            }
+		        };
+		        drawerLayout.setDrawerListener(drawerToggle);
+
+		        getActionBar().setDisplayHomeAsUpEnabled(true);
+		        getActionBar().setHomeButtonEnabled(true);
+
+		        layers = getResources().getStringArray(R.array.Menu_items);
+		        ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+		        
+		        
+		      
+		   
+		   
+		  
+				
+			}
+			
+			@Override
+		    public boolean onOptionsItemSelected(MenuItem item) {
+
+		        if (drawerToggle.onOptionsItemSelected(item)) {
+		            return true;
+		        }
+		        return super.onOptionsItemSelected(item);
+
+		    }
+
+		    @Override
+		    protected void onPostCreate(Bundle savedInstanceState) {
+		        super.onPostCreate(savedInstanceState);
+		        drawerToggle.syncState();
+		    }
+
+		    @Override
+		    public void onConfigurationChanged(Configuration newConfig) {
+		        super.onConfigurationChanged(newConfig);
+		        drawerToggle.onConfigurationChanged(newConfig);
+		    }
+
+
+		
+	
+
 
 	private void SeeIfListItemIsClicked() {
 		ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
@@ -111,17 +187,7 @@ public class HistoryActivity extends Activity {
 		
 	}
 
-	private void DeclareMenuDrawer() {
-		setUpDrawerToggle();
-
-		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(HistoryActivity.this,
-				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
-		
-	}
-
+	
 	private void setUpDrawerToggle() {
 		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -197,8 +263,7 @@ public class HistoryActivity extends Activity {
 	
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
-		final int HISTORY = 1;
-		final int OUTLAY = 3;
+		final int OUTLAY = 2;
 		final int OVERVIEW = 4;
 
 
@@ -230,14 +295,14 @@ public class HistoryActivity extends Activity {
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
 		// Groups
 
-		final int Einstellungen = 2;
+		final int Einstellungen = 3;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
-		//final int VERWALTUNG = 3;
+	
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -260,12 +325,7 @@ public class HistoryActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-				/*
-				 * case VERWALTUNG: Intent l = new Intent(BookingActivity.this,
-				 * Settings_Verwaltung_Activity.class); startActivity(l);
-				 * finish(); break;
-				 */
-
+			
 			}
 		}
 	}

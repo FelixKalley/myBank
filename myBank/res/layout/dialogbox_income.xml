@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="Machen sie eine Einzahlung"
+        android:text="Legen sie ein Erinnerungszeit fest"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
@@ -32,18 +32,59 @@
         android:textColor="#5DBCD2"
         android:textStyle="bold" />
 
+
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_alignBottom="@+id/button_ok"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/button_ok"
-        android:background="@color/COLOR_WHITE"
-        android:textColor="#000000"
-        android:ems="10"
-        android:inputType="number" />
+        android:id="@+id/ethr"
+    android:layout_width="50dp"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:hint="Std"
+           android:textSize="16sp"
+           android:maxLength="2"
+    
+    android:singleLine="true" 
+    android:layout_below="@+id/booking_dialog"
+    android:inputType="numberDecimal"
+    >
+    
+
+
+      
+    </EditText>
+
+ 
+
+
+   <EditText
+       android:id="@+id/etsec"
+       android:layout_width="50dp"
+       android:layout_height="wrap_content"
+       android:inputType="numberDecimal"
+       
+       android:layout_alignTop="@+id/button_ok"
+       android:layout_marginRight="49dp"
+       android:layout_toLeftOf="@+id/button_ok"
+       android:ems="10"
+       android:hint="Sek"
+       android:textSize="16sp"
+       android:singleLine="true"
+       android:maxLength="2" />
+
+   <EditText
+       android:id="@+id/etmin"
+       android:layout_width="55dp"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/booking_dialog"
+       android:inputType="numberDecimal"
+       
+       android:layout_toRightOf="@+id/ethr"
+       android:ems="10"
+       android:hint="Min"
+              android:textSize="16sp"
+       android:maxLength="2"
+       android:singleLine="true" >
+
+       <requestFocus />
+   </EditText>
 
 </RelativeLayout>

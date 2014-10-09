@@ -19,10 +19,12 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -45,11 +47,16 @@ public class SettingsBankingActivity extends Activity {
 	Button Button_Default_Settings;
 	Button Button_Delete_History;
 	
+	ActionBarDrawerToggle mDrawerToggle;
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
 	
-	ActionBarDrawerToggle mDrawerToggle;
+    public DrawerLayout drawerLayout;
+    
+  
+    public String[] layers;
+    private ActionBarDrawerToggle drawerToggle;
 
 
 
@@ -68,24 +75,77 @@ public class SettingsBankingActivity extends Activity {
 	private void DeclareAllElements() {
 		DeclareAllTextViews();
 		DeclareAllButtons();
-		DeclareMenuDrawer();
+		initMenuDrawer();
 		
 	}
 	
 
-	private void DeclareMenuDrawer() {
+	private void initMenuDrawer() {
+		  // R.id.drawer_layout should be in every activity with exactly the same id.
 		
-		setUpDrawerToggle();
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
 		ExpAdapter = new ExpandableDrawerAdapter(SettingsBankingActivity.this,
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+		
+		setUpDrawerToggle();
 
 		
+  drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+  drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
+  {
+      public void onDrawerClosed(View view) 
+      {
+          getActionBar().setTitle(R.string.app_name);
+      }
+
+      public void onDrawerOpened(View drawerView) 
+      {
+          getActionBar().setTitle("Menü");
+      }
+  };
+  drawerLayout.setDrawerListener(drawerToggle);
+
+  getActionBar().setDisplayHomeAsUpEnabled(true);
+  getActionBar().setHomeButtonEnabled(true);
+
+  layers = getResources().getStringArray(R.array.Menu_items);
+  ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+  
+  
+
+
+
+
+		
 	}
+	
+	@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+
+  if (drawerToggle.onOptionsItemSelected(item)) {
+      return true;
+  }
+  return super.onOptionsItemSelected(item);
+
+}
+
+@Override
+protected void onPostCreate(Bundle savedInstanceState) {
+  super.onPostCreate(savedInstanceState);
+  drawerToggle.syncState();
+}
+
+@Override
+public void onConfigurationChanged(Configuration newConfig) {
+  super.onConfigurationChanged(newConfig);
+  drawerToggle.onConfigurationChanged(newConfig);
+}
+
+	
 	
 	private void setUpDrawerToggle(){
 		
@@ -328,7 +388,7 @@ public class SettingsBankingActivity extends Activity {
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
 		final int HISTORY = 1;
-		final int OUTLAY = 3;
+		final int OUTLAY = 2;
 		final int OVERVIEW = 4;
 
 
@@ -362,6 +422,7 @@ public class SettingsBankingActivity extends Activity {
 		 
 		  }
 	}
+			  
 	  
 
 	
