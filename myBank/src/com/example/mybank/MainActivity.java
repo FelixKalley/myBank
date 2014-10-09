@@ -14,16 +14,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends Activity{
-
+	
 	TextView TEXTVIEW_AppName;
 	TextView TEXTVIEW_AppSlogan;
 	TextView TEXTVIEW_Autor1;
 	TextView TEXTVIEW_Autor2;
 	TextView TEXTVIEW_Autor3;
 	ProgressBar progressBar;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -38,11 +43,20 @@ public class MainActivity extends Activity{
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
+				// check if app is started for the very first time.
+				boolean isFirstTime = FirstStartPreferences.isFirst(MainActivity.this);
+				if (isFirstTime==true) {
+					// start ProfileDataActivitiy so user can fill out his profile
+					Intent addData = new Intent (MainActivity.this, ProfileDataActivity.class);
+					startActivity(addData);
+					finish();
+				}else{
+					// start booking activity
 				Intent intent = new Intent(MainActivity.this,
 						BookingActivity.class);
 				startActivity(intent);
 				finishscreen();
+				}
 			}
 		};
 		Timer t = new Timer();

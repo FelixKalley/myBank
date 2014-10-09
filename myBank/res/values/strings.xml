@@ -32,12 +32,21 @@
     <string name="title_activity_history">Verlauf</string>
 	<string name="title_activity_outlay">Geplant</string>
 	<string name="title_activity_chart">Übersicht</string>
+	<string name="title_activity_add">Profildaten</string>
     
 	
 	
     <!-- ALL STRINGS FOR STARTING-SCREEN -->
     <string name="AppName">myBank</string>
     <string name="AppSlogan">Consistency Pays</string>
+    
+    
+    
+    <!-- ALL STTRINGS FOR PROFILE-DATA-SCREEN -->
+    <string name="profile_data_add_name_text">Wie heißt Du?</string>
+    <string name="profile_data_add_name_input_hint_text">Vorname</string>
+    <string name="profile_data_add_lastname_input_hint_text">Nachname</string>
+    <string name="profile_data_save_button_text">Speichern</string>
     
     
     
@@ -115,14 +124,20 @@
     
     
 	<!-- ALL STRINGS FOR SETTINGS-PROFILE-SCREEN -->
-	<string name="TextView_Profile_Age">Alter</string>
+    <string name="TextView_Profile_Vorname">Vorname:</string>
+    <string name="TextView_Profile_Nachname">Nachname:</string>
+    <string name="TextView_Profile_Vorname_Input">kein Text VORNAME</string>
+    <string name="TextView_Profile_Nachname_Input">kein Text NACHNAME</string>
     <string name="TextView_Profile_Member_Since">Mitglied seit</string>
-    <string name="TextView_Profile_Complete_Income">Gesamte Einzahlungen</string>
-    <string name="TextView_Profile_Complete_Expense">Gesamte Ausgaben</string>
-    <string name="TextView_Profile_Complete_Savings">Gesamte Ersparnisse</string>
-	<string name="Button_Edit_Profile">Profil bearbeiten</string>
+    <string name="TextView_Profile_Member_Since_Input">kein Text DATUM</string>
+    <string name="TextView_Profile_Complete_Income">Gesamte Einzahlungen:</string>
+    <string name="TextView_Profile_Complete_Income_Input">kein Text EINZAHLUNGEN</string>
+    <string name="TextView_Profile_Complete_Expense">Gesamte Ausgaben:</string>
+    <string name="TextView_Profile_Complete_Expense_Input">kein Text AUSGABEN</string>
+    <string name="TextView_Profile_Complete_Savings">Gesamte Ersparnisse:</string>
+    <string name="TextView_Profile_Complete_Savings_Input">kein Text ERSPARNISSE</string>
+    <string name="Button_Edit_Profile">Profil bearbeiten</string>
     <string name="Button_Reset_Account">Profil zurücksetzen</string>
-    
     
     
 	<!-- ALL STRINGS FOR SETTINGS-BOOKING-SCREEN -->

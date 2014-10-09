@@ -8,6 +8,7 @@ import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
 import com.example.mybank.HistoryActivity;
 import com.example.mybank.OutlayActivity;
+import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.R;
 import com.example.mybank.R.drawable;
 import com.example.mybank.R.id;
@@ -36,21 +37,21 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 
 public class SettingsProfileActivity extends Activity {
 
-	TextView TextView_Profil_Screen_Name;
-	TextView TextView_Profil_VName;
-	TextView TextView_Profil_Nname;
-	TextView TextView_Profil_Age;
-	TextView TextView_Profil_Age_Content;
-	TextView TextView_Profil_Complete_Input;
-	TextView TextView_Profil_Complete_Output;
-	TextView TextView_Profil_Complete_Input_content;
-	TextView TextView_Profil_Complete_Output_content;
-	TextView TextView_Profil_Member_Since;
-	TextView TextView_Profil_Member_Since_content;
-	TextView TextView_Profil_Complete_Savings;
-	TextView TextView_Profil_Complete_Savings_content;
-	Button Button_Profil_Change_Profil;
-	Button Button_Profil_Reset_Profil;
+	TextView TextView_Profile_VName;
+	TextView TextView_Profile_VName_Input;
+	TextView TextView_Profile_Nname;
+	TextView TextView_Profile_NName_Input;
+	TextView TextView_Profile_Date;
+	TextView TextView_Profile_Date_Input;
+	TextView TextView_Profile_Income;
+	TextView TextView_Profile_Income_Input;
+	TextView TextView_Profile_Expense;
+	TextView TextView_Profile_Expense_Input;
+	TextView TextView_Profile_Savings;
+	TextView TextView_Profile_Savings_Input;
+
+	Button Button_Profile_Change_Profile;
+	Button Button_Profile_Reset_Profile;
 	
 	 ExpandableDrawerAdapter ExpAdapter;
 	 ArrayList<ExpListGroups> ExpListItems;
@@ -87,12 +88,29 @@ public class SettingsProfileActivity extends Activity {
 	}
 
 	private void DeclareAllButtons() {
-		Button_Profil_Change_Profil = (Button) findViewById(R.id.BUTTON_profil_edit_profil);
-		Button_Profil_Change_Profil.setText(R.string.Button_Edit_Profile);
+		Button_Profile_Change_Profile = (Button) findViewById(R.id.BUTTON_profil_edit_profil);
+		Button_Profile_Change_Profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent intent = new Intent(SettingsProfileActivity.this,
+						ProfileDataActivity.class);
+            	// TODO Strings evtl. auf Ursprungswert setzen?
+            	startActivity(intent);
+            	finish();
+            }
+        });
 
-		Button_Profil_Reset_Profil = (Button) findViewById(R.id.BUTTON_profil_reset_profil);
-		Button_Profil_Reset_Profil
-				.setText(R.string.Button_Reset_Account);
+		Button_Profile_Reset_Profile = (Button) findViewById(R.id.BUTTON_profil_reset_profil);
+		Button_Profile_Reset_Profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent intent = new Intent(SettingsProfileActivity.this,
+						ProfileDataActivity.class);
+            	
+            	// TODO: Strings auf Ursprungswert setzen (und DB Einträge entfernen?)
+            	
+            	startActivity(intent);
+            	finish();
+            }
+        });
 	}
 	
 	private void DeclareMenuDrawer() {
@@ -347,33 +365,25 @@ private void setUpDrawerToggle(){
 	
 
 	private void DeclareAllTextViews() {
-		TextView_Profil_VName = (TextView) findViewById(R.id.TEXTVIEW_profil_Vname);
-		TextView_Profil_Nname = (TextView) findViewById(R.id.TEXTVIEW_profil_Nname);
-
-		TextView_Profil_Age = (TextView) findViewById(R.id.TEXTVIEW_profil_age);
-		TextView_Profil_Age.setText(R.string.TextView_Profile_Age);
-
-		TextView_Profil_Age_Content = (TextView) findViewById(R.id.TEXTVIEW_profil_age_content);
-
-		TextView_Profil_Complete_Input = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_input);
-		TextView_Profil_Complete_Input
-				.setText(R.string.TextView_Profile_Complete_Income);
-
-		TextView_Profil_Complete_Output = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_output);
-		TextView_Profil_Complete_Output
-				.setText(R.string.TextView_Profile_Complete_Expense);
-
-		TextView_Profil_Complete_Input_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_input_content);
-		TextView_Profil_Complete_Output_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_output_content);
-		TextView_Profil_Member_Since = (TextView) findViewById(R.id.TEXTVIEW_profil_Member_since);
-		TextView_Profil_Member_Since
-				.setText(R.string.TextView_Profile_Member_Since);
-		TextView_Profil_Member_Since_content = (TextView) findViewById(R.id.TEXTVIEW_profil_member_since_content);
-		TextView_Profil_Complete_Savings = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_savings);
-		TextView_Profil_Complete_Savings
-				.setText(R.string.TextView_Profile_Complete_Savings);
-		TextView_Profil_Complete_Savings_content = (TextView) findViewById(R.id.TEXTVIEW_profil_complete_savings_content);
-
+		TextView_Profile_VName = (TextView) findViewById(R.id.TextView_Profile_Vorname_Text);
+		TextView_Profile_VName_Input= (TextView) findViewById(R.id.TextView_Profile_Vorname_Input);
+		
+		TextView_Profile_Nname = (TextView) findViewById(R.id.TextView_Profile_Nachname_Text);
+		TextView_Profile_NName_Input= (TextView) findViewById(R.id.TextView_Profile_Nachname_Input);
+		
+		
+		TextView_Profile_Date = (TextView) findViewById(R.id.TextView_Profile_Member_Since);
+		TextView_Profile_Date_Input= (TextView) findViewById(R.id.TextView_Profile_Member_Since_Input);
+		
+		
+		TextView_Profile_Income = (TextView) findViewById(R.id.TextView_Profile_Einzahlungen_Text);
+		TextView_Profile_Income_Input= (TextView) findViewById(R.id.TextView_Profile_Einzahlungen_Input);
+		
+		TextView_Profile_Expense = (TextView) findViewById(R.id.TextView_Profile_Auszahlungen_Text);
+		TextView_Profile_Expense_Input= (TextView) findViewById(R.id.TextView_Profile_Auszahlungen_Text_Input);
+		
+		TextView_Profile_Income = (TextView) findViewById(R.id.TextView_Profile_Ersparnisse_Text);
+		TextView_Profile_Income_Input= (TextView) findViewById(R.id.TextView_Profile_Ersparnisse_Text_Input);
 	}
 
 	@Override

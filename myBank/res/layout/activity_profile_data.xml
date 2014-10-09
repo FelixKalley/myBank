@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/BackgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/profile_data_add_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/profile_data_add_name_text" />
+
+    <EditText
+        android:id="@+id/profile_data_add_lastname_input_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/profile_data_add_lastname_input_hint_text"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/profile_data_add_name_input_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/profile_data_add_name_input_hint_text"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/profile_data_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_data_save_button_text" />
+
+</LinearLayout>
