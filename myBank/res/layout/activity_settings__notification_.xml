@@ -12,33 +12,9 @@
     
 
   	  
-          <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/COLOR_WHITE"
-        android:gravity="center" >
+   
 
-        <TextView
-            android:id="@+id/listdrawerlayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textColor="#000"
-            android:textSize="30sp" />
-        
-        </RelativeLayout>
-   		  
-
-    <Switch
-        android:id="@+id/SWITCH_pushNotifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/header"
-        android:text="Switch" />
+ 
 
     <Switch
         android:id="@+id/Switch_Limit_reached_notification"
@@ -46,12 +22,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/SWITCH_pushNotifications"
+      
         android:layout_marginTop="14dp"
         android:text="Switch" />
 
+ 
     <Switch
-        android:id="@+id/Switch_saved_to_server_notfification"
+        android:id="@+id/Switch_goal_reached_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -61,23 +38,13 @@
         android:text="Switch" />
 
     <Switch
-        android:id="@+id/Switch_goal_reached_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/Switch_saved_to_server_notfification"
-        android:layout_marginTop="18dp"
-        android:text="Switch" />
-
-    <Switch
         android:id="@+id/Switch_Daily_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Switch_goal_reached_notification"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="14dp"
         android:text="Switch" />
 
     <Button
@@ -88,6 +55,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Switch_Daily_reminder"
         android:layout_marginTop="18dp"
+        
         android:text="Button" />
     
     </RelativeLayout>

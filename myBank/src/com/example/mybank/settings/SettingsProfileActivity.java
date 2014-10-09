@@ -19,6 +19,7 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -52,12 +53,16 @@ public class SettingsProfileActivity extends Activity {
 	Button Button_Profil_Change_Profil;
 	Button Button_Profil_Reset_Profil;
 	
-	 ExpandableDrawerAdapter ExpAdapter;
-	 ArrayList<ExpListGroups> ExpListItems;
-	 ExpandableListView ExpandList;
-	 
 	ActionBarDrawerToggle mDrawerToggle;
-
+	ExpandableDrawerAdapter ExpAdapter;
+	ArrayList<ExpListGroups> ExpListItems;
+	ExpandableListView ExpandList;
+	
+    public DrawerLayout drawerLayout;
+    
+  
+    public String[] layers;
+    private ActionBarDrawerToggle drawerToggle;
 
 
 	@Override
@@ -82,7 +87,7 @@ public class SettingsProfileActivity extends Activity {
 	private void DeclarationOfAllElements() {
 		DeclareAllTextViews();
 		DeclareAllButtons();
-		DeclareMenuDrawer();
+		initMenuDrawer();
 
 	}
 
@@ -94,19 +99,71 @@ public class SettingsProfileActivity extends Activity {
 		Button_Profil_Reset_Profil
 				.setText(R.string.Button_Reset_Account);
 	}
-	
-	private void DeclareMenuDrawer() {
+	private void initMenuDrawer() {
+		  // R.id.drawer_layout should be in every activity with exactly the same id.
 		
-		setUpDrawerToggle();
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
 		ExpAdapter = new ExpandableDrawerAdapter(SettingsProfileActivity.this,
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+		
+		setUpDrawerToggle();
+
+		
+    drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+    drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
+    {
+        public void onDrawerClosed(View view) 
+        {
+            getActionBar().setTitle(R.string.app_name);
+        }
+
+        public void onDrawerOpened(View drawerView) 
+        {
+            getActionBar().setTitle("Menü");
+        }
+    };
+    drawerLayout.setDrawerListener(drawerToggle);
+
+    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setHomeButtonEnabled(true);
+
+    layers = getResources().getStringArray(R.array.Menu_items);
+    ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+    
+    
+  
 
 
+
+		
 	}
+	
+	@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (drawerToggle.onOptionsItemSelected(item)) {
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+
+}
+
+@Override
+protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    drawerToggle.syncState();
+}
+
+@Override
+public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    drawerToggle.onConfigurationChanged(newConfig);
+}
+
 	
 private void setUpDrawerToggle(){
 		
@@ -189,43 +246,46 @@ private void setUpDrawerToggle(){
 		}
 	}
 	
-	private void isGroupClicked(int groupPosition) {
-		final int BOOKING = 0;
-		final int HISTORY = 1;
-		final int OUTLAY = 3;
-		final int OVERVIEW = 4;
-
 
 		
-		  switch (groupPosition) {
-		  
-		  case BOOKING:
-			  Intent i = new Intent(SettingsProfileActivity.this, HistoryActivity.class);
-			  startActivity(i);
-			  finish();
-			  break;
-		  
-		  case HISTORY:
-			  Intent j = new Intent(SettingsProfileActivity.this, HistoryActivity.class);
-			  startActivity(j);
-			  finish();
-			  break;
-		  
-		  
-		  case OUTLAY:
-			  Intent k = new Intent(SettingsProfileActivity.this, OutlayActivity.class);
-			  startActivity(k);
-			  finish();
-			  break; 
-		 
-		  case OVERVIEW:
-			  Intent l = new Intent(SettingsProfileActivity.this, ChartActivity.class);
-			  startActivity(l);
-			  finish();
-			  break;
-		 
-		  }
-	}
+		private void isGroupClicked(int groupPosition) {
+			final int BOOKING = 0;
+			final int HISTORY = 1;
+			final int OUTLAY = 2;
+			final int OVERVIEW = 4;
+
+
+			
+			  switch (groupPosition) {
+			  
+			  case BOOKING:
+				  Intent i = new Intent(SettingsProfileActivity.this, HistoryActivity.class);
+				  startActivity(i);
+				  finish();
+				  break;
+			  
+			  case HISTORY:
+				  Intent j = new Intent(SettingsProfileActivity.this, HistoryActivity.class);
+				  startActivity(j);
+				  finish();
+				  break;
+			  
+			  
+			  case OUTLAY:
+				  Intent k = new Intent(SettingsProfileActivity.this, OutlayActivity.class);
+				  startActivity(k);
+				  finish();
+				  break; 
+			 
+			  case OVERVIEW:
+				  Intent l = new Intent(SettingsProfileActivity.this, ChartActivity.class);
+				  startActivity(l);
+				  finish();
+				  break;
+			 
+			  }
+		}
+				  
 			  
 	
 	private void SeeIfListItemIsClicked() {
@@ -376,16 +436,5 @@ private void setUpDrawerToggle(){
 
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 }

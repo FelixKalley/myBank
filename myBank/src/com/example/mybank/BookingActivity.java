@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
@@ -20,10 +21,12 @@ import com.example.mybank.settings.SettingsNotificationsActivity;
 import com.example.mybank.settings.SettingsProfileActivity;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,8 +36,10 @@ import android.text.InputFilter.LengthFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -46,7 +51,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BookingActivity extends android.support.v4.app.FragmentActivity {
+public class BookingActivity extends Activity {
 
 	TextView TEXTVIEW_AccountBalance;
 	TextView TEXTVIEW_AccountBalance_Content;
@@ -63,11 +68,21 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	TextView Button_Add_Sheduled_booking;
 	TextView Button_Add_Goal;
 	
+	
+	
 	ActionBarDrawerToggle mDrawerToggle;
-
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
+	
+    public DrawerLayout drawerLayout;
+    
+  
+    public String[] layers;
+    private ActionBarDrawerToggle drawerToggle;
+	
+	
+
 	String regExDecimal = "^[1-9]+[0-9]*[.]?[0-9]?[0-9]?$";
 	
 	private ArrayList<BalanceItem> balances = new ArrayList<BalanceItem>();
@@ -79,8 +94,9 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_booking);
+	
 		
-		//Reihenfolge der Methodenaufrufe nicht Šndern wegen DB-Zugriffen !!
+		//Reihenfolge der Methodenaufrufe nicht ï¿½ndern wegen DB-Zugriffen !!
 		initDb();
 		
 		if(!db.getAllBookingItems().isEmpty()){
@@ -185,7 +201,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 							checkGoalReachability();
 						}
 						 else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
-							Toast.makeText(getApplicationContext(), "Sie haben keinen gŸltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gï¿½ltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 						}
 						 else if (editText_inputAmount.getText().toString().matches("")) {
 							 Toast.makeText(getApplicationContext(), "Sie haben nichts eingegeben!", Toast.LENGTH_SHORT).show();
@@ -276,7 +292,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						}
 						else if(!editText_inputAmount.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
 							
-							Toast.makeText(getApplicationContext(), "Sie haben keinen gŸltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gï¿½ltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						//if conditions to book are not complied because current balance is not enough
@@ -287,7 +303,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						}
 						//if conditions to book are not complied because not all fields are filled
 						else if (editText_inputAmount.getText().toString().matches("") || !String.valueOf(categorySpinner.getSelectedItem()).matches("")){
-							Toast.makeText(getApplicationContext(), "Alle Felder mŸssen ausgefŸllt sein!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Alle Felder mï¿½ssen ausgefï¿½llt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 					}
@@ -368,12 +384,12 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						Toast.makeText(getApplicationContext(), "Sie haben " +amountOutlay+ " Euro beiseite gelegt!", Toast.LENGTH_SHORT).show();
 						}
 						else if (!editText_inputOutlayAmount.getText().toString().matches("") && !editText_inputOutlayTitle.getText().toString().matches("") && !editText_inputOutlayAmount.getText().toString().trim().matches(regExDecimal)) {
-							Toast.makeText(getApplicationContext(), "Sie haben keinen gŸltigen Betrag eingeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gï¿½ltigen Betrag eingeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						
 						else if (editText_inputOutlayAmount.getText().toString().matches("") || editText_inputOutlayTitle.getText().toString().matches("")){
-							Toast.makeText(getApplicationContext(), "Alle Felder mŸssen ausgefŸllt sein!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Alle Felder mï¿½ssen ausgefï¿½llt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						else if (!editText_inputOutlayAmount.getText().toString().matches("") && !editText_inputOutlayTitle.getText().toString().matches("") && editText_inputOutlayAmount.getText().toString().trim().matches(regExDecimal) && db.getCurrentBalance() < Double.parseDouble(editText_inputOutlayAmount.getText().toString())){
@@ -439,11 +455,11 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 							checkGoalReachability();
 						}
 						else if (!editText_inputGoalAmount.getText().toString().matches("") && !editText_inputGoalAmount.getText().toString().trim().matches(regExDecimal)) {	
-							Toast.makeText(getApplicationContext(), "Sie haben keinen gŸltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gï¿½ltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}	
 						else if (editText_inputGoalAmount.getText().toString().matches("")) {
-							Toast.makeText(getApplicationContext(), "Das Feld muss ausgefŸllt sein!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Das Feld muss ausgefï¿½llt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 					}
@@ -470,6 +486,73 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	}
 		
 	
+	private void initMenuDrawer() {
+		  // R.id.drawer_layout should be in every activity with exactly the same id.
+		
+
+		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+		ExpListItems = SetStandardGroups();
+		ExpAdapter = new ExpandableDrawerAdapter(BookingActivity.this,
+				ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
+		
+		setUpDrawerToggle();
+
+		
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
+        {
+            public void onDrawerClosed(View view) 
+            {
+                getActionBar().setTitle(R.string.app_name);
+            }
+
+            public void onDrawerOpened(View drawerView) 
+            {
+                getActionBar().setTitle("MenÃ¼");
+            }
+        };
+        drawerLayout.setDrawerListener(drawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+        layers = getResources().getStringArray(R.array.Menu_items);
+        ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+        
+        
+      
+   
+   
+  
+		
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+
 	@Override
 	protected void onDestroy() {
 		db.close();
@@ -568,17 +651,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 
 	
 
-	private void DeclareMenuDrawer() {
-
-		setUpDrawerToggle();
-
-		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(BookingActivity.this,
-				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
-
-	}
+	
 
 	private void SeeIfListItemIsClicked() {
 
@@ -626,14 +699,18 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void isGroupClicked(int groupPosition) {
-		final int BOOKING = 0;
+	
 		final int HISTORY = 1;
-		final int OUTLAY = 3;
+		final int OUTLAY = 2;
 		final int OVERVIEW = 4;
 
 
 		
 		  switch (groupPosition) {
+		  
+		
+		  
+		  
 		  
 		  case HISTORY:
 			  Intent i = new Intent(BookingActivity.this, HistoryActivity.class);
@@ -660,14 +737,14 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
 		// Groups
 
-		final int Einstellungen = 2;
+		final int Einstellungen = 3;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
-		//final int VERWALTUNG = 3;
+	
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -690,11 +767,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-				/*
-				 * case VERWALTUNG: Intent l = new Intent(BookingActivity.this,
-				 * Settings_Verwaltung_Activity.class); startActivity(l);
-				 * finish(); break;
-				 */
+	
 
 			}
 		}
@@ -771,7 +844,8 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	private void DeclareAllElements() {
 		
 		DeclarationOfAllTextViews();
-		DeclareMenuDrawer();
+		initMenuDrawer();
+
 
 	}
 	
@@ -852,7 +926,7 @@ public class BookingActivity extends android.support.v4.app.FragmentActivity {
 	//inform user if monthly goal has been reached
 	private void informUserAboutGoal() {
 		if(db.getCurrentBalance() >= db.getCurrentGoal()){
-			Toast.makeText(getApplicationContext(), "GlŸckwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Glï¿½ckwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
 		}
 		else {
 			Toast.makeText(getApplicationContext(), "Schade, Sparziel letzten Monat leider nicht erreicht!", Toast.LENGTH_SHORT).show();

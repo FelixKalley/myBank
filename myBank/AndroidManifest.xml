@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="16"
         android:targetSdkVersion="19" />
 
     <application
@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name="com.example.mybank.BookingActivity"
-            android:label="@string/title_activity_booking">
+            android:label="@string/title_activity_booking" >
         </activity>
         <activity
             android:name="com.example.mybank.settings.SettingsProfileActivity"
@@ -42,15 +42,26 @@
             android:name="com.example.mybank.HistoryActivity"
             android:label="@string/title_activity_history" >
         </activity>
-        <activity 
+        <activity
             android:name="com.example.mybank.OutlayActivity"
-            android:label="@string/title_activity_outlay">
+            android:label="@string/title_activity_outlay" >
         </activity>
         <activity
             android:name="com.example.mybank.ChartActivity"
-            android:label="@string/title_activity_chart">
+            android:label="@string/title_activity_chart" >
         </activity>
-        
+        <activity
+            android:name="com.example.mybank.NotifyService"
+            android:label="@string/title_activity_notify_service" >
+        </activity>
+        <activity
+            android:name="com.example.mybank.CustomDialogActivity"
+            android:label="@string/title_activity_custom_dialog" >
+        </activity>
+        <activity
+            android:name="com.example.mybank.BaseActivity"
+            android:label="@string/title_activity_base" >
+        </activity>
     </application>
 
 </manifest>

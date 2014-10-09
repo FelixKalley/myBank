@@ -1,9 +1,11 @@
 package com.example.mybank.settings;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.example.mybank.BookingActivity;
 import com.example.mybank.ChartActivity;
+import com.example.mybank.CustomDialogClass;
 import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
 import com.example.mybank.HistoryActivity;
@@ -15,20 +17,30 @@ import com.example.mybank.R.layout;
 import com.example.mybank.R.menu;
 import com.example.mybank.R.string;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
+import com.example.mybank.data.MyBankDatabase;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -36,7 +48,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.os.Build;
+import android.widget.Toast;
 
 public class SettingsNotificationsActivity extends Activity {
 
@@ -48,11 +60,27 @@ public class SettingsNotificationsActivity extends Activity {
 	Switch Switch_daily_reminder;
 	Button Button_set_daily_reminder;
 
+
+	PendingIntent pendingIntent;
+	AlarmManager alarmManager;
+	BroadcastReceiver mReceiver;
+
+	ActionBarDrawerToggle mDrawerToggle;
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
 	
-	ActionBarDrawerToggle mDrawerToggle;
+    public DrawerLayout drawerLayout;
+    
+  
+    public String[] layers;
+    private ActionBarDrawerToggle drawerToggle;
+	
+	private MyBankDatabase db;
+
+
+	
+	
 
 	
 	
@@ -62,45 +90,181 @@ public class SettingsNotificationsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings__notification_);
 		
-	
+		db = new MyBankDatabase(this);
+		db.open();
 
 	
 
 
 
 		DeclareAllElements();
-		EnableButtonIfSwitchIsOn();
-		SeeIfListItemIsClicked();
+		SetUpAllClickListeners();
+		
+		
 	}
 
-	private void EnableButtonIfSwitchIsOn() {
-		if (Switch_daily_reminder.isChecked()) {
-			Button_set_daily_reminder.setEnabled(true);
-		} else {
-			Button_set_daily_reminder.setEnabled(false);
-		}
+
+	private void SetUpAllClickListeners() {
+		EnableButtonIfDailyReminderIsSwitchedOn();
+		
+		SeeIfListItemIsClicked();
+		SetUpAlarmTime();
+		RegisterAlarmBroadcast();
+		
+		
+			
+		
+	}
+
+
+
+
+	private void SetUpAlarmTime() {
+		
+		
+
+		Button_set_daily_reminder.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				CustomDialogClass cdd = new CustomDialogClass(SettingsNotificationsActivity.this);
+				cdd.show();
+				
+			
+			
+			
+			
+			
+			
+			
+				
+			}
+
+			
+		});
+	}
+
+
+	private void RegisterAlarmBroadcast() {
+		  mReceiver = new BroadcastReceiver()
+		    {
+		       // private static final String TAG = "Alarm Example Receiver";
+		        @Override
+		        public void onReceive(Context context, Intent intent)
+		        {
+		            Toast.makeText(context, "Tippen Sie eine Uhrzeit ein!", Toast.LENGTH_LONG).show();
+		        }
+		    };
+
+		    registerReceiver(mReceiver, new IntentFilter("sample") );
+		    pendingIntent = PendingIntent.getBroadcast( this, 0, new Intent("sample"),0 );
+		    alarmManager = (AlarmManager)(this.getSystemService( Context.ALARM_SERVICE ));		
+	}
+	
+	private void UnregisterAlarmBroadcast()
+	{
+	    alarmManager.cancel(pendingIntent); 
+	    getBaseContext().unregisterReceiver(mReceiver);
+	}
+	
+	@Override
+	protected void onDestroy() 
+	{
+	    unregisterReceiver(mReceiver);
+	    super.onDestroy();
+	  }
+	 
+
+	private void EnableButtonIfDailyReminderIsSwitchedOn() {
+	
+		Switch_daily_reminder.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(Switch_daily_reminder.isChecked()){
+					Button_set_daily_reminder.setEnabled(true);
+				}else{
+					Button_set_daily_reminder.setEnabled(false);
+				}
+			}
+		});
+		
 	}
 
 	private void DeclareAllElements() {
 		DeclareAllTextViews();
 		DeclareALlSwitches();
 		DeclareAllButtons();
-		DeclareMenuDrawer();
+		initMenuDrawer();
 	}
 	
 	
-	private void DeclareMenuDrawer() {
+	private void initMenuDrawer() {
+		  // R.id.drawer_layout should be in every activity with exactly the same id.
 		
-		setUpDrawerToggle();
 
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
 		ExpListItems = SetStandardGroups();
 		ExpAdapter = new ExpandableDrawerAdapter(SettingsNotificationsActivity.this,
 				ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+		
+		setUpDrawerToggle();
 
+		
+      drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+      drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
+      {
+          public void onDrawerClosed(View view) 
+          {
+              getActionBar().setTitle(R.string.app_name);
+          }
+
+          public void onDrawerOpened(View drawerView) 
+          {
+              getActionBar().setTitle("MenÃ¼");
+          }
+      };
+      drawerLayout.setDrawerListener(drawerToggle);
+
+      getActionBar().setDisplayHomeAsUpEnabled(true);
+      getActionBar().setHomeButtonEnabled(true);
+
+      layers = getResources().getStringArray(R.array.Menu_items);
+      ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+      
+      
+    
+ 
+ 
+
+		
 	}
+	
+	@Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+      if (drawerToggle.onOptionsItemSelected(item)) {
+          return true;
+      }
+      return super.onOptionsItemSelected(item);
+
+  }
+
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+      super.onPostCreate(savedInstanceState);
+      drawerToggle.syncState();
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      drawerToggle.onConfigurationChanged(newConfig);
+  }
+
 	
 		private void setUpDrawerToggle(){
 		
@@ -150,7 +314,7 @@ public class SettingsNotificationsActivity extends Activity {
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
-		final int VERWALTUNG = 3;
+	
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -173,11 +337,7 @@ public class SettingsNotificationsActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-				/*
-				 * case VERWALTUNG: Intent l = new Intent(BookingActivity.this,
-				 * Settings_Verwaltung_Activity.class); startActivity(l);
-				 * finish(); break;
-				 */
+			
 
 			}
 		}
@@ -186,7 +346,7 @@ public class SettingsNotificationsActivity extends Activity {
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
 		final int HISTORY = 1;
-		final int OUTLAY = 3;
+		final int OUTLAY = 2;
 		final int OVERVIEW = 4;
 
 
@@ -341,6 +501,7 @@ public class SettingsNotificationsActivity extends Activity {
 	private void DeclareAllButtons() {
 		Button_set_daily_reminder = (Button) findViewById(R.id.Button_set_reminder_time);
 		Button_set_daily_reminder.setText(R.string.Button_Set_Reminder);
+		Button_set_daily_reminder.setEnabled(false);
 	}
 
 	private void DeclareALlSwitches() {
@@ -352,13 +513,9 @@ public class SettingsNotificationsActivity extends Activity {
 		Switch_Limit_Reached
 				.setText(R.string.Switch_Notification_limit_reached);
 
-		Switch_Saved_to_server = (Switch) findViewById(R.id.Switch_saved_to_server_notfification);
-		Switch_Saved_to_server
-				.setText(R.string.Switch_Notification_server);
+	
 
-		Switch_Notifications_on_off = (Switch) findViewById(R.id.SWITCH_pushNotifications);
-		Switch_Notifications_on_off
-				.setText(R.string.Switch_Notification_on);
+	
 
 		Switch_daily_reminder = (Switch) findViewById(R.id.Switch_Daily_reminder);
 		Switch_daily_reminder
@@ -368,7 +525,7 @@ public class SettingsNotificationsActivity extends Activity {
 
 	private void DeclareAllTextViews() {
 		/*
-		 * HIER K…NNTE IHR CODE STEHEN
+		 * HIER Kï¿½NNTE IHR CODE STEHEN
 		 */
 	}
 
@@ -380,17 +537,6 @@ public class SettingsNotificationsActivity extends Activity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 	/**
 	 * A placeholder fragment containing a simple view.
