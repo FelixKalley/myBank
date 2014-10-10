@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:id="@+id/profile_prompt_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/profile_prompt_name_text"
+        />
+    
+    <EditText 
+        android:id="@+id/profile_prompt_input_name_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/profile_prompt_name_hint"
+        />
+    
+    <TextView 
+        android:id="@+id/profile_prompt_lastname_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/profile_prompt_lastname_text"
+        />
+    
+    <EditText 
+        android:id="@+id/profile_prompt_input_lastname_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/profile_prompt_lastname_hint"
+        />
+    
+    
+
+</LinearLayout>

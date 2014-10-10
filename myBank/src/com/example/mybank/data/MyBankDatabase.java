@@ -13,6 +13,7 @@ import com.example.mybank.items.BalanceItem;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
+import com.example.mybank.items.ProfileItem;
 
 public class MyBankDatabase {
 
@@ -27,6 +28,7 @@ public class MyBankDatabase {
 	private static final String TABLE_BALANCE = "balance";
 	private static final String TABLE_OUTLAYS = "outlays";
 	private static final String TABLE_GOAL = "goal";
+	private static final String TABLE_PROFILE = "profile";
 	
 	//BOOKINGS TABLE column names
 	private static final String KEY_ID = "_id";
@@ -61,6 +63,17 @@ public class MyBankDatabase {
 	
 	//GOAL TABLE column indexes
 	private static final int COLUMN_GOAL_AMOUNT_INDEX = 1;
+	
+	//PROFILE TABLE column names
+	private static final String KEY_NAME = "name";
+	private static final String KEY_LASTNAME = "lastname";
+	private static final String KEY_CHECKBOOLEAN = "checkBoolean";
+	
+	
+	//PROFILE TABLE column indexes
+	private static final int COLUMN_PROFILE_NAME_INDEX = 1;
+	private static final int COLUMN_PROFILE_LASTNAME_INDEX = 2;
+	private static final int COLUMN_PROFILE_CHECKBOOLEAN_INDEX = 3;
 	
 	private MyBankDBOpenHelper dbHelper;
 	
@@ -146,6 +159,20 @@ public class MyBankDatabase {
 		return goal;
 	}
 	
+	
+	
+	
+	public long insertProfileItem(ProfileItem item) {
+		//collecting values to put
+		ContentValues values = new ContentValues();
+		values.put(KEY_NAME, item.getName());
+		values.put(KEY_LASTNAME, item.getLastName());
+		
+		//insert in db
+		long item_id = db.insert(TABLE_PROFILE, null, values);
+		return item_id;
+	}
+	
 
 	public long insertBookingItem(BookingItem item){
 		
@@ -183,6 +210,8 @@ public class MyBankDatabase {
 		}
 		return lastDateAdded;
 	}
+	
+	 
 	
 	
 	public void updateBalanceItem(double currentBalance, BalanceItem item) {
@@ -317,6 +346,24 @@ public class MyBankDatabase {
 		
 	}
 	
+	public ArrayList<ProfileItem> getAllProfileItems() {
+		ArrayList<ProfileItem> items = new ArrayList<ProfileItem>();
+	
+		Cursor cursor = db.query(TABLE_PROFILE, new String[] { KEY_ID,
+				KEY_NAME, KEY_LASTNAME }, null, null, null, null, null);
+		if (cursor.moveToFirst()) {
+			do {
+				String name = cursor.getString(COLUMN_PROFILE_NAME_INDEX);
+				String lastname = cursor.getString(COLUMN_PROFILE_LASTNAME_INDEX);
+				int check = cursor.getInt(COLUMN_PROFILE_CHECKBOOLEAN_INDEX);
+
+				items.add(new ProfileItem(name, lastname, check));
+
+			} while (cursor.moveToNext());
+		}
+		return items;
+	}
+	
 	public ArrayList<OutlayItem> getAllOutlayItems() {
 		ArrayList<OutlayItem> items = new ArrayList<OutlayItem>();
 		
@@ -374,6 +421,10 @@ public class MyBankDatabase {
 		private static final String CREATE_TABLE_GOAL = "CREATE TABLE " + TABLE_GOAL
 				+ "(" + KEY_ID + " INTEGER," + KEY_AMOUNT + " DOUBLE" + ")";
 		
+		private static final String CREATE_TABLE_PROFILE = "CREATE TABLE " + TABLE_PROFILE
+				+ "(" + KEY_ID + " INTEGER," + KEY_NAME + " TEXT,"
+				+ KEY_LASTNAME + " TEXT," + KEY_CHECKBOOLEAN + " INTEGER" + ")";
+		
 		
 		public MyBankDBOpenHelper(Context c, String dbname,
 				SQLiteDatabase.CursorFactory factory, int version) {
@@ -389,6 +440,7 @@ public class MyBankDatabase {
 			db.execSQL(CREATE_TABLE_BALANCE);
 			db.execSQL(CREATE_TABLE_OUTLAY);
 			db.execSQL(CREATE_TABLE_GOAL);
+			db.execSQL(CREATE_TABLE_PROFILE);
 			
 		}
 

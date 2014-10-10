@@ -35,10 +35,16 @@
     <string name="AppSlogan">Consistency Pays</string>
    
     <!-- ALL STTRINGS FOR PROFILE-DATA-SCREEN -->
-    <string name="profile_data_add_name_text">Wie heißt Du?</string>
-    <string name="profile_data_add_name_input_hint_text">Vorname</string>
-    <string name="profile_data_add_lastname_input_hint_text">Nachname</string>
+    <string name="profile_data_name_text">Name</string>
+    <string name="profile_data_lastname_text">Nachname</string>
     <string name="profile_data_save_button_text">Speichern</string>
+    <string name="profile_prompt_name_hint">Name</string>
+    <string name="profile_prompt_lastname_hint">Nachname</string>
+    <string name="profile_prompt_name_text">Name:</string>
+    <string name="profile_prompt_lastname_text">Nachname:</string>
+    <string name="update_profile_prompt_title">Profil ausfüllen</string>
+    <string name="profile_header_text">Mein Profil</string>
+    
    
     <!-- ALL STRINGS FOR BOOKING-SCREEN -->
     <string name="String_TextView_Total_Balance">Kontostand</string>

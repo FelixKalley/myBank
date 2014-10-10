@@ -480,9 +480,7 @@ public class BookingActivity extends Activity {
 			}
 			
 		});
-		
 			
-		
 	}
 		
 	
