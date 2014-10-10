@@ -14,13 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ProfileDataActivity extends Activity{
 	
-	TextView header, YourName, YourLastName;
-	Button SaveButton;
+	TextView header, YourName, YourLastName, allIncomesTV, allExpensesTV, allOutlaysTV, allIncomesContentTV, allExpensesContentTV, allOutlaysContentTV;
+	ImageView imageView;
+	String allIncomes, allExpenses, allOutlays;
+	
 	MyBankDatabase db;
 	ProfileItem profileItem;
 	final Context context = this;
@@ -37,6 +40,7 @@ public class ProfileDataActivity extends Activity{
 	        }
 	        
 	        fetchProfileItem();
+	        fetchProfileData();
 	        declareAllElements();
 	        updateProfile();
 	        
@@ -110,6 +114,19 @@ public class ProfileDataActivity extends Activity{
 	        
 	    
 
+	private void fetchProfileData() {
+		allIncomes = String.format("%.2f", db.getAllIncomes());
+		allExpenses = String.format("%.2f", db.getAllExpenses());
+		allOutlays = String.format("%.2f", db.getTotalOutlays());
+	}
+
+
+
+
+
+
+
+
 	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
@@ -126,17 +143,30 @@ public class ProfileDataActivity extends Activity{
 
 	private void declareAllElements() {
 		header = (TextView) findViewById(R.id.profile_header_textview);
+		
+		imageView = (ImageView) findViewById(R.id.profile_pic);
+		imageView.setImageResource(R.drawable.profil_pic_empty);
+		
 		YourName = (TextView) findViewById(R.id.profile_data_name_textview);
 		YourLastName = (TextView) findViewById(R.id.profile_data_add_name_input_edittext);
-		
-		SaveButton = (Button) findViewById(R.id.profile_data_save_button);
-		
+	
+		allIncomesTV = (TextView) findViewById(R.id.profile_data_all_incomes_textview);
+		allIncomesContentTV = (TextView) findViewById(R.id.profile_data_all_incomes_content);
+		allExpensesTV = (TextView) findViewById(R.id.profile_data_all_expenses_textview);
+		allExpensesContentTV = (TextView) findViewById(R.id.profile_data_all_expenses_content);
+		allOutlaysTV = (TextView) findViewById(R.id.profile_data_all_outlays_textview);
+		allOutlaysContentTV = (TextView) findViewById(R.id.profile_data_all_outlays_content);
+	
 		
 	}
 	
 	private void updateProfile() {
 		YourName.setText(profileItem.getName());
 		YourLastName.setText(profileItem.getLastName());
+		
+		allIncomesContentTV.setText("+" + allIncomes);
+		allExpensesContentTV.setText("+" + allExpenses);
+		allOutlaysContentTV.setText("+" + allOutlays);
 	}
 	
 	@Override

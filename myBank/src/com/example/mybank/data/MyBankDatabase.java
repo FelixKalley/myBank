@@ -118,6 +118,30 @@ public class MyBankDatabase {
 		
 	}
 	
+	public double getAllIncomes() {
+		double incomes = 0;
+		
+		Cursor cursor = db.query(TABLE_BOOKINGS, new String[] {KEY_ID,
+				KEY_TITLE, KEY_CATEGORY, KEY_AMOUNT, KEY_DATE, KEY_DIFF }, null, null, null, null, null);
+		
+		if(cursor.moveToFirst()) {
+			do {
+				String diff = cursor.getString(COLUMN_DIFF_INDEX);
+				double amount = cursor.getDouble(COLUMN_AMOUNT_INDEX);
+				if(diff.matches("+")){
+					incomes += amount;
+				}
+				
+			} while (cursor.moveToNext());
+		}
+		return incomes;
+		
+		
+	}
+	
+	
+	
+	
 	public int getCategoryOccurenceInBookings(String category) {
 		int occurrence = 0;
 		
@@ -292,6 +316,8 @@ public class MyBankDatabase {
 		}
 		return totalOutlays;
 	}
+	
+	
 	
 
 	//get all Balance Items existing in db
