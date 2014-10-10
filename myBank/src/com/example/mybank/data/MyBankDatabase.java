@@ -167,6 +167,7 @@ public class MyBankDatabase {
 		ContentValues values = new ContentValues();
 		values.put(KEY_NAME, item.getName());
 		values.put(KEY_LASTNAME, item.getLastName());
+		values.put(KEY_CHECKBOOLEAN, item.getCheckBoolean());
 		
 		//insert in db
 		long item_id = db.insert(TABLE_PROFILE, null, values);
@@ -350,7 +351,7 @@ public class MyBankDatabase {
 		ArrayList<ProfileItem> items = new ArrayList<ProfileItem>();
 	
 		Cursor cursor = db.query(TABLE_PROFILE, new String[] { KEY_ID,
-				KEY_NAME, KEY_LASTNAME }, null, null, null, null, null);
+				KEY_NAME, KEY_LASTNAME, KEY_CHECKBOOLEAN }, null, null, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				String name = cursor.getString(COLUMN_PROFILE_NAME_INDEX);

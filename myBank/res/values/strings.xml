@@ -34,7 +34,7 @@
     <string name="AppName">myBank</string>
     <string name="AppSlogan">Consistency Pays</string>
    
-    <!-- ALL STTRINGS FOR PROFILE-DATA-SCREEN -->
+    <!-- ALL STRINGS FOR PROFILE-DATA-SCREEN -->
     <string name="profile_data_name_text">Name</string>
     <string name="profile_data_lastname_text">Nachname</string>
     <string name="profile_data_save_button_text">Speichern</string>
@@ -44,6 +44,7 @@
     <string name="profile_prompt_lastname_text">Nachname:</string>
     <string name="update_profile_prompt_title">Profil ausfüllen</string>
     <string name="profile_header_text">Mein Profil</string>
+    <string name="profile_pic_description">Profilbild</string>
     
    
     <!-- ALL STRINGS FOR BOOKING-SCREEN -->
@@ -70,6 +71,10 @@
 
     <!-- ALL STRINGS FOR EXPENSEBOOKING PROMPT CATEGORY SPINNER -->
     <string name="category_spinner_header_text">Wählen Sie eine Kategorie</string>
+    
+    <!-- ALL STRINGS FOR PROFILE NOTIFICATION PROMPT -->
+	<string name="profile_notification_prompt_title">Profil unvollständig</string>
+	<string name="profile_notification_prompt_infotext">Sie haben Ihr Profil noch nicht vollständig ausgefüllt</string>
 
     <string-array name="categories_array">
         <item>Beruf</item>

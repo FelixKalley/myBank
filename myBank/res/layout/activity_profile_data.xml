@@ -16,6 +16,16 @@
         android:text="@string/profile_header_text" />
     
     
+    <ImageView 
+        android:id="@+id/profile_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/profile_pic_description"
+        />
+    
+    
     <TextView
         android:id="@+id/profile_data_name_textview"
         android:layout_width="wrap_content"

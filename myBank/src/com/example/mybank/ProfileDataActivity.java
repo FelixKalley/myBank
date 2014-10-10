@@ -32,9 +32,10 @@ public class ProfileDataActivity extends Activity{
 	        
 	        initDB();
 	        if(db.getAllProfileItems().isEmpty()){
-	        	//create ProfileItem
 	        	ProfileItem item = new ProfileItem("Name", "Nachname", 0);
+	        	profileItem = item;
 	        }
+	        
 	        fetchProfileItem();
 	        declareAllElements();
 	        updateProfile();
@@ -44,7 +45,7 @@ public class ProfileDataActivity extends Activity{
 	            	
 	            	
 	            	LayoutInflater li = LayoutInflater.from(context);
-					View promptsView = li.inflate(R.layout.goal_update_prompt, null);
+					View promptsView = li.inflate(R.layout.profile_prompt, null);
 					
 					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 					
@@ -117,8 +118,9 @@ public class ProfileDataActivity extends Activity{
 
 
 	private void fetchProfileItem() {
+		if(!db.getAllProfileItems().isEmpty()){
 		profileItem = db.getAllProfileItems().get(0);
-		
+		}
 	}
 
 
@@ -128,7 +130,7 @@ public class ProfileDataActivity extends Activity{
 		YourLastName = (TextView) findViewById(R.id.profile_data_add_name_input_edittext);
 		
 		SaveButton = (Button) findViewById(R.id.profile_data_save_button);
-
+		
 		
 	}
 	

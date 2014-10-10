@@ -16,6 +16,7 @@ import com.example.mybank.items.BalanceItem;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
+import com.example.mybank.items.ProfileItem;
 import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 import com.example.mybank.settings.SettingsProfileActivity;
@@ -77,12 +78,12 @@ public class BookingActivity extends Activity {
 	
     public DrawerLayout drawerLayout;
     
-  
+    double initDouble = 0.00;
     public String[] layers;
     private ActionBarDrawerToggle drawerToggle;
 	
 	
-
+    String altTitle = "Kein Zweck";
 	String regExDecimal = "^[1-9]+[0-9]*[.]?[0-9]?[0-9]?$";
 	
 	private ArrayList<BalanceItem> balances = new ArrayList<BalanceItem>();
@@ -105,11 +106,11 @@ public class BookingActivity extends Activity {
 		
 		
 		if(db.getAllBalanceItems().isEmpty()){
-			BalanceItem item = new BalanceItem(0.00);
+			BalanceItem item = new BalanceItem(initDouble);
 			db.insertBalanceItem(item);
 		}
 		if(db.getAllGoalItems().isEmpty()) {
-			GoalItem item = new GoalItem(0.00);
+			GoalItem item = new GoalItem(initDouble);
 			db.insertGoalItem(item);
 		}
 		
@@ -120,6 +121,49 @@ public class BookingActivity extends Activity {
 		updateGoal();
 		checkGoalReachability();
 		SeeIfListItemIsClicked();
+		
+		if(db.getAllProfileItems().isEmpty()){
+			
+			LayoutInflater li = LayoutInflater.from(context);
+			View promptsView = li.inflate(R.layout.profile_notification_prompt, null);
+			
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			
+			//set view on prompt
+			alertDialogBuilder.setView(promptsView);
+			
+			//elements to appear in prompt
+			final TextView infoTV = (TextView) promptsView.findViewById(R.id.profile_notification_prompt_info_textview);
+			
+			alertDialogBuilder
+					.setCancelable(false)
+					.setTitle(R.string.profile_notification_prompt_title)
+					.setPositiveButton("Jetzt Ausfüllen", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							
+							Intent intent = new Intent(BookingActivity.this,
+									ProfileDataActivity.class);
+							
+							
+							
+							startActivity(intent);
+			            	finish();
+							
+							
+						}
+					});
+					
+					
+			
+			//create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			
+			alertDialog.show();
+		}
+		
+	
 		
 		
 		
@@ -160,8 +204,11 @@ public class BookingActivity extends Activity {
 							double amount = Double.parseDouble(editText_inputAmount.getText().toString());
 							String title = editText_inputTitle.getText().toString();
 							
-							//create new BookingItem out of user input
+							if(title.matches("")){
+								title = altTitle;
+							}
 							
+							//create new BookingItem out of user input
 							BookingItem item = new BookingItem(title, "", amount, getDateTime(), "+");
 							//insert BookingItem into db
 							db.insertBookingItem(item);
