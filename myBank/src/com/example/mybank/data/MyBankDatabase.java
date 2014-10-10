@@ -195,6 +195,7 @@ public class MyBankDatabase {
 		values.put(KEY_NAME, item.getName());
 		values.put(KEY_LASTNAME, item.getLastName());
 		values.put(KEY_CHECKBOOLEAN, item.getCheckBoolean());
+		values.put(KEY_IMAGE, item.getImageAsByteArray());
 		values.put(KEY_DATE, item.getDate());
 		
 		//insert in db
@@ -404,7 +405,7 @@ public class MyBankDatabase {
 		ArrayList<ProfileItem> items = new ArrayList<ProfileItem>();
 	
 		Cursor cursor = db.query(TABLE_PROFILE, new String[] { KEY_ID,
-				KEY_NAME, KEY_LASTNAME, KEY_CHECKBOOLEAN, KEY_IMAGE }, null, null, null, null, null);
+				KEY_NAME, KEY_LASTNAME, KEY_CHECKBOOLEAN, KEY_IMAGE, KEY_DATE }, null, null, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				String name = cursor.getString(COLUMN_PROFILE_NAME_INDEX);
@@ -479,7 +480,8 @@ public class MyBankDatabase {
 		
 		private static final String CREATE_TABLE_PROFILE = "CREATE TABLE " + TABLE_PROFILE
 				+ "(" + KEY_ID + " INTEGER," + KEY_NAME + " TEXT,"
-				+ KEY_LASTNAME + " TEXT," + KEY_CHECKBOOLEAN + " INTEGER," + KEY_IMAGE + " IMAGE BLOB," + KEY_DATE + "DATETIME" + ")";
+				+ KEY_LASTNAME + " TEXT," + KEY_CHECKBOOLEAN + " INTEGER," 
+				+ KEY_IMAGE + " IMAGE BLOB," + KEY_DATE + " DATETIME" + ")";
 		
 		
 		public MyBankDBOpenHelper(Context c, String dbname,

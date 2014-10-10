@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="@string/profile_pic_description"
         />
     
@@ -34,7 +34,7 @@
         android:text="@string/profile_data_name_text" />
 
     <TextView
-        android:id="@+id/profile_data_add_lastname_input_edittext"
+        android:id="@+id/profile_data_name_content_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -48,7 +48,7 @@
         android:text="@string/profile_data_lastname_text" />
 
     <TextView
-        android:id="@+id/profile_data_add_name_input_edittext"
+        android:id="@+id/profile_data_lastname_content_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -60,6 +60,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:text="@string/profile_data_app_installed_text"
+        />
+    
+    <TextView
+        android:id="@+id/profile_data_app_installed_content_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="15dp"
         android:text=""
         />
     

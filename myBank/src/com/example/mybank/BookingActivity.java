@@ -122,7 +122,10 @@ public class BookingActivity extends Activity {
 		checkGoalReachability();
 		SeeIfListItemIsClicked();
 		
+		Log.d("", "db.getAllProfileItems().size(): " + db.getAllProfileItems().size());
+		
 		if(db.getAllProfileItems().isEmpty()){
+			
 			
 			LayoutInflater li = LayoutInflater.from(context);
 			View promptsView = li.inflate(R.layout.profile_notification_prompt, null);
@@ -527,6 +530,8 @@ public class BookingActivity extends Activity {
 			}
 			
 		});
+			
+			
 			
 	}
 		

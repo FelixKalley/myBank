@@ -32,7 +32,7 @@ public class ProfileDataActivity extends Activity{
 	
 	static int TAKE_PICTURE = 1;
 	
-	TextView header, YourName, YourLastName, allIncomesTV, allExpensesTV, allOutlaysTV, allIncomesContentTV, allExpensesContentTV, allOutlaysContentTV, appInstalledTV;
+	TextView header, YourName, YourLastName, YourNameContent, YourLastNameContent, allIncomesTV, allExpensesTV, allOutlaysTV, allIncomesContentTV, allExpensesContentTV, allOutlaysContentTV, appInstalledTV;
 	ImageView imageView;
 	String allIncomes, allExpenses, allOutlays, appInstalled;
 	
@@ -62,7 +62,23 @@ public class ProfileDataActivity extends Activity{
 	        }
 	        
 		
-
+	private void checkAppForFirstStart() {
+		if(db.getAllProfileItems().isEmpty()){
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.profil_pic_empty);
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+			byte[] byteArray = stream.toByteArray();
+			
+			
+			
+        	ProfileItem item = new ProfileItem("Bitte Ausfüllen", "Bitte Ausfüllen", 0, byteArray, getDateTime());
+        
+        	profileItem = item;
+        	bitMap = BitmapFactory.decodeByteArray(profileItem.getImageAsByteArray(), 0, profileItem.getImageAsByteArray().length);
+        	appInstalled = item.getDate();
+		}
+		
+	}
 	        
 	        
 	        
@@ -74,12 +90,6 @@ public class ProfileDataActivity extends Activity{
 		}
 		
 	}
-
-
-
-
-
-
 
 
 	private void setUpImageView() {
@@ -122,15 +132,8 @@ public class ProfileDataActivity extends Activity{
     }
 
 
-
-
-
-
-
-
 	private void checkForCompleteProfile() {
 		if(profileItem.getCheckBoolean() == 0){
-        	
         	
         	LayoutInflater li = LayoutInflater.from(context);
 			View promptsView = li.inflate(R.layout.profile_prompt, null);
@@ -144,7 +147,6 @@ public class ProfileDataActivity extends Activity{
 			final EditText editText_inputName = (EditText) promptsView.findViewById(R.id.profile_prompt_input_name_edittext);
 			final TextView askLastName = (TextView) promptsView.findViewById(R.id.profile_prompt_lastname_textview);
 			final EditText editText_inputLastname = (EditText) promptsView.findViewById(R.id.profile_prompt_input_lastname_edittext);
-			
 			
 			alertDialogBuilder
 			.setTitle(R.string.update_profile_prompt_title)
@@ -188,40 +190,9 @@ public class ProfileDataActivity extends Activity{
 			AlertDialog alertDialog = alertDialogBuilder.create();
 			
 			alertDialog.show();
-        	
-        	
-        	
+	
         }
 	}
-
-
-
-
-
-
-
-
-	private void checkAppForFirstStart() {
-		if(db.getAllProfileItems().isEmpty()){
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.profil_pic_empty);
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-			byte[] byteArray = stream.toByteArray();
-			
-			
-			
-        	ProfileItem item = new ProfileItem("Name", "Nachname", 0, byteArray, getDateTime());
-        	profileItem = item;
-        	bitMap = BitmapFactory.decodeByteArray(profileItem.getImageAsByteArray(), 0, profileItem.getImageAsByteArray().length);
-        	appInstalled = item.getDate();
-		}
-		
-	}
-
-
-	
-
-
 
 
 
@@ -231,20 +202,15 @@ public class ProfileDataActivity extends Activity{
 		allOutlays = String.format("%.2f", db.getTotalOutlays());
 	}
 
-
-
-
-
-
-
-
+	
 	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
 	}
 
 
-
+	
+	
 	private void fetchProfileItem() {
 		if(!db.getAllProfileItems().isEmpty()){
 		profileItem = db.getAllProfileItems().get(0);
@@ -258,13 +224,12 @@ public class ProfileDataActivity extends Activity{
 		imageView = (ImageView) findViewById(R.id.profile_pic);
 		
 		
-	
-		
-		
 		YourName = (TextView) findViewById(R.id.profile_data_name_textview);
-		YourLastName = (TextView) findViewById(R.id.profile_data_add_name_input_edittext);
+		YourNameContent = (TextView) findViewById(R.id.profile_data_name_content_textview);
+		YourLastName = (TextView) findViewById(R.id.profile_data_lastname_textview);
+		YourLastNameContent = (TextView) findViewById(R.id.profile_data_lastname_content_textview);
 		
-		appInstalledTV = (TextView) findViewById(R.id.profile_data_app_installed_textview);
+		appInstalledTV = (TextView) findViewById(R.id.profile_data_app_installed_content_textview);
 		allIncomesTV = (TextView) findViewById(R.id.profile_data_all_incomes_textview);
 		allIncomesContentTV = (TextView) findViewById(R.id.profile_data_all_incomes_content);
 		allExpensesTV = (TextView) findViewById(R.id.profile_data_all_expenses_textview);
@@ -275,11 +240,12 @@ public class ProfileDataActivity extends Activity{
 		
 	}
 	
+	//update all views
 	private void updateProfile() {
 		fetchProfileItem();
 		imageView.setImageBitmap(bitMap);
-		YourName.setText(profileItem.getName());
-		YourLastName.setText(profileItem.getLastName());
+		YourNameContent.setText(profileItem.getName());
+		YourLastNameContent.setText(profileItem.getLastName());
 		
 		appInstalledTV.setText(appInstalled);
 		allIncomesContentTV.setText("+" + allIncomes);

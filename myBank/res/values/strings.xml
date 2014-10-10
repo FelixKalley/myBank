@@ -48,6 +48,7 @@
     <string name="all_incomes_text">Alle Einbuchungen:</string>
     <string name="all_expenses_text">Alle Ausgaben:</string>
     <string name="all_outlays_text">Alle Auslagen:</string>
+    <string name="profile_data_app_installed_text">App installiert am:</string>
    
     <!-- ALL STRINGS FOR BOOKING-SCREEN -->
     <string name="String_TextView_Total_Balance">Kontostand</string>
