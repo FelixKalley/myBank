@@ -5,13 +5,15 @@ public class ProfileItem {
 	String name;
 	String lastName;
 	int check;
-	Byte[] bA;
+	byte[] bA;
+	String date;
 	
-	public ProfileItem(String name, String lastName, int check) {
+	public ProfileItem(String name, String lastName, int check, byte[] bA, String date) {
 		this.name = name;
 		this.lastName = lastName;
 		this.check = check;
-		
+		this.bA = bA;
+		this.date = date;
 	}
 	
 	public String getName() {
@@ -26,5 +28,12 @@ public class ProfileItem {
 		return this.check;
 	}
 	
+	public byte[] getImageAsByteArray() {
+		return this.bA;
+	}
+	
+	public String getDate() {
+		return this.date;
+	}
 	
 }

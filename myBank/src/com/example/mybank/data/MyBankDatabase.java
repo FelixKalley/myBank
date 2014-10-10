@@ -68,12 +68,15 @@ public class MyBankDatabase {
 	private static final String KEY_NAME = "name";
 	private static final String KEY_LASTNAME = "lastname";
 	private static final String KEY_CHECKBOOLEAN = "checkBoolean";
+	private static final String KEY_IMAGE = "image";
 	
 	
 	//PROFILE TABLE column indexes
 	private static final int COLUMN_PROFILE_NAME_INDEX = 1;
 	private static final int COLUMN_PROFILE_LASTNAME_INDEX = 2;
 	private static final int COLUMN_PROFILE_CHECKBOOLEAN_INDEX = 3;
+	private static final int COLUMN_PROFILE_IMAGE_INDEX = 4;
+	private static final int COLUMN_PROFILE_DATE_INDEX = 5;
 	
 	private MyBankDBOpenHelper dbHelper;
 	
@@ -192,10 +195,34 @@ public class MyBankDatabase {
 		values.put(KEY_NAME, item.getName());
 		values.put(KEY_LASTNAME, item.getLastName());
 		values.put(KEY_CHECKBOOLEAN, item.getCheckBoolean());
+		values.put(KEY_DATE, item.getDate());
 		
 		//insert in db
 		long item_id = db.insert(TABLE_PROFILE, null, values);
 		return item_id;
+	}
+	
+	
+	public void updateProfilePic(byte[] ba) {
+		String whereClause = KEY_CHECKBOOLEAN + " = '" + "1" + "'";
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_IMAGE, ba);
+		
+		db.update(TABLE_PROFILE, values, whereClause, null);
+		
+	}
+	
+	public byte[] getCurrentProfilePic() {
+		byte[] img = null;
+		
+		Cursor cursor = db.query(TABLE_PROFILE, new String[] { KEY_ID,
+				KEY_NAME, KEY_LASTNAME, KEY_CHECKBOOLEAN, KEY_IMAGE}, null, null, null, null, null);
+		if(cursor.moveToFirst()) {
+			img = cursor.getBlob(COLUMN_PROFILE_IMAGE_INDEX);
+		}
+		return img;
+		
 	}
 	
 
@@ -377,14 +404,16 @@ public class MyBankDatabase {
 		ArrayList<ProfileItem> items = new ArrayList<ProfileItem>();
 	
 		Cursor cursor = db.query(TABLE_PROFILE, new String[] { KEY_ID,
-				KEY_NAME, KEY_LASTNAME, KEY_CHECKBOOLEAN }, null, null, null, null, null);
+				KEY_NAME, KEY_LASTNAME, KEY_CHECKBOOLEAN, KEY_IMAGE }, null, null, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				String name = cursor.getString(COLUMN_PROFILE_NAME_INDEX);
 				String lastname = cursor.getString(COLUMN_PROFILE_LASTNAME_INDEX);
 				int check = cursor.getInt(COLUMN_PROFILE_CHECKBOOLEAN_INDEX);
+				byte[] byteA = cursor.getBlob(COLUMN_PROFILE_IMAGE_INDEX);
+				String date = cursor.getString(COLUMN_PROFILE_DATE_INDEX);
 
-				items.add(new ProfileItem(name, lastname, check));
+				items.add(new ProfileItem(name, lastname, check, byteA, date));
 
 			} while (cursor.moveToNext());
 		}
@@ -450,7 +479,7 @@ public class MyBankDatabase {
 		
 		private static final String CREATE_TABLE_PROFILE = "CREATE TABLE " + TABLE_PROFILE
 				+ "(" + KEY_ID + " INTEGER," + KEY_NAME + " TEXT,"
-				+ KEY_LASTNAME + " TEXT," + KEY_CHECKBOOLEAN + " INTEGER" + ")";
+				+ KEY_LASTNAME + " TEXT," + KEY_CHECKBOOLEAN + " INTEGER," + KEY_IMAGE + " IMAGE BLOB," + KEY_DATE + "DATETIME" + ")";
 		
 		
 		public MyBankDBOpenHelper(Context c, String dbname,
