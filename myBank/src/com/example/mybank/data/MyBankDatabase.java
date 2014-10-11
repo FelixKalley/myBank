@@ -265,6 +265,17 @@ public class MyBankDatabase {
 	}
 	
 	 
+	public void updateProfileItem(ProfileItem item) {
+		String whereClause = KEY_DATE + " = '" + item.getDate() + "'";
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_NAME, item.getName());
+		values.put(KEY_LASTNAME, item.getLastName());
+		values.put(KEY_CHECKBOOLEAN, item.getCheckBoolean());
+		
+		db.update(TABLE_PROFILE, values, whereClause, null);
+		
+	}
 	
 	
 	public void updateBalanceItem(double currentBalance, BalanceItem item) {

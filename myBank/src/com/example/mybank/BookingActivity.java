@@ -141,20 +141,17 @@ public class BookingActivity extends Activity {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							
-							Intent intent = new Intent(BookingActivity.this,
-									ProfileDataActivity.class);
-							
-							
+
+							Intent intent = new Intent(BookingActivity.this, ProfileDataActivity.class);
 							
 							startActivity(intent);
 			            	finish();
-							
-							
+								
 						}
 					});
 					
 					
+			
 			
 			//create alert dialog
 			AlertDialog alertDialog = alertDialogBuilder.create();
