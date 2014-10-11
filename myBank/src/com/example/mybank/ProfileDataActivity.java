@@ -34,7 +34,7 @@ public class ProfileDataActivity extends Activity{
 	
 	TextView header, YourName, YourLastName, YourNameContent, YourLastNameContent, allIncomesTV, allExpensesTV, allOutlaysTV, allIncomesContentTV, allExpensesContentTV, allOutlaysContentTV, appInstalledTV;
 	ImageView imageView;
-	String allIncomes, allExpenses, allOutlays, appInstalled;
+	String appInstalled;
 	
 	MyBankDatabase db;
 	ProfileItem profileItem;
@@ -51,7 +51,6 @@ public class ProfileDataActivity extends Activity{
 	        checkAppForFirstStart();
 
 	        fetchProfileItem();
-	        fetchProfileData();
 	        updateProfilePic();
 	        declareAllElements();
 	        updateProfile();
@@ -91,12 +90,6 @@ public class ProfileDataActivity extends Activity{
 		}
 	}
 	       
-	private void fetchProfileData() {
-		
-		allIncomes = String.format("%.2f", db.getAllIncomes());
-		allExpenses = String.format("%.2f", db.getAllExpenses());
-		allOutlays = String.format("%.2f", db.getTotalOutlays());
-	}
 	    
 
 	private void updateProfilePic() {
@@ -242,9 +235,9 @@ public class ProfileDataActivity extends Activity{
 		
 		appInstalledTV.setText(profileItem.getDate());
 		
-		allIncomesContentTV.setText("+" + allIncomes);
-		allExpensesContentTV.setText("+" + allExpenses);
-		allOutlaysContentTV.setText("+" + allOutlays);
+		allIncomesContentTV.setText("+" + String.format("%.2f", db.getAllIncomes()));
+		allExpensesContentTV.setText("+" + String.format("%.2f", db.getAllExpenses()));
+		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));
 		
 		
 	}

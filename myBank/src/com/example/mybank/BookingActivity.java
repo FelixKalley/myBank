@@ -634,7 +634,11 @@ public class BookingActivity extends Activity {
 		if (db.getCurrentBalance() < db.getCurrentGoal()){
 			
 			TEXTVIEW_Goal_Content.setTextColor(Color.RED);
+			
+			//if notification is enabled makeToast
+			if(db.getAllSettingsItems().get(0).getGoalEndangered() == 1){
 			Toast.makeText(getApplicationContext(), "Sie laufen Gefahr ihr Sparziel nicht zu erreichen!", Toast.LENGTH_SHORT).show();
+			}
 		}
 		else {
 			TEXTVIEW_Goal_Content.setTextColor(Color.GREEN);
@@ -960,6 +964,7 @@ public class BookingActivity extends Activity {
 		
 		//drop TABLE GOAL every and TABLE BOOKINGS every two month
 		if(currentMonth != lastBookingItemMonth){
+			
 			informUserAboutGoal();
 			db.deleteGoalTable();
 			if(currentMonth - lastBookingItemMonth == 2){
@@ -972,13 +977,14 @@ public class BookingActivity extends Activity {
 	
 	//inform user if monthly goal has been reached
 	private void informUserAboutGoal() {
-		if(db.getCurrentBalance() >= db.getCurrentGoal()){
-			Toast.makeText(getApplicationContext(), "Gl�ckwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
+		if(db.getAllSettingsItems().get(0).getGoalReached() == 1){
+			if(db.getCurrentBalance() >= db.getCurrentGoal()){
+				Toast.makeText(getApplicationContext(), "Glueckwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
+			}
+			else {
+				Toast.makeText(getApplicationContext(), "Schade, Sparziel letzten Monat leider nicht erreicht!", Toast.LENGTH_SHORT).show();	
 		}
-		else {
-			Toast.makeText(getApplicationContext(), "Schade, Sparziel letzten Monat leider nicht erreicht!", Toast.LENGTH_SHORT).show();
-			
-		}
+	}
 	}
 
 

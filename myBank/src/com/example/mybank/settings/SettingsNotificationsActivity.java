@@ -77,8 +77,8 @@ public class SettingsNotificationsActivity extends Activity {
     private ActionBarDrawerToggle drawerToggle;
 	
 	private MyBankDatabase db;
-
-
+	Switch switchGoalReached;
+	Switch switchGoalEndangered;
 	
 	
 
@@ -89,115 +89,138 @@ public class SettingsNotificationsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings__notification_);
-		
-		db = new MyBankDatabase(this);
-		db.open();
-
-	
-
-
-
+		initDB();
 		DeclareAllElements();
+		updateSwitches();
+		setupGoalReachedOnChangeListener();
+		setupGoalEndangeredOnChangeListener();
 		SetUpAllClickListeners();
 		
-		
+	}
+	
+	
+	
+
+	private void updateSwitches() {
+		updateGoalReachedSwitch();
+		updateGoalEndangeredSwitch();
+	}
+
+
+
+
+	private void updateGoalReachedSwitch() {
+		if(db.getAllSettingsItems().get(0).getGoalReached() == 0){
+			switchGoalReached.setChecked(false);
+			} else {
+				switchGoalReached.setChecked(true);
+			}
+	}
+
+	private void updateGoalEndangeredSwitch() {
+		if(db.getAllSettingsItems().get(0).getGoalEndangered() == 0){
+			switchGoalEndangered.setChecked(false);
+			} else {
+				switchGoalEndangered.setChecked(true);
+			}
+	}
+
+
+
+	private void initDB() {
+		db = new MyBankDatabase(this);
+		db.open();
 	}
 
 
 	private void SetUpAllClickListeners() {
-		EnableButtonIfDailyReminderIsSwitchedOn();
 		
 		SeeIfListItemIsClicked();
-		SetUpAlarmTime();
-		RegisterAlarmBroadcast();
-		
-		
-			
-		
-	}
-
-
-
-
-	private void SetUpAlarmTime() {
-		
-		
-
-		Button_set_daily_reminder.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				
-				CustomDialogClass cdd = new CustomDialogClass(SettingsNotificationsActivity.this);
-				cdd.show();
-				
-			
-			
-			
-			
-			
-			
-			
-				
-			}
-
-			
-		});
-	}
-
-
-	private void RegisterAlarmBroadcast() {
-		  mReceiver = new BroadcastReceiver()
-		    {
-		       // private static final String TAG = "Alarm Example Receiver";
-		        @Override
-		        public void onReceive(Context context, Intent intent)
-		        {
-		            Toast.makeText(context, "Tippen Sie eine Uhrzeit ein!", Toast.LENGTH_LONG).show();
-		        }
-		    };
-
-		    registerReceiver(mReceiver, new IntentFilter("sample") );
-		    pendingIntent = PendingIntent.getBroadcast( this, 0, new Intent("sample"),0 );
-		    alarmManager = (AlarmManager)(this.getSystemService( Context.ALARM_SERVICE ));		
 	}
 	
-	private void UnregisterAlarmBroadcast()
-	{
-	    alarmManager.cancel(pendingIntent); 
-	    getBaseContext().unregisterReceiver(mReceiver);
-	}
 	
 	@Override
 	protected void onDestroy() 
 	{
-	    unregisterReceiver(mReceiver);
+	    db.close();
 	    super.onDestroy();
 	  }
 	 
 
-	private void EnableButtonIfDailyReminderIsSwitchedOn() {
+
+	private void DeclareAllElements() {
+		switchGoalReached = (Switch) findViewById(R.id.switch_goal_reached_notification);
+		switchGoalEndangered = (Switch) findViewById(R.id.switch_goal_endangered_notification);
+		
+		
+		initMenuDrawer();
+	}
 	
-		Switch_daily_reminder.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if(Switch_daily_reminder.isChecked()){
-					Button_set_daily_reminder.setEnabled(true);
-				}else{
-					Button_set_daily_reminder.setEnabled(false);
-				}
-			}
-		});
+	private void setupGoalReachedOnChangeListener() {
+		
+			switchGoalReached.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			 
+			   @Override
+			   public void onCheckedChanged(CompoundButton buttonView,
+			     boolean isChecked) {
+			 
+			    if(isChecked){
+			    	db.updateGoalReachedNotification(1);
+			    	updateGoalReachedSwitch();
+			    }else{
+			    	db.updateGoalReachedNotification(0);
+			    	updateGoalReachedSwitch();
+			    }
+			   }
+			  });
+	}
+	
+	private void setupGoalEndangeredOnChangeListener() {
+		
+			switchGoalEndangered.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			 
+			   @Override
+			   public void onCheckedChanged(CompoundButton buttonView,
+			     boolean isChecked) {
+			 
+			    if(isChecked){
+			    	db.updateGoalEndangeredNotification(1);
+			    	updateGoalEndangeredSwitch();
+			    }else{
+			    	db.updateGoalEndangeredNotification(0);
+			    	updateGoalEndangeredSwitch();
+			    }
+			   }
+			  });
 		
 	}
 
-	private void DeclareAllElements() {
-		DeclareAllTextViews();
-		DeclareALlSwitches();
-		DeclareAllButtons();
-		initMenuDrawer();
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	// Method to start the service
+	   public void startService(View view) {
+	      startService(new Intent(this, MyBankNotificationService.class));
+	   }
+
+	   // Method to stop the service
+	   public void stopService(View view) {
+	      stopService(new Intent(getBaseContext(), MyBankNotificationService.class));
+	   }
+
+	*/
+	
+	
+	
+	
+	
+	
 	
 	
 	private void initMenuDrawer() {
@@ -495,39 +518,6 @@ public class SettingsNotificationsActivity extends Activity {
 
 	}
 
-
-	
-
-	private void DeclareAllButtons() {
-		Button_set_daily_reminder = (Button) findViewById(R.id.Button_set_reminder_time);
-		Button_set_daily_reminder.setText(R.string.Button_Set_Reminder);
-		Button_set_daily_reminder.setEnabled(false);
-	}
-
-	private void DeclareALlSwitches() {
-		Switch_Goal_Reached = (Switch) findViewById(R.id.Switch_goal_reached_notification);
-		Switch_Goal_Reached
-				.setText(R.string.Switch_Notification_goal_reached);
-
-		Switch_Limit_Reached = (Switch) findViewById(R.id.Switch_Limit_reached_notification);
-		Switch_Limit_Reached
-				.setText(R.string.Switch_Notification_limit_reached);
-
-	
-
-	
-
-		Switch_daily_reminder = (Switch) findViewById(R.id.Switch_Daily_reminder);
-		Switch_daily_reminder
-				.setText(R.string.Switch_Notification_daily_reminder);
-
-	}
-
-	private void DeclareAllTextViews() {
-		/*
-		 * HIER K�NNTE IHR CODE STEHEN
-		 */
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
