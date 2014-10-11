@@ -625,6 +625,7 @@ public class BookingActivity extends Activity {
 		TEXTVIEW_Goal_Content.setText("+" + String.format("%.2f", db.getCurrentGoal()));
 	}
 
+	
 	//check if the goal set is currently reachable
 	private void checkGoalReachability() {
 		if (db.getCurrentBalance() < db.getCurrentGoal()){
