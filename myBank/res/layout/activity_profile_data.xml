@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/BackgroundColor"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    
+    <RelativeLayout
+         android:id="@+id/MainContent"
+         style="@style/BackgroundColor"
+         android:layout_width="match_parent"
+   		 android:layout_height="match_parent"
+   		  >
+    
+<LinearLayout 
+    android:id="@+id/TextContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
     android:orientation="vertical" >
 	
-    <TextView
-        android:id="@+id/profile_header_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="24sp"
-        android:text="@string/profile_header_text" />
-    
-    
     <ImageView 
         android:id="@+id/profile_pic"
         android:layout_width="wrap_content"
@@ -24,8 +26,7 @@
         android:layout_marginBottom="15dp"
         android:contentDescription="@string/profile_pic_description"
         />
-    
-    
+
     <TextView
         android:id="@+id/profile_data_name_textview"
         android:layout_width="wrap_content"
@@ -121,6 +122,39 @@
         android:layout_marginLeft="5dp"
         android:text=""
         />
+    </LinearLayout>
     
+	<LinearLayout
+	    android:id="@+id/ButtonContent"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:orientation="vertical">
+    	<Button
+	        android:id="@+id/button_profile_edit"
+	        style="@style/Button_General"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/Button_Edit_Profile" />
+	
+	    <Button
+	        android:id="@+id/button_profile_reset"
+	        style="@style/Button_General"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/Button_Reset_Account" />
+	</LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
+ <ExpandableListView android:id="@+id/drawerList"
+        android:groupIndicator="@android:color/transparent"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="@color/COLOR_WHITE"
+      	/>
+
+</android.support.v4.widget.DrawerLayout>

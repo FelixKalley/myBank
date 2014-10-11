@@ -10,6 +10,7 @@ import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
 import com.example.mybank.HistoryActivity;
 import com.example.mybank.OutlayActivity;
+import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.R;
 import com.example.mybank.R.drawable;
 import com.example.mybank.R.id;
@@ -328,7 +329,7 @@ public class SettingsNotificationsActivity extends Activity {
 
 			case PROFIL:
 				Intent j = new Intent(SettingsNotificationsActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;

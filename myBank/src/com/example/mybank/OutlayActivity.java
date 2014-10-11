@@ -38,7 +38,6 @@ import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.OutlayItem;
 import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-import com.example.mybank.settings.SettingsProfileActivity;
 
 public class OutlayActivity extends Activity {
 	
@@ -401,7 +400,7 @@ public class OutlayActivity extends Activity {
 
 			case PROFIL:
 				Intent j = new Intent(OutlayActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;

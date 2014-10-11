@@ -8,6 +8,7 @@ import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
 import com.example.mybank.HistoryActivity;
 import com.example.mybank.OutlayActivity;
+import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.R;
 import com.example.mybank.R.drawable;
 import com.example.mybank.R.id;
@@ -257,7 +258,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 
 			case PROFIL:
 				Intent j = new Intent(SettingsBankingActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;

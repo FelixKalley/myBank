@@ -6,8 +6,6 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-import com.example.mybank.settings.SettingsProfileActivity;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -293,7 +291,7 @@ public class ChartActivity extends Activity {
 
 			case PROFIL:
 				Intent j = new Intent(ChartActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;
