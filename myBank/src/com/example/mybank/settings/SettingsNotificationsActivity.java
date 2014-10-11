@@ -483,13 +483,6 @@ public class SettingsNotificationsActivity extends Activity {
 		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
 		child_list.add(ch4_2);
 
-		ExpListChild ch4_3 = new ExpListChild();
-		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
-		child_list.add(ch4_3);
-
-		ExpListChild ch4_4 = new ExpListChild();
-		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
-		child_list.add(ch4_4);
 
 		gru4.setItems(child_list);
 
@@ -501,11 +494,11 @@ public class SettingsNotificationsActivity extends Activity {
 
 
 				ExpListChild ch5_1 = new ExpListChild();
-				ch5_1.setName("Kuchen");
+				ch5_1.setName(getString(R.string.List_Kuchen));
 				child_list_2.add(ch5_1);
 
 				ExpListChild ch5_2 = new ExpListChild();
-				ch5_2.setName("Gesamt");
+				ch5_2.setName(getString(R.string.List_Gesamt));
 				child_list_2.add(ch5_2);
 				
 				

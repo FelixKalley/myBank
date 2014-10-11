@@ -33,7 +33,7 @@
     
     
 
-   <ExpandableListView android:id="@+id/drawerList"
+    <ExpandableListView android:id="@+id/drawerList"
         android:groupIndicator="@android:color/transparent"
         android:layout_width="240dp"
         android:layout_height="match_parent"
@@ -41,7 +41,7 @@
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="@color/COLOR_WHITE"
+        android:background="@color/COLOR_DARK"
       	/>
 
     </android.support.v4.widget.DrawerLayout>

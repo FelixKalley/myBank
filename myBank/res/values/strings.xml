@@ -15,11 +15,11 @@
     <string name="List_Verlauf">Verlauf</string>
     <string name="List_Geplant">Geplant</string>
     <string name="List_Einstellungen">Einstellungen</string>
-    <string name="List_Einstellung_Verwaltung">Allgemein</string>
     <string name="List_Einstellung_Profil">Profil</string>
     <string name="List_Einstellung_Bencharichtigungen">Benachrichtigungen</string>
-    <string name="List_Einstellung_Banking">Buchung</string>
     <string name="List_Uebersicht">Übersicht</string>
+    <string name="List_Kuchen">Kuchen</string>
+    <string name="List_Gesamt">Gesamt</string>
 
     <!-- ALL STRINGS FOR ACTIVITY NAMES -->
     <string name="title_activity_booking">Buchung</string>
