@@ -9,54 +9,57 @@
          android:layout_width="match_parent"
    		 android:layout_height="match_parent"
    		  >
-    
-
-  	  
-   
-
- 
-
-    <Switch
-        android:id="@+id/Switch_Limit_reached_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-      
-        android:layout_marginTop="14dp"
-        android:text="Switch" />
 
  
     <Switch
-        android:id="@+id/Switch_goal_reached_notification"
+        android:id="@+id/switch_goal_reached_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Switch_Limit_reached_notification"
         android:layout_marginTop="14dp"
-        android:text="Switch" />
+        android:text="Sparziel erfüllt Benachrichtigung" />
 
     <Switch
-        android:id="@+id/Switch_Daily_reminder"
+        android:id="@+id/switch_goal_endangered_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/Switch_goal_reached_notification"
+        android:layout_below="@+id/switch_goal_reached_notification"
         android:layout_marginTop="14dp"
-        android:text="Switch" />
+        android:text="Sparziel gefährdet Benachrichtigung" />
 
-    <Button
-        android:id="@+id/Button_set_reminder_time"
+    
+    
+    
+    
+    <!-- 
+    <Button 
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/Switch_Daily_reminder"
-        android:layout_marginTop="18dp"
-        
-        android:text="Button" />
+        android:layout_below="@+id/switch_daily_reminder"
+        android:layout_marginTop="14dp"
+        android:onClick="startService"
+        android:text="Start Service"
+        />
+    
+     <Button 
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/startButton"
+        android:layout_marginTop="14dp"
+        android:onClick="stopService"
+        android:text="Stop Service"
+        />
+    -->
     
     </RelativeLayout>
     

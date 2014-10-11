@@ -14,6 +14,7 @@ import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
 import com.example.mybank.items.ProfileItem;
+import com.example.mybank.items.SettingsItem;
 
 public class MyBankDatabase {
 
@@ -29,6 +30,7 @@ public class MyBankDatabase {
 	private static final String TABLE_OUTLAYS = "outlays";
 	private static final String TABLE_GOAL = "goal";
 	private static final String TABLE_PROFILE = "profile";
+	private static final String TABLE_SETTINGS = "settings";
 	
 	//BOOKINGS TABLE column names
 	private static final String KEY_ID = "_id";
@@ -78,6 +80,16 @@ public class MyBankDatabase {
 	private static final int COLUMN_PROFILE_IMAGE_INDEX = 4;
 	private static final int COLUMN_PROFILE_DATE_INDEX = 5;
 	
+	//SETTINGS TABLE column names
+	private static final String KEY_GOALREACHED = "goalReached";
+	private static final String KEY_GOALENDANGERED = "goalEndangered";
+	
+	//SETTINGS TABLE column indexes
+	private static final int COLUMN_GOALREACHED_INDEX = 1;
+	private static final int COLUMN_GOALENDANGERED_INDEX = 2;
+	
+	
+	
 	private MyBankDBOpenHelper dbHelper;
 	
 	private SQLiteDatabase db;
@@ -100,7 +112,7 @@ public class MyBankDatabase {
 	}
 	
 	
-	//getAllExpenses() --> aufsummieren aus TABLE_BOOKINGS
+	
 	public double getAllExpenses() {
 		double expense = 0;
 		
@@ -210,9 +222,9 @@ public class MyBankDatabase {
 		ContentValues values = new ContentValues();
 		values.put(KEY_IMAGE, ba);
 		
-		db.update(TABLE_PROFILE, values, whereClause, null);
-		
+		db.update(TABLE_PROFILE, values, whereClause, null);	
 	}
+
 	
 	public byte[] getCurrentProfilePic() {
 		byte[] img = null;
@@ -334,6 +346,37 @@ public class MyBankDatabase {
 		
 	}
 	
+	public long insertSettingsItem(SettingsItem item) {
+		
+		//collecting values to put
+		ContentValues values = new ContentValues();
+		values.put(KEY_GOALREACHED, item.getGoalReached());
+		values.put(KEY_GOALENDANGERED, item.getGoalEndangered());
+		
+		//insert in db
+		long item_id = db.insert(TABLE_SETTINGS, null, values);
+		return item_id;
+	}
+	
+	public void updateGoalReachedNotification(int bool) {
+		String whereClause = KEY_ID + " = '" + "1" + "'";
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_GOALREACHED, bool);
+		
+		db.update(TABLE_SETTINGS, values, whereClause, null);
+	}
+	
+	public void updateGoalEndangeredNotification(int bool) {
+		String whereClause = KEY_ID + " = '" + "1" + "'";
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_GOALENDANGERED, bool);
+		
+		db.update(TABLE_SETTINGS, values, whereClause, null);
+	}
+	
+	
 	/*
 	public void deleteBalanceItem(BalanceItem item) {
 		String whereClause = KEY_CURRENT_BALANCE + " = '" + item.getAmount() + "'";
@@ -450,6 +493,24 @@ public class MyBankDatabase {
 		
 	}
 	
+	public ArrayList<SettingsItem> getAllSettingsItems() {
+		ArrayList<SettingsItem> items = new ArrayList<SettingsItem>();
+		
+		Cursor cursor = db.query(TABLE_SETTINGS, new String[] { KEY_ID,
+				KEY_GOALREACHED, KEY_GOALENDANGERED }, null, null, null, null, null);
+		
+		if (cursor.moveToFirst()) {
+			do {
+				int goalR = cursor.getInt(COLUMN_GOALREACHED_INDEX);
+				int goalE = cursor.getInt(COLUMN_GOALENDANGERED_INDEX);
+				
+				items.add(new SettingsItem(goalR, goalE));
+			} while (cursor.moveToNext());
+		}
+		return items;
+	}
+	
+	
 	public void removeOutlayItem(OutlayItem item) {
 		String whereClause = KEY_TITLE + " = '" + item.getTitle() + "' AND "
 				+ KEY_AMOUNT + " = '" + item.getAmount() + "'";
@@ -494,6 +555,10 @@ public class MyBankDatabase {
 				+ KEY_LASTNAME + " TEXT," + KEY_CHECKBOOLEAN + " INTEGER," 
 				+ KEY_IMAGE + " IMAGE BLOB," + KEY_DATE + " DATETIME" + ")";
 		
+		private static final String CREATE_TABLE_SETTINGS = "CREATE TABLE " + TABLE_SETTINGS
+				+ "(" + KEY_ID + " INTEGER," + KEY_GOALREACHED + " INTEGER,"
+				+ KEY_GOALENDANGERED + " INTEGER" + ")";
+		
 		
 		public MyBankDBOpenHelper(Context c, String dbname,
 				SQLiteDatabase.CursorFactory factory, int version) {
@@ -510,6 +575,7 @@ public class MyBankDatabase {
 			db.execSQL(CREATE_TABLE_OUTLAY);
 			db.execSQL(CREATE_TABLE_GOAL);
 			db.execSQL(CREATE_TABLE_PROFILE);
+			db.execSQL(CREATE_TABLE_SETTINGS);
 			
 		}
 

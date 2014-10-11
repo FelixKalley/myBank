@@ -631,7 +631,37 @@ public class BookingActivity extends Activity {
 		if (db.getCurrentBalance() < db.getCurrentGoal()){
 			
 			TEXTVIEW_Goal_Content.setTextColor(Color.RED);
-			Toast.makeText(getApplicationContext(), "Sie laufen Gefahr ihr Sparziel nicht zu erreichen!", Toast.LENGTH_SHORT).show();
+			
+			//if notification is enabled show notification
+			if(db.getAllSettingsItems().get(0).getGoalEndangered() == 1){
+			
+				LayoutInflater li = LayoutInflater.from(context);
+				View promptsView = li.inflate(R.layout.profile_notification_prompt, null);
+				
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+				
+				//set view on prompt
+				alertDialogBuilder.setView(promptsView);
+				
+				//elements to appear in prompt
+				final TextView infoTV = (TextView) promptsView.findViewById(R.id.goal_endangered_prompt_textview);
+				
+				alertDialogBuilder
+						.setCancelable(false)
+						.setTitle(R.string.goal_endangered_prompt_title)
+						.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+
+				//create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				
+				alertDialog.show();			
+			}
 		}
 		else {
 			TEXTVIEW_Goal_Content.setTextColor(Color.GREEN);
@@ -964,6 +994,7 @@ public class BookingActivity extends Activity {
 		
 		//drop TABLE GOAL every and TABLE BOOKINGS every two month
 		if(currentMonth != lastBookingItemMonth){
+			
 			informUserAboutGoal();
 			db.deleteGoalTable();
 			if(currentMonth - lastBookingItemMonth == 2){
@@ -976,13 +1007,14 @@ public class BookingActivity extends Activity {
 	
 	//inform user if monthly goal has been reached
 	private void informUserAboutGoal() {
-		if(db.getCurrentBalance() >= db.getCurrentGoal()){
-			Toast.makeText(getApplicationContext(), "Gl�ckwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
+		if(db.getAllSettingsItems().get(0).getGoalReached() == 1){
+			if(db.getCurrentBalance() >= db.getCurrentGoal()){
+				Toast.makeText(getApplicationContext(), "Glueckwunsch, Sie haben ihr Sparziel letzten Monat erreicht!", Toast.LENGTH_SHORT).show();
+			}
+			else {
+				Toast.makeText(getApplicationContext(), "Schade, Sparziel letzten Monat leider nicht erreicht!", Toast.LENGTH_SHORT).show();	
 		}
-		else {
-			Toast.makeText(getApplicationContext(), "Schade, Sparziel letzten Monat leider nicht erreicht!", Toast.LENGTH_SHORT).show();
-			
-		}
+	}
 	}
 
 

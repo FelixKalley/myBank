@@ -5,7 +5,13 @@
     android:orientation="vertical" >
     
 
-    
+    <TextView 
+        android:id="@+id/goal_endangered_prompt_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/goal_endangered_prompt_text"
+        />
     
     
     

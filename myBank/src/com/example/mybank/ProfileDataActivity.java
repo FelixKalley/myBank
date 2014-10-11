@@ -60,13 +60,16 @@ public class ProfileDataActivity extends Activity {
 			allIncomesContentTV, allExpensesContentTV, allOutlaysContentTV,
 			appInstalledTV;
 	ImageView imageView;
+
 	String allIncomes, allExpenses, allOutlays, appInstalled;
+
 
 	MyBankDatabase db;
 	ProfileItem profileItem;
 	Bitmap bitMap;
 	byte[] byteArray;
 	final Context context = this;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +82,6 @@ public class ProfileDataActivity extends Activity {
 		SeeIfListItemIsClicked();
 
 		fetchProfileItem();
-
-	
 		updateProfilePic();
 		declareAllElements();
 		updateProfile();
@@ -89,6 +90,8 @@ public class ProfileDataActivity extends Activity {
 
 	}
 
+
+	    
 	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
@@ -115,6 +118,7 @@ public class ProfileDataActivity extends Activity {
 			profileItem = db.getAllProfileItems().get(0);
 		}
 	}
+
 
 	
 	private void updateProfilePic() {
@@ -275,7 +279,9 @@ public class ProfileDataActivity extends Activity {
 		
 		appInstalledTV.setText(profileItem.getDate());
 		
+
 		allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
+
 		allExpensesContentTV.setText("+" + String.format("%.2f", db.getAllExpenses()));
 		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));
 		
