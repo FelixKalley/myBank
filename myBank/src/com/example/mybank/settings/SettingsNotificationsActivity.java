@@ -307,7 +307,7 @@ public class SettingsNotificationsActivity extends Activity {
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
 		// Groups
 
-		final int Einstellungen = 2;
+		final int Einstellungen = 3;
 
 		// Childs
 
@@ -348,7 +348,7 @@ public class SettingsNotificationsActivity extends Activity {
 		  switch (groupPosition) {
 		  
 		  case BOOKING:
-			  Intent i = new Intent(SettingsNotificationsActivity.this, HistoryActivity.class);
+			  Intent i = new Intent(SettingsNotificationsActivity.this, BookingActivity.class);
 			  startActivity(i);
 			  finish();
 			  break;

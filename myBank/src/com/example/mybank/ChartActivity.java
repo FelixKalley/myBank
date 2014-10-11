@@ -276,6 +276,7 @@ public class ChartActivity extends Activity {
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 
+
 		switch (groupPosition) {
 		case Einstellungen:
 			switch (childPosition) {
