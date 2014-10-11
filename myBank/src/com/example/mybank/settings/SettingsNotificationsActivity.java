@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import com.example.mybank.BookingActivity;
 import com.example.mybank.ChartActivity;
+import com.example.mybank.ChartCategoriesActivity;
 import com.example.mybank.CustomDialogClass;
 import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
@@ -309,13 +310,16 @@ public class SettingsNotificationsActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Übersicht = 4;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
-	
+
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -338,9 +342,29 @@ public class SettingsNotificationsActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-			
+				break;
 
 			}
+			
+			break;
+
+		case Übersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(SettingsNotificationsActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(SettingsNotificationsActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			}
+
 		}
 	}
 	
@@ -348,7 +372,7 @@ public class SettingsNotificationsActivity extends Activity {
 		final int BOOKING = 0;
 		final int HISTORY = 1;
 		final int OUTLAY = 2;
-		final int OVERVIEW = 4;
+	
 
 
 		
@@ -373,12 +397,7 @@ public class SettingsNotificationsActivity extends Activity {
 			  finish();
 			  break; 
 		 
-		  case OVERVIEW:
-			  Intent l = new Intent(SettingsNotificationsActivity.this, ChartActivity.class);
-			  startActivity(l);
-			  finish();
-			  break;
-		 
+	
 		  }
 	}
 			  
@@ -432,6 +451,9 @@ public class SettingsNotificationsActivity extends Activity {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
+
+		
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -479,20 +501,33 @@ public class SettingsNotificationsActivity extends Activity {
 		gru4.setItems(child_list);
 
 		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
-		ExpListGroups gru5 = new ExpListGroups();
-		gru5.setName(getString(R.string.List_Uebersicht));
 		
-		gru5.setItems(child_list);
+				child_list_2 = new ArrayList<ExpListChild>();
+				ExpListGroups gru5 = new ExpListGroups();
+				gru5.setName(getString(R.string.List_Uebersicht));
 
-		// listing all groups
-		group_list.add(gru1);
-		group_list.add(gru2);
-		group_list.add(gru3);
-		group_list.add(gru4);
-		group_list.add(gru5);
 
-		return group_list;
+				ExpListChild ch5_1 = new ExpListChild();
+				ch5_1.setName("Kuchen");
+				child_list_2.add(ch5_1);
+
+				ExpListChild ch5_2 = new ExpListChild();
+				ch5_2.setName("Gesamt");
+				child_list_2.add(ch5_2);
+				
+				
+				
+				gru5.setItems(child_list_2);
+
+				// listing all groups
+				group_list.add(gru1);
+				group_list.add(gru2);
+				group_list.add(gru3);
+				group_list.add(gru4);
+				group_list.add(gru5);
+
+				return group_list;
+
 
 	}
 

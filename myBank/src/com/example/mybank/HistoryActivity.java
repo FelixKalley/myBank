@@ -11,6 +11,7 @@ import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -262,7 +263,7 @@ public class HistoryActivity extends Activity {
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
 		final int OUTLAY = 2;
-		final int OVERVIEW = 4;
+	
 
 
 		
@@ -281,12 +282,7 @@ public class HistoryActivity extends Activity {
 			  finish();
 			  break; 
 		 
-		  case OVERVIEW:
-			  Intent k = new Intent(HistoryActivity.this, ChartActivity.class);
-			  startActivity(k);
-			  finish();
-			  break;
-		 
+		
 		  }
 	}
 
@@ -294,12 +290,16 @@ public class HistoryActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Übersicht = 4;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 		final int BANKING = 2;
+		
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
 	
 
 		switch (groupPosition) {
@@ -323,15 +323,37 @@ public class HistoryActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-			
+				break;
+	
+
 			}
+			
+			break;
+			
+		case Übersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(HistoryActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(HistoryActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			}
+			
 		}
 	}
-
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -378,12 +400,24 @@ public class HistoryActivity extends Activity {
 
 		gru4.setItems(child_list);
 
-		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
+	// Setting Group 5
+		
+		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+
+
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName("Kuchen");
+		child_list_2.add(ch5_1);
+
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName("Gesamt");
+		child_list_2.add(ch5_2);
 		
-		gru5.setItems(child_list);
+		
+		
+		gru5.setItems(child_list_2);
 
 		// listing all groups
 		group_list.add(gru1);

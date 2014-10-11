@@ -6,6 +6,7 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -271,6 +272,7 @@ public class ChartActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Übersicht = 4;
 
 		// Childs
 
@@ -278,6 +280,9 @@ public class ChartActivity extends Activity {
 		final int PROFIL = 1;
 		final int BANKING = 2;
 		
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
+	
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -300,15 +305,39 @@ public class ChartActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-			
+				break;
+	
+
 			}
+			
+			break;
+			
+		case Übersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(ChartActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(ChartActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			}
+			
 		}
 	}
-
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
+
+		
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -355,12 +384,24 @@ public class ChartActivity extends Activity {
 
 		gru4.setItems(child_list);
 
-		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
+	// Setting Group 5
+		
+		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+
+
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName("Kuchen");
+		child_list_2.add(ch5_1);
+
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName("Gesamt");
+		child_list_2.add(ch5_2);
 		
-		gru5.setItems(child_list);
+		
+		
+		gru5.setItems(child_list_2);
 
 		// listing all groups
 		group_list.add(gru1);

@@ -349,7 +349,6 @@ public class OutlayActivity extends Activity {
 		final int BOOKING = 0;
 		final int HISTORY = 1;
 
-		final int OVERVIEW = 4;
 
 
 		
@@ -367,12 +366,6 @@ public class OutlayActivity extends Activity {
 			  finish();
 			  break;
 		 
-		  case OVERVIEW:
-			  Intent k = new Intent(OutlayActivity.this, ChartActivity.class);
-			  startActivity(k);
-			  finish();
-			  break;
-		 
 		  }
 	}
 
@@ -380,6 +373,7 @@ public class OutlayActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Übersicht = 4;
 
 		// Childs
 
@@ -387,6 +381,9 @@ public class OutlayActivity extends Activity {
 		final int PROFIL = 1;
 		final int BANKING = 2;
 		
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
+	
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -409,16 +406,37 @@ public class OutlayActivity extends Activity {
 						SettingsBankingActivity.class);
 				startActivity(k);
 				finish();
-			
+				break;
+	
 
 			}
+			
+			break;
+			
+		case Übersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(OutlayActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(OutlayActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			}
+			
 		}
 	}
-
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild>	child_list_2;
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -465,12 +483,24 @@ public class OutlayActivity extends Activity {
 
 		gru4.setItems(child_list);
 
-		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
+	// Setting Group 5
+		
+		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+
+
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName("Kuchen");
+		child_list_2.add(ch5_1);
+
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName("Gesamt");
+		child_list_2.add(ch5_2);
 		
-		gru5.setItems(child_list);
+		
+		
+		gru5.setItems(child_list_2);
 
 		// listing all groups
 		group_list.add(gru1);
@@ -480,6 +510,7 @@ public class OutlayActivity extends Activity {
 		group_list.add(gru5);
 
 		return group_list;
+
 
 	}
 
