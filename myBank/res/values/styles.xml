@@ -59,7 +59,7 @@
      <!-- Sets the Style of all "Buttons"  to the specific style beneath -->
      
      <style name="Button_General" parent="@android:style/TextAppearance">
-        <item name="android:background">@color/COLOR_Buttons</item>
+        <item name="android:background">@color/COLOR_DARK</item>
         <item name="android:textColor">@color/COLOR_WHITE</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">20sp</item>

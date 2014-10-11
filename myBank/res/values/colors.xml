@@ -10,5 +10,6 @@
     <color name="COLOR_Fonts_of_Buttons">#f2f2f2</color>
     <color name="COLOR_WHITE">#ffffff</color>
     <color name="COLOR_BLACK">#000000</color>
+    <color name="COLOR_DARK">#222222</color>
     
 </resources>
