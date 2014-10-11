@@ -635,9 +635,35 @@ public class BookingActivity extends Activity {
 			
 			TEXTVIEW_Goal_Content.setTextColor(Color.RED);
 			
-			//if notification is enabled makeToast
+			//if notification is enabled show notification
 			if(db.getAllSettingsItems().get(0).getGoalEndangered() == 1){
-			Toast.makeText(getApplicationContext(), "Sie laufen Gefahr ihr Sparziel nicht zu erreichen!", Toast.LENGTH_SHORT).show();
+			
+				LayoutInflater li = LayoutInflater.from(context);
+				View promptsView = li.inflate(R.layout.profile_notification_prompt, null);
+				
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+				
+				//set view on prompt
+				alertDialogBuilder.setView(promptsView);
+				
+				//elements to appear in prompt
+				final TextView infoTV = (TextView) promptsView.findViewById(R.id.goal_endangered_prompt_textview);
+				
+				alertDialogBuilder
+						.setCancelable(false)
+						.setTitle(R.string.goal_endangered_prompt_title)
+						.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+
+				//create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				
+				alertDialog.show();			
 			}
 		}
 		else {

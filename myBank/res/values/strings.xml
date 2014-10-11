@@ -78,6 +78,10 @@
     <!-- ALL STRINGS FOR PROFILE NOTIFICATION PROMPT -->
 	<string name="profile_notification_prompt_title">Profil unvollständig</string>
 	<string name="profile_notification_prompt_infotext">Sie haben Ihr Profil noch nicht vollständig ausgefüllt</string>
+	
+	<!-- ALL STRINGS FOR GOAL ENDANGERED PROMPT -->
+	<string name="goal_endangered_prompt_text">Sie laufen Gefahr ihr Sparziel zu verfehlen!</string>
+	<string name="goal_endangered_prompt_title">Benachrichtigung</string>
 
     <string-array name="categories_array">
         <item>Beruf</item>
