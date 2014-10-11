@@ -36,7 +36,6 @@ import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.BalanceItem;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.OutlayItem;
-import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 
 public class OutlayActivity extends Activity {
@@ -385,7 +384,6 @@ public class OutlayActivity extends Activity {
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
 		
 
 		switch (groupPosition) {
@@ -404,12 +402,6 @@ public class OutlayActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(OutlayActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-			
 
 			}
 		}

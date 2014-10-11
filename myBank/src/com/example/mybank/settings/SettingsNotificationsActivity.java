@@ -15,7 +15,6 @@ import com.example.mybank.R;
 import com.example.mybank.R.drawable;
 import com.example.mybank.R.id;
 import com.example.mybank.R.layout;
-import com.example.mybank.R.menu;
 import com.example.mybank.R.string;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
@@ -314,7 +313,6 @@ public class SettingsNotificationsActivity extends Activity {
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
 	
 
 		switch (groupPosition) {
@@ -333,12 +331,7 @@ public class SettingsNotificationsActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(SettingsNotificationsActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-			
+
 
 			}
 		}
@@ -528,14 +521,6 @@ public class SettingsNotificationsActivity extends Activity {
 		/*
 		 * HIER K�NNTE IHR CODE STEHEN
 		 */
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings__notification_, menu);
-		return true;
 	}
 
 
