@@ -194,8 +194,7 @@ public class SettingsNotificationsActivity extends Activity {
 
 	private void DeclareAllElements() {
 		DeclareAllTextViews();
-		DeclareALlSwitches();
-		DeclareAllButtons();
+		
 		initMenuDrawer();
 	}
 	
@@ -498,30 +497,9 @@ public class SettingsNotificationsActivity extends Activity {
 
 	
 
-	private void DeclareAllButtons() {
-		Button_set_daily_reminder = (Button) findViewById(R.id.Button_set_reminder_time);
-		Button_set_daily_reminder.setText(R.string.Button_Set_Reminder);
-		Button_set_daily_reminder.setEnabled(false);
-	}
-
-	private void DeclareALlSwitches() {
-		Switch_Goal_Reached = (Switch) findViewById(R.id.Switch_goal_reached_notification);
-		Switch_Goal_Reached
-				.setText(R.string.Switch_Notification_goal_reached);
-
-		Switch_Limit_Reached = (Switch) findViewById(R.id.Switch_Limit_reached_notification);
-		Switch_Limit_Reached
-				.setText(R.string.Switch_Notification_limit_reached);
-
 	
 
 	
-
-		Switch_daily_reminder = (Switch) findViewById(R.id.Switch_Daily_reminder);
-		Switch_daily_reminder
-				.setText(R.string.Switch_Notification_daily_reminder);
-
-	}
 
 	private void DeclareAllTextViews() {
 		/*
