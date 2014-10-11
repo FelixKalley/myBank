@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:id="@+id/bookingitem_listview"
     android:background="@android:color/transparent"
-    android:orientation="vertical"
     android:padding="12dp" >
     
     
-    <LinearLayout 
+    <RelativeLayout 
         android:id="@+id/top_line"
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
-    	android:orientation="horizontal" >
+    	android:layout_alignParentTop="true" >
     
         <TextView 
         android:id="@+id/booking_title"
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_marginRight="110dp"
+        android:layout_alignParentLeft="true"
         android:textColor="#FFFFFF"
         android:padding="2dp"
 	    android:textSize="17sp"
@@ -31,38 +30,42 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:textColor="#FFFFFF"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@+id/booking_title"
         android:padding="2dp"
 	    android:textSize="17sp"
         />
     
-    	</LinearLayout>
+    	</RelativeLayout>
 
-		<LinearLayout
+		<RelativeLayout
 		    android:id="@+id/bottom_line"
 		    android:layout_width="match_parent"
     		android:layout_height="wrap_content"
-    		android:orientation="horizontal" >
+    		android:layout_below="@+id/top_line">
 		
    
          <TextView
-	          android:id="@+id/booking_category"
-	          android:gravity="center_vertical"
-	          android:layout_width="wrap_content"
-	          android:layout_height="fill_parent"
-	          android:layout_marginRight="110dp"
-	          android:textColor="#FFFFFF"
-	          android:padding="2dp"
-	          android:textSize="16sp" />
+		        android:id="@+id/booking_category"
+		        android:gravity="center_vertical"
+		        android:layout_width="wrap_content"
+		        android:layout_height="fill_parent"
+		        android:layout_alignParentLeft="true"
+		        android:textColor="#FFFFFF"
+		        android:padding="2dp"
+			    android:textSize="16sp" />
     
        <TextView 
 	        android:id="@+id/booking_date"
-	        android:gravity="center_vertical"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:textColor="#FFFFFF"
-	        android:padding="2dp"
-		    android:textSize="16sp" />
+	         android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@+id/booking_category"
+        android:padding="2dp"
+	    android:textSize="16sp" />
  
-  </LinearLayout>
+  </RelativeLayout>
        
-</LinearLayout>
+</RelativeLayout>

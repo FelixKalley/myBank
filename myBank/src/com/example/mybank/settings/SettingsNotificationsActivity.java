@@ -5,16 +5,17 @@ import java.util.Calendar;
 
 import com.example.mybank.BookingActivity;
 import com.example.mybank.ChartActivity;
+import com.example.mybank.ChartCategoriesActivity;
 import com.example.mybank.CustomDialogClass;
 import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
 import com.example.mybank.HistoryActivity;
 import com.example.mybank.OutlayActivity;
+import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.R;
 import com.example.mybank.R.drawable;
 import com.example.mybank.R.id;
 import com.example.mybank.R.layout;
-import com.example.mybank.R.menu;
 import com.example.mybank.R.string;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
@@ -223,7 +224,7 @@ public class SettingsNotificationsActivity extends Activity {
 
           public void onDrawerOpened(View drawerView) 
           {
-              getActionBar().setTitle("Menü");
+              getActionBar().setTitle(R.string.String_drawer_title);
           }
       };
       drawerLayout.setDrawerListener(drawerToggle);
@@ -277,8 +278,8 @@ public class SettingsNotificationsActivity extends Activity {
 	            this,                             /* host Activity */
 	            mDrawerLayout,                    /* DrawerLayout object */
 	            R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
-	            R.string.action_settings,  /* "open drawer" description for accessibility */
-	            R.string.AddButton_String_Plus  /* "close drawer" description for accessibility */
+	            R.string.String_drawer_open,  /* "open drawer" description for accessibility */
+	            R.string.String_drawer_closed  /* "close drawer" description for accessibility */
 	    ) {
 	        @Override
 	        public void onDrawerClosed(View drawerView) {
@@ -306,14 +307,16 @@ public class SettingsNotificationsActivity extends Activity {
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
 		// Groups
 
-		final int Einstellungen = 2;
+		final int Einstellungen = 3;
+		final int Uebersicht = 4;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
-	
+
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -327,18 +330,33 @@ public class SettingsNotificationsActivity extends Activity {
 
 			case PROFIL:
 				Intent j = new Intent(SettingsNotificationsActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(SettingsNotificationsActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-			
+
 
 			}
+			
+			break;
+
+		case Uebersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(SettingsNotificationsActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(SettingsNotificationsActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			}
+
 		}
 	}
 	
@@ -346,14 +364,14 @@ public class SettingsNotificationsActivity extends Activity {
 		final int BOOKING = 0;
 		final int HISTORY = 1;
 		final int OUTLAY = 2;
-		final int OVERVIEW = 4;
+	
 
 
 		
 		  switch (groupPosition) {
 		  
 		  case BOOKING:
-			  Intent i = new Intent(SettingsNotificationsActivity.this, HistoryActivity.class);
+			  Intent i = new Intent(SettingsNotificationsActivity.this, BookingActivity.class);
 			  startActivity(i);
 			  finish();
 			  break;
@@ -371,12 +389,7 @@ public class SettingsNotificationsActivity extends Activity {
 			  finish();
 			  break; 
 		 
-		  case OVERVIEW:
-			  Intent l = new Intent(SettingsNotificationsActivity.this, ChartActivity.class);
-			  startActivity(l);
-			  finish();
-			  break;
-		 
+	
 		  }
 	}
 			  
@@ -430,6 +443,9 @@ public class SettingsNotificationsActivity extends Activity {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
+
+		
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -466,31 +482,37 @@ public class SettingsNotificationsActivity extends Activity {
 		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
 		child_list.add(ch4_2);
 
-		ExpListChild ch4_3 = new ExpListChild();
-		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
-		child_list.add(ch4_3);
-
-		ExpListChild ch4_4 = new ExpListChild();
-		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
-		child_list.add(ch4_4);
 
 		gru4.setItems(child_list);
 
 		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
-		ExpListGroups gru5 = new ExpListGroups();
-		gru5.setName(getString(R.string.List_Uebersicht));
 		
-		gru5.setItems(child_list);
+				child_list_2 = new ArrayList<ExpListChild>();
+				ExpListGroups gru5 = new ExpListGroups();
+				gru5.setName(getString(R.string.List_Uebersicht));
 
-		// listing all groups
-		group_list.add(gru1);
-		group_list.add(gru2);
-		group_list.add(gru3);
-		group_list.add(gru4);
-		group_list.add(gru5);
 
-		return group_list;
+				ExpListChild ch5_1 = new ExpListChild();
+				ch5_1.setName(getString(R.string.List_Kuchen));
+				child_list_2.add(ch5_1);
+
+				ExpListChild ch5_2 = new ExpListChild();
+				ch5_2.setName(getString(R.string.List_Gesamt));
+				child_list_2.add(ch5_2);
+				
+				
+				
+				gru5.setItems(child_list_2);
+
+				// listing all groups
+				group_list.add(gru1);
+				group_list.add(gru2);
+				group_list.add(gru3);
+				group_list.add(gru4);
+				group_list.add(gru5);
+
+				return group_list;
+
 
 	}
 
@@ -505,14 +527,6 @@ public class SettingsNotificationsActivity extends Activity {
 		/*
 		 * HIER K�NNTE IHR CODE STEHEN
 		 */
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings__notification_, menu);
-		return true;
 	}
 
 

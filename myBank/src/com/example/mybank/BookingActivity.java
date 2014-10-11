@@ -17,9 +17,8 @@ import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
 import com.example.mybank.items.ProfileItem;
-import com.example.mybank.settings.SettingsBankingActivity;
+import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-import com.example.mybank.settings.SettingsProfileActivity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -57,17 +56,14 @@ public class BookingActivity extends Activity {
 	TextView TEXTVIEW_AccountBalance;
 	TextView TEXTVIEW_AccountBalance_Content;
 	TextView TEXTVIEW_Outlay;
-	TextView TEXTVIEW_Goal;
 	TextView TEXTVIEW_Outlay_Content;
+	TextView TEXTVIEW_Goal;
 	TextView TEXTVIEW_Goal_Content;
-	TextView TEXTVIEW_Add_Income;
-	TextView TEXTVIEW_Add_Expense;
-	TextView TEXTVIEW_Add_Scheduled_booking;
-	TextView TEXT_Add_Goal;
-	TextView Button_Add_Income;
-	TextView Button_Add_Expense;
-	TextView Button_Add_Sheduled_booking;
-	TextView Button_Add_Goal;
+
+	Button Button_Add_Income;
+	Button Button_Add_Expense;
+	Button Button_Add_Scheduled_Booking;
+	Button Button_Add_Goal;
 	
 	
 	
@@ -141,7 +137,7 @@ public class BookingActivity extends Activity {
 			alertDialogBuilder
 					.setCancelable(false)
 					.setTitle(R.string.profile_notification_prompt_title)
-					.setPositiveButton("Jetzt AusfŸllen", new DialogInterface.OnClickListener() {
+					.setPositiveButton("Jetzt Ausfï¿½llen", new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -171,7 +167,7 @@ public class BookingActivity extends Activity {
 		//---------------------------------------------------------------------------------------------------  					
 		// Test: OnClickListener on INCOME-textview & open prompt for user data input (store data in DB)
 		    
-		TEXTVIEW_Add_Income.setOnClickListener(new OnClickListener(){
+		Button_Add_Income.setOnClickListener(new OnClickListener(){
 
 		@Override
 		public void onClick(View arg0) {
@@ -274,7 +270,7 @@ public class BookingActivity extends Activity {
 	//-----------------------------------------------------------------------------------------------------
 		//Test: OnClickListener on EXPENSE-textview & open prompt (store data in DB)
 		
-		TEXTVIEW_Add_Expense.setOnClickListener(new OnClickListener(){
+		Button_Add_Expense.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
@@ -376,7 +372,7 @@ public class BookingActivity extends Activity {
 		//--------------------------------------------------------------------------------------------------- 
 		// Outlay OnClickListener
 		
-		TEXTVIEW_Add_Scheduled_booking.setOnClickListener(new OnClickListener(){
+		Button_Add_Scheduled_Booking.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
@@ -461,7 +457,7 @@ public class BookingActivity extends Activity {
 			}
 		});
 		
-			TEXT_Add_Goal.setOnClickListener(new OnClickListener() {
+			Button_Add_Goal.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -557,7 +553,7 @@ public class BookingActivity extends Activity {
 
             public void onDrawerOpened(View drawerView) 
             {
-                getActionBar().setTitle("MenÃ¼");
+                getActionBar().setTitle(R.string.String_drawer_title);
             }
         };
         drawerLayout.setDrawerListener(drawerToggle);
@@ -667,8 +663,8 @@ public class BookingActivity extends Activity {
 										 * nav drawer image to replace 'Up'
 										 * caret
 										 */
-		R.string.action_settings, /* "open drawer" description for accessibility */
-		R.string.AddButton_String_Plus /*
+		R.string.String_drawer_open, /* "open drawer" description for accessibility */
+		R.string.String_drawer_closed /*
 										 * "close drawer" description for
 										 * accessibility
 										 */
@@ -749,8 +745,7 @@ public class BookingActivity extends Activity {
 	
 		final int HISTORY = 1;
 		final int OUTLAY = 2;
-		final int OVERVIEW = 4;
-
+	
 
 		
 		  switch (groupPosition) {
@@ -772,12 +767,7 @@ public class BookingActivity extends Activity {
 			  finish();
 			  break; 
 		 
-		  case OVERVIEW:
-			  Intent k = new Intent(BookingActivity.this, ChartActivity.class);
-			  startActivity(k);
-			  finish();
-			  break;
-		 
+		
 		  }
 	}
 
@@ -785,12 +775,17 @@ public class BookingActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Uebersicht = 4;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
+
+		
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
+
 	
 
 		switch (groupPosition) {
@@ -805,18 +800,33 @@ public class BookingActivity extends Activity {
 
 			case PROFIL:
 				Intent j = new Intent(BookingActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(BookingActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-	
-
 			}
+			break;
+			
+		
+			
+		case Uebersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(BookingActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(BookingActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			
+			}
+			
 		}
 	}
 
@@ -824,6 +834,9 @@ public class BookingActivity extends Activity {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
+
+		
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -860,22 +873,26 @@ public class BookingActivity extends Activity {
 		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
 		child_list.add(ch4_2);
 
-		ExpListChild ch4_3 = new ExpListChild();
-		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
-		child_list.add(ch4_3);
-
-		ExpListChild ch4_4 = new ExpListChild();
-		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
-		child_list.add(ch4_4);
-
 		gru4.setItems(child_list);
 
 		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
+		
+		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+
+
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName(getString(R.string.List_Kuchen));
+		child_list_2.add(ch5_1);
+
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName(getString(R.string.List_Gesamt));
+		child_list_2.add(ch5_2);
 		
-		gru5.setItems(child_list);
+		
+		
+		gru5.setItems(child_list_2);
 
 		// listing all groups
 		group_list.add(gru1);
@@ -905,41 +922,27 @@ public class BookingActivity extends Activity {
 
 	private void DeclarationOfAllTextViews() {
 
-		TEXTVIEW_AccountBalance = (TextView) findViewById(R.id.TEXTVIEW_Kontostand);
+		TEXTVIEW_AccountBalance = (TextView) findViewById(R.id.TEXTVIEW_KONTOSTAND);
 	
 		TEXTVIEW_AccountBalance_Content = (TextView) findViewById(R.id.TEXTVIEW_KONTOSTAND_CONTENT);
 		
 		TEXTVIEW_Outlay = (TextView) findViewById(R.id.TEXTVIEW_GEPLANTE_BUCHUNG);
-		TEXTVIEW_Outlay.setText(R.string.String_TextView_Scheduled_Booking);
 		
-		TEXTVIEW_Outlay_Content = (TextView) findViewById(R.id.TEXTVIEW_ZIEL_CONTENT);
-		
+		TEXTVIEW_Outlay_Content = (TextView) findViewById(R.id.TEXTVIEW_AUSSTEHEND_CONTENT);
 		
 		TEXTVIEW_Goal = (TextView) findViewById(R.id.TEXTVIEW_ZIEL);
-		TEXTVIEW_Goal.setText(R.string.String_TextView_Goal);
 		
-		TEXTVIEW_Goal_Content = (TextView) findViewById(R.id.TEXTVIEW_AUSSTEHEND_CONTENT);
+		TEXTVIEW_Goal_Content = (TextView) findViewById(R.id.TEXTVIEW_ZIEL_CONTENT);
 		
-		TEXTVIEW_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_INCOME);
-		TEXTVIEW_Add_Income.setText(R.string.String_Button_Add_Input);
+		Button_Add_Income = (Button) findViewById(R.id.Button_Add_Income);
 
-		TEXTVIEW_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_EXPENSE);
-		TEXTVIEW_Add_Expense.setText(R.string.String_Button_Add_Expense);
+		Button_Add_Expense = (Button) findViewById(R.id.Button_Add_Expense);
 
-		TEXTVIEW_Add_Scheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_PLANE_BUCHUNG);
-		TEXTVIEW_Add_Scheduled_booking.setText(R.string.String_Button_Add_Standing_Order);
+		Button_Add_Scheduled_Booking = (Button) findViewById(R.id.Button_Add_Order);
 
-		TEXT_Add_Goal = (TextView) findViewById(R.id.TEXTVIEW_ADD_SETZE_ZIEL);
+		Button_Add_Goal = (Button) findViewById(R.id.Button_Add_Goal);
 		
-		//-------------------------------- + Zeichen ----------------------------------------------------
-		
-		Button_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_1);
 
-		Button_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_2);
-
-		Button_Add_Sheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_3);
-
-		Button_Add_Goal = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_4);
 		
 	}
 	
@@ -1004,12 +1007,6 @@ public class BookingActivity extends Activity {
 	
 	
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.booking, menu);
-		return true;
-	}
 
 }

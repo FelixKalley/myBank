@@ -9,9 +9,7 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.adapters.MyBankListAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.BookingItem;
-import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-import com.example.mybank.settings.SettingsProfileActivity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -96,7 +94,7 @@ public class HistoryActivity extends Activity {
 
 		            public void onDrawerOpened(View drawerView) 
 		            {
-		                getActionBar().setTitle("Menü");
+		                getActionBar().setTitle(R.string.String_drawer_title);
 		            }
 		        };
 		        drawerLayout.setDrawerListener(drawerToggle);
@@ -201,8 +199,8 @@ public class HistoryActivity extends Activity {
 										 * nav drawer image to replace 'Up'
 										 * caret
 										 */
-		R.string.action_settings, /* "open drawer" description for accessibility */
-		R.string.AddButton_String_Plus /*
+		R.string.String_drawer_open, /* "open drawer" description for accessibility */
+		R.string.String_drawer_closed /*
 										 * "close drawer" description for
 										 * accessibility
 										 */
@@ -264,7 +262,7 @@ public class HistoryActivity extends Activity {
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
 		final int OUTLAY = 2;
-		final int OVERVIEW = 4;
+	
 
 
 		
@@ -283,12 +281,7 @@ public class HistoryActivity extends Activity {
 			  finish();
 			  break; 
 		 
-		  case OVERVIEW:
-			  Intent k = new Intent(HistoryActivity.this, ChartActivity.class);
-			  startActivity(k);
-			  finish();
-			  break;
-		 
+		
 		  }
 	}
 
@@ -296,12 +289,17 @@ public class HistoryActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Uebersicht = 4;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
+
+		
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
+
 	
 
 		switch (groupPosition) {
@@ -316,24 +314,40 @@ public class HistoryActivity extends Activity {
 
 			case PROFIL:
 				Intent j = new Intent(HistoryActivity.this,
-						SettingsProfileActivity.class);
+						ProfileDataActivity.class);
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(HistoryActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-			
+
+
 			}
+			
+			break;
+			
+		case Uebersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(HistoryActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(HistoryActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			}
+			
 		}
 	}
-
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -370,22 +384,26 @@ public class HistoryActivity extends Activity {
 		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
 		child_list.add(ch4_2);
 
-		ExpListChild ch4_3 = new ExpListChild();
-		ch4_3.setName(getString(R.string.List_Einstellung_Banking));
-		child_list.add(ch4_3);
-
-		ExpListChild ch4_4 = new ExpListChild();
-		ch4_4.setName(getString(R.string.List_Einstellung_Verwaltung));
-		child_list.add(ch4_4);
-
 		gru4.setItems(child_list);
 
-		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
+	// Setting Group 5
+		
+		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+
+
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName(getString(R.string.List_Kuchen));
+		child_list_2.add(ch5_1);
+
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName(getString(R.string.List_Gesamt));
+		child_list_2.add(ch5_2);
 		
-		gru5.setItems(child_list);
+		
+		
+		gru5.setItems(child_list_2);
 
 		// listing all groups
 		group_list.add(gru1);

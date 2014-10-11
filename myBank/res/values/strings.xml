@@ -8,17 +8,18 @@
     <!-- ALL STRINGS FOR DRAWER NAVIGATION -->
     <string name="String_drawer_open">Open Navigation Drawer</string>
     <string name="String_drawer_closed">Close Navigation Drawer</string>
+    <string name="String_drawer_title">Menü</string>
 
     <!-- ALL STRINGS FOR EXPANDABLE LIST VIEW -->
     <string name="List_Buchung">Buchungen</string>
     <string name="List_Verlauf">Verlauf</string>
     <string name="List_Geplant">Geplant</string>
     <string name="List_Einstellungen">Einstellungen</string>
-    <string name="List_Einstellung_Verwaltung">Allgemein</string>
     <string name="List_Einstellung_Profil">Profil</string>
     <string name="List_Einstellung_Bencharichtigungen">Benachrichtigungen</string>
-    <string name="List_Einstellung_Banking">Buchung</string>
     <string name="List_Uebersicht">Übersicht</string>
+    <string name="List_Kuchen">Kuchen</string>
+    <string name="List_Gesamt">Gesamt</string>
 
     <!-- ALL STRINGS FOR ACTIVITY NAMES -->
     <string name="title_activity_booking">Buchung</string>
@@ -51,13 +52,14 @@
     <string name="profile_data_app_installed_text">App installiert am:</string>
    
     <!-- ALL STRINGS FOR BOOKING-SCREEN -->
-    <string name="String_TextView_Total_Balance">Kontostand</string>
-    <string name="String_TextView_Scheduled_Booking">ausstehende Buchungen</string>
-    <string name="String_TextView_Goal">Ziel</string>
-    <string name="AddButton_String_Plus">+</string>
-    <string name="String_Button_Add_Input">Einzahlung</string>
-    <string name="String_Button_Add_Expense">Abbuchung</string>
-    <string name="String_Button_Add_Standing_Order">Plane Buchung</string>
+    <string name="String_TextView_Balance">Kontostand:</string>
+    <string name="String_TextView_Scheduled_Booking">Vorgemerkt:</string>
+    <string name="String_TextView_Goal">Sparziel:</string>
+    <string name="String_TextView_Contents">0</string>
+    <string name="String_Button_Add_Input">Einzahlung tätigen</string>
+    <string name="String_Button_Add_Expense">Auszahlung tätigen</string>
+    <string name="String_Button_Add_Standing_Order">Auszahlung vormerken</string>
+    <string name="String_Button_Add_Goal">Ziel festlegen</string>
 
     <!-- ALL STRINGS FOR INCOME BOOKING PROMPT -->
     <string name="income_booking_prompt_title">Einbuchen</string>

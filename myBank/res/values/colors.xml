@@ -3,11 +3,15 @@
     
     <!-- Colors of all Elements needed! -->
     
-    <color name="COLOR_Background">#31b6e5</color>
+    <color name="COLOR_Background">#33b5e5</color>
     <color name="COLOR_Font_in_App">#3c3f44</color>
     <color name="COLOR_Fonts_in_white">#ffffff</color>
     <color name="COLOR_Buttons">#3b3e43</color>
     <color name="COLOR_Fonts_of_Buttons">#f2f2f2</color>
     <color name="COLOR_WHITE">#ffffff</color>
-    
+    <color name="COLOR_BLACK">#000000</color>
+    <color name="COLOR_DARK">#222222</color>
+    <color name="COLOR_LIGHT_DARK">#3A3A3C</color>
+    <color name="COLOR_LIGHTER_DARK">#58585A</color>
+    <color name="COLOR_LIGHT_LINE">#949496</color>
 </resources>

@@ -17,9 +17,6 @@ public class MainActivity extends Activity{
 	
 	TextView TEXTVIEW_AppName;
 	TextView TEXTVIEW_AppSlogan;
-	TextView TEXTVIEW_Autor1;
-	TextView TEXTVIEW_Autor2;
-	TextView TEXTVIEW_Autor3;
 	ProgressBar progressBar;
 	
 	
@@ -48,20 +45,13 @@ public class MainActivity extends Activity{
 			@Override
 			public void run() {
 				// check if app is started for the very first time.
-				boolean isFirstTime = FirstStartPreferences.isFirst(MainActivity.this);
-				if (isFirstTime==true) {
-					// start ProfileDataActivitiy so user can fill out his profile
-					Intent addData = new Intent (MainActivity.this, ProfileDataActivity.class);
-					startActivity(addData);
-					finish();
-				}else{
-					// start booking activity
+				
 				Intent intent = new Intent(MainActivity.this,
 						BookingActivity.class);
 				startActivity(intent);
 				finishscreen();
 				}
-			}
+			
 		};
 		Timer t = new Timer();
 		t.schedule(task, 2000);
@@ -91,13 +81,7 @@ public class MainActivity extends Activity{
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

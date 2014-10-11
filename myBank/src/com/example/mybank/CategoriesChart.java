@@ -19,7 +19,7 @@ public class CategoriesChart {
 	private GraphicalView mChartView3;
 	static int count=9;
 	 
-	int[] Mycolors = new int[] { Color.GRAY, Color.parseColor("#CC66CC"), Color.RED, Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.DKGRAY };
+	int[] Mycolors = new int[] { Color.GRAY, Color.WHITE, Color.RED, Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.DKGRAY };
 	 
 	 public CategoriesChart(int cat1, int cat2, int cat3, int cat4, int cat5, int cat6, int cat7, int cat8, int cat9) {
 		this.category1 = cat1;
