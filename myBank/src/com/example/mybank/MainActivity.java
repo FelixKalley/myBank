@@ -45,20 +45,13 @@ public class MainActivity extends Activity{
 			@Override
 			public void run() {
 				// check if app is started for the very first time.
-				boolean isFirstTime = FirstStartPreferences.isFirst(MainActivity.this);
-				if (isFirstTime==true) {
-					// start ProfileDataActivitiy so user can fill out his profile
-					Intent addData = new Intent (MainActivity.this, ProfileDataActivity.class);
-					startActivity(addData);
-					finish();
-				}else{
-					// start booking activity
+				
 				Intent intent = new Intent(MainActivity.this,
 						BookingActivity.class);
 				startActivity(intent);
 				finishscreen();
 				}
-			}
+			
 		};
 		Timer t = new Timer();
 		t.schedule(task, 2000);
