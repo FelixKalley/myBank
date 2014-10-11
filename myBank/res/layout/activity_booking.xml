@@ -4,108 +4,31 @@
     android:layout_height="match_parent" >
     
     
-    <RelativeLayout
+   <RelativeLayout
          android:id="@+id/mainContent"
-           style="@style/BackgroundColor"
+         style="@style/BackgroundColor"
          android:layout_width="match_parent"
    		 android:layout_height="match_parent"
-   		  >
-   		 
-          
-            <TextView
-            android:id="@+id/TEXTVIEW_ADD_EXPENSE"
+   		 android:padding="10dp" >
+
+   	   <RelativeLayout
+         android:id="@+id/textContent"
+         style="@style/BackgroundColor"
+         android:layout_width="wrap_content"
+   		 android:layout_height="wrap_content"
+   		 android:layout_alignParentTop="true">
+
+   		 	
+   		<TextView
+            android:id="@+id/TEXTVIEW_KONTOSTAND"
             style="@style/TextViewStyleBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TEXTVIEW_ADD_INCOME"
-            android:layout_alignTop="@+id/TEXTVIEW_ADD_INCOME"
-            android:layout_marginTop="49dp"
-            android:text="Ausgabe" />
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="20dp"
+            android:text="@string/String_TextView_Balance"/>
 
-        <TextView
-            android:id="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-            style="@style/TextViewStyleBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TEXTVIEW_ADD_EXPENSE"
-            android:layout_below="@+id/TEXTVIEW_ADD_EXPENSE"
-            android:layout_marginTop="28dp"
-            android:text="Plane Buchung" />
-
-        <TextView
-            android:id="@+id/TEXTVIEW_ADD_SETZE_ZIEL"
-            style="@style/TextViewStyleBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-            android:layout_below="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-            android:layout_marginTop="28dp"
-            android:text="Ziel setzen" />
-        
-        <TextView
-            android:id="@+id/TEXTVIEW_ADD_BUTTON_1"
-            style="@style/AddButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_INCOME"
-            android:layout_alignBottom="@+id/TEXTVIEW_ADD_INCOME"
-            android:layout_alignLeft="@+id/TEXTVIEW_ZIEL"
-            android:text="+"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/TEXTVIEW_ADD_BUTTON_2"
-            style="@style/AddButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_EXPENSE"
-            android:layout_alignBottom="@+id/TEXTVIEW_ADD_EXPENSE"
-            android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_1"
-            android:text="+"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/TEXTVIEW_ADD_BUTTON_3"
-            style="@style/AddButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-            android:layout_alignBottom="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-            android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_2"
-            android:text="+"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        
-         <TextView
-            android:id="@+id/TEXTVIEW_ADD_BUTTON_4"
-            style="@style/AddButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TEXTVIEW_ADD_SETZE_ZIEL"
-            android:layout_alignBottom="@+id/TEXTVIEW_ADD_SETZE_ZIEL"
-            android:layout_alignLeft="@+id/TEXTVIEW_ADD_BUTTON_3"
-            android:text="+"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/TEXTVIEW_ADD_INCOME"
-            style="@style/TextViewStyleBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="153dp"
-            android:layout_toRightOf="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-            android:text="Einnahme" />
-
-        <TextView
-            android:id="@+id/TEXTVIEW_Kontostand"
-            style="@style/TextViewStyleBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="37dp"
-            android:layout_marginTop="112dp"
-            android:text="Kontostand" />
 
         <TextView
             android:id="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
@@ -113,49 +36,105 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/TEXTVIEW_Kontostand"
-            android:layout_marginLeft="37dp"
-            android:text="Geplante Ausgaben" />
-
-        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/TEXTVIEW_KONTOSTAND"
+            android:text="@string/String_TextView_Scheduled_Booking" />
+        
+         <TextView
             android:id="@+id/TEXTVIEW_ZIEL"
             style="@style/TextViewStyleBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
             android:layout_below="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-            android:layout_marginLeft="37dp"
-            android:text="Ziel" />
-
-        <TextView
+            android:text="@string/String_TextView_Goal" />
+                
+         <TextView
             android:id="@+id/TEXTVIEW_KONTOSTAND_CONTENT"
             style="@style/TextViewStyleWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
-            android:layout_alignRight="@+id/TEXTVIEW_ADD_PLANE_BUCHUNG"
-            android:text="+3050,55" />
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignBaseline="@+id/TEXTVIEW_KONTOSTAND"
+            android:text="@string/String_TextView_Contents" />
 
         <TextView
             android:id="@+id/TEXTVIEW_AUSSTEHEND_CONTENT"
             style="@style/TextViewStyleWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TEXTVIEW_ZIEL"
-            android:layout_alignBottom="@+id/TEXTVIEW_ZIEL"
-            android:layout_alignLeft="@+id/TEXTVIEW_ZIEL_CONTENT"
-            android:text="-404,55" />
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+      		android:layout_alignBaseline="@+id/TEXTVIEW_GEPLANTE_BUCHUNG"
+            android:text="@string/String_TextView_Contents" />
 
         <TextView
             android:id="@+id/TEXTVIEW_ZIEL_CONTENT"
             style="@style/TextViewStyleWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/TEXTVIEW_ZIEL"
-            android:layout_alignRight="@+id/TEXTVIEW_KONTOSTAND_CONTENT"
-            android:text="+750,00" />
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_alignBaseline="@+id/TEXTVIEW_ZIEL"
+            android:text="@string/String_TextView_Contents" />
    		 
- 
+        </RelativeLayout>
+        
+   	   <RelativeLayout
+         android:id="@+id/buttonContent"
+         style="@style/BackgroundColor"
+         android:layout_width="wrap_content"
+   		 android:layout_height="wrap_content"
+   		 android:layout_alignParentBottom="true">
+
+		<Button 
+		    android:id="@+id/Button_Add_Income"
+		    style="@style/Button_General"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="@string/String_Button_Add_Input"
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"/>
+
+        
+        <Button 
+		    android:id="@+id/Button_Add_Expense"
+		    style="@style/Button_General"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Button_Add_Income"
+		    android:text="@string/String_Button_Add_Expense"
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"/>
+
+
+        
+        <Button 
+		    android:id="@+id/Button_Add_Order"
+		    style="@style/Button_General"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Button_Add_Expense"
+		    android:text="@string/String_Button_Add_Standing_Order"
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"/>
+
+        
+        <Button 
+		    android:id="@+id/Button_Add_Goal"
+		    style="@style/Button_General"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Button_Add_Order"
+		    android:text="@string/String_Button_Add_Goal"
+		    android:layout_marginLeft="20dp"
+		    android:layout_marginRight="20dp"
+		    android:layout_marginBottom="20dp"/>
+        
+  		</RelativeLayout>
         
         </RelativeLayout>
     

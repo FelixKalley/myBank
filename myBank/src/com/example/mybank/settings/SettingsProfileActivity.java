@@ -141,7 +141,7 @@ public class SettingsProfileActivity extends Activity {
 
         public void onDrawerOpened(View drawerView) 
         {
-            getActionBar().setTitle("Menü");
+            getActionBar().setTitle(R.string.String_drawer_title);
         }
     };
     drawerLayout.setDrawerListener(drawerToggle);
@@ -195,8 +195,8 @@ private void setUpDrawerToggle(){
 	            this,                             /* host Activity */
 	            mDrawerLayout,                    /* DrawerLayout object */
 	            R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
-	            R.string.action_settings,  /* "open drawer" description for accessibility */
-	            R.string.AddButton_String_Plus  /* "close drawer" description for accessibility */
+	            R.string.String_drawer_open,  /* "open drawer" description for accessibility */
+	            R.string.String_drawer_closed  /* "close drawer" description for accessibility */
 	    ) {
 	        @Override
 	        public void onDrawerClosed(View drawerView) {

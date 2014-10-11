@@ -11,12 +11,7 @@
    		 android:layout_height="match_parent"
          android:orientation="vertical">
             
-        	<Button 
-              android:id="@+id/link_button2"
-              android:layout_width="wrap_content"
-    		  android:layout_height="wrap_content"
-    		  android:text="zur BookingHistory"
-              />
+
 		<TextView 
 		    android:id="@+id/infotext_above_outlay_listview"
 		    android:layout_width="match_parent"

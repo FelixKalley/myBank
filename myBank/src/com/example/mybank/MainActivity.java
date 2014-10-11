@@ -17,9 +17,6 @@ public class MainActivity extends Activity{
 	
 	TextView TEXTVIEW_AppName;
 	TextView TEXTVIEW_AppSlogan;
-	TextView TEXTVIEW_Autor1;
-	TextView TEXTVIEW_Autor2;
-	TextView TEXTVIEW_Autor3;
 	ProgressBar progressBar;
 	
 	

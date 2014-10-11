@@ -70,20 +70,6 @@ public class OutlayActivity extends Activity {
 		initUI();
 		initTasklist();
 		SeeIfListItemIsClicked();
-		
-		Button button = (Button) findViewById(R.id.link_button2);
-		button.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				Log.d("Button", "Button Click");
-				Intent intent = new Intent(OutlayActivity.this, BookingActivity.class);
-				startActivity(intent);
-				
-				
-			}
-			
-		}); 
 	}
 	
 	
@@ -145,7 +131,7 @@ public class OutlayActivity extends Activity {
 
           public void onDrawerOpened(View drawerView) 
           {
-              getActionBar().setTitle("Menü");
+              getActionBar().setTitle(R.string.String_drawer_title);
           }
       };
       drawerLayout.setDrawerListener(drawerToggle);
@@ -282,8 +268,8 @@ public class OutlayActivity extends Activity {
 										 * nav drawer image to replace 'Up'
 										 * caret
 										 */
-		R.string.action_settings, /* "open drawer" description for accessibility */
-		R.string.AddButton_String_Plus /*
+		R.string.String_drawer_open, /* "open drawer" description for accessibility */
+		R.string.String_drawer_closed /*
 										 * "close drawer" description for
 										 * accessibility
 										 */

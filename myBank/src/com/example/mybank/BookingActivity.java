@@ -57,17 +57,14 @@ public class BookingActivity extends Activity {
 	TextView TEXTVIEW_AccountBalance;
 	TextView TEXTVIEW_AccountBalance_Content;
 	TextView TEXTVIEW_Outlay;
-	TextView TEXTVIEW_Goal;
 	TextView TEXTVIEW_Outlay_Content;
+	TextView TEXTVIEW_Goal;
 	TextView TEXTVIEW_Goal_Content;
-	TextView TEXTVIEW_Add_Income;
-	TextView TEXTVIEW_Add_Expense;
-	TextView TEXTVIEW_Add_Scheduled_booking;
-	TextView TEXT_Add_Goal;
-	TextView Button_Add_Income;
-	TextView Button_Add_Expense;
-	TextView Button_Add_Sheduled_booking;
-	TextView Button_Add_Goal;
+
+	Button Button_Add_Income;
+	Button Button_Add_Expense;
+	Button Button_Add_Scheduled_Booking;
+	Button Button_Add_Goal;
 	
 	
 	
@@ -174,7 +171,7 @@ public class BookingActivity extends Activity {
 		//---------------------------------------------------------------------------------------------------  					
 		// Test: OnClickListener on INCOME-textview & open prompt for user data input (store data in DB)
 		    
-		TEXTVIEW_Add_Income.setOnClickListener(new OnClickListener(){
+		Button_Add_Income.setOnClickListener(new OnClickListener(){
 
 		@Override
 		public void onClick(View arg0) {
@@ -277,7 +274,7 @@ public class BookingActivity extends Activity {
 	//-----------------------------------------------------------------------------------------------------
 		//Test: OnClickListener on EXPENSE-textview & open prompt (store data in DB)
 		
-		TEXTVIEW_Add_Expense.setOnClickListener(new OnClickListener(){
+		Button_Add_Expense.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
@@ -379,7 +376,7 @@ public class BookingActivity extends Activity {
 		//--------------------------------------------------------------------------------------------------- 
 		// Outlay OnClickListener
 		
-		TEXTVIEW_Add_Scheduled_booking.setOnClickListener(new OnClickListener(){
+		Button_Add_Scheduled_Booking.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
@@ -464,7 +461,7 @@ public class BookingActivity extends Activity {
 			}
 		});
 		
-			TEXT_Add_Goal.setOnClickListener(new OnClickListener() {
+			Button_Add_Goal.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -560,7 +557,7 @@ public class BookingActivity extends Activity {
 
             public void onDrawerOpened(View drawerView) 
             {
-                getActionBar().setTitle("Menü");
+                getActionBar().setTitle(R.string.String_drawer_title);
             }
         };
         drawerLayout.setDrawerListener(drawerToggle);
@@ -670,8 +667,8 @@ public class BookingActivity extends Activity {
 										 * nav drawer image to replace 'Up'
 										 * caret
 										 */
-		R.string.action_settings, /* "open drawer" description for accessibility */
-		R.string.AddButton_String_Plus /*
+		R.string.String_drawer_open, /* "open drawer" description for accessibility */
+		R.string.String_drawer_closed /*
 										 * "close drawer" description for
 										 * accessibility
 										 */
@@ -908,41 +905,27 @@ public class BookingActivity extends Activity {
 
 	private void DeclarationOfAllTextViews() {
 
-		TEXTVIEW_AccountBalance = (TextView) findViewById(R.id.TEXTVIEW_Kontostand);
+		TEXTVIEW_AccountBalance = (TextView) findViewById(R.id.TEXTVIEW_KONTOSTAND);
 	
 		TEXTVIEW_AccountBalance_Content = (TextView) findViewById(R.id.TEXTVIEW_KONTOSTAND_CONTENT);
 		
 		TEXTVIEW_Outlay = (TextView) findViewById(R.id.TEXTVIEW_GEPLANTE_BUCHUNG);
-		TEXTVIEW_Outlay.setText(R.string.String_TextView_Scheduled_Booking);
 		
-		TEXTVIEW_Outlay_Content = (TextView) findViewById(R.id.TEXTVIEW_ZIEL_CONTENT);
-		
+		TEXTVIEW_Outlay_Content = (TextView) findViewById(R.id.TEXTVIEW_AUSSTEHEND_CONTENT);
 		
 		TEXTVIEW_Goal = (TextView) findViewById(R.id.TEXTVIEW_ZIEL);
-		TEXTVIEW_Goal.setText(R.string.String_TextView_Goal);
 		
-		TEXTVIEW_Goal_Content = (TextView) findViewById(R.id.TEXTVIEW_AUSSTEHEND_CONTENT);
+		TEXTVIEW_Goal_Content = (TextView) findViewById(R.id.TEXTVIEW_ZIEL_CONTENT);
 		
-		TEXTVIEW_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_INCOME);
-		TEXTVIEW_Add_Income.setText(R.string.String_Button_Add_Input);
+		Button_Add_Income = (Button) findViewById(R.id.Button_Add_Income);
 
-		TEXTVIEW_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_EXPENSE);
-		TEXTVIEW_Add_Expense.setText(R.string.String_Button_Add_Expense);
+		Button_Add_Expense = (Button) findViewById(R.id.Button_Add_Expense);
 
-		TEXTVIEW_Add_Scheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_PLANE_BUCHUNG);
-		TEXTVIEW_Add_Scheduled_booking.setText(R.string.String_Button_Add_Standing_Order);
+		Button_Add_Scheduled_Booking = (Button) findViewById(R.id.Button_Add_Order);
 
-		TEXT_Add_Goal = (TextView) findViewById(R.id.TEXTVIEW_ADD_SETZE_ZIEL);
+		Button_Add_Goal = (Button) findViewById(R.id.Button_Add_Goal);
 		
-		//-------------------------------- + Zeichen ----------------------------------------------------
-		
-		Button_Add_Income = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_1);
 
-		Button_Add_Expense = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_2);
-
-		Button_Add_Sheduled_booking = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_3);
-
-		Button_Add_Goal = (TextView) findViewById(R.id.TEXTVIEW_ADD_BUTTON_4);
 		
 	}
 	

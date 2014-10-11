@@ -104,7 +104,7 @@ public class SettingsBankingActivity extends Activity {
 
       public void onDrawerOpened(View drawerView) 
       {
-          getActionBar().setTitle("Menü");
+          getActionBar().setTitle(R.string.String_drawer_title);
       }
   };
   drawerLayout.setDrawerListener(drawerToggle);
@@ -159,8 +159,8 @@ public void onConfigurationChanged(Configuration newConfig) {
 	            this,                             /* host Activity */
 	            mDrawerLayout,                    /* DrawerLayout object */
 	            R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
-	            R.string.action_settings,  /* "open drawer" description for accessibility */
-	            R.string.AddButton_String_Plus  /* "close drawer" description for accessibility */
+	            R.string.String_drawer_open,  /* "open drawer" description for accessibility */
+	            R.string.String_drawer_closed  /* "close drawer" description for accessibility */
 	    ) {
 	        @Override
 	        public void onDrawerClosed(View drawerView) {
@@ -354,10 +354,10 @@ public void onConfigurationChanged(Configuration newConfig) {
 	
 	private void DeclareAllButtons() {
 		AddButton_Goal = (TextView) findViewById(R.id.AddButton_Banking_Limit);
-		AddButton_Goal.setText(R.string.AddButton_String_Plus);
+	
 		
 		AddButton_Limit = (TextView) findViewById(R.id.AddButton_Change_Goal);
-		AddButton_Limit.setText(R.string.AddButton_String_Plus);
+
 		
 		Button_Default_Settings = (Button) findViewById(R.id.Button_Settings_banking_default_settings);
 		Button_Default_Settings.setText(R.string.Button_Default_Settings);

@@ -36,46 +36,42 @@
         <item name="android:alpha">0.8</item>
       
     </style>
-  
-  
-  
-    
-    
-   
     
     <!-- Sets the Style of all "black" fonts to the specific style beneath -->
   
     <style name="TextViewStyleBlack" parent="@android:style/TextAppearance.Small">
         <item name="android:textColor">@color/COLOR_Font_in_App</item>
-        <item name="android:typeface">monospace</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">30sp</item>
+
     </style>
 
       <!-- Sets the Style of all "white" fonts to the specific style beneath -->
     
- <style name="TextViewStyleWhite" parent="@android:style/TextAppearance.Small">
+	<style name="TextViewStyleWhite" parent="@android:style/TextAppearance.Small">
         <item name="android:textColor">@color/COLOR_Fonts_in_white</item>
-        <item name="android:typeface">monospace</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
-    
-   <!-- Sets the Style of all "ADD_TEXTVIEWS"  to the specific style beneath -->
    
-    <style name="AddButtonStyle" parent="@android:style/TextAppearance.Large">
-        <item name="android:textColor">@color/COLOR_Buttons</item>
-        <item name="android:typeface">monospace</item>
-    </style>
 
      <!-- Sets the Style of all "Buttons"  to the specific style beneath -->
      
      <style name="Button_General" parent="@android:style/TextAppearance">
         <item name="android:background">@color/COLOR_Buttons</item>
         <item name="android:textColor">@color/COLOR_WHITE</item>
-        <item name="android:typeface">monospace</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:layout_marginBottom">1dp</item>
-          <item name="android:layout_marginLeft">1dp</item>
-            <item name="android:layout_marginTop">1dp</item>
-              <item name="android:layout_marginRight">1dp</item>
-         
+        <item name="android:layout_marginLeft">1dp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginRight">1dp</item> 
+ 
      </style>
+     
+
+
     
     
 
