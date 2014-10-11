@@ -61,27 +61,42 @@ public class ProfileDataActivity extends Activity{
 	        
 	        }
 	        
+	private void initDB() {
+		db = new MyBankDatabase(this);
+		db.open();
+	}
+	
+	
 		
 	private void checkAppForFirstStart() {
 		if(db.getAllProfileItems().isEmpty()){
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.profil_pic_empty);
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-			byte[] byteArray = stream.toByteArray();
+			byte[] bArray = stream.toByteArray();
 			
 			
 			
-        	ProfileItem item = new ProfileItem("Bitte Ausfüllen", "Bitte Ausfüllen", 0, byteArray, getDateTime());
-        
-        	profileItem = item;
-        	bitMap = BitmapFactory.decodeByteArray(profileItem.getImageAsByteArray(), 0, profileItem.getImageAsByteArray().length);
-        	appInstalled = item.getDate();
+        	ProfileItem item = new ProfileItem("Bitte Ausfüllen", "Bitte Ausfüllen", 0, bArray, getDateTime());
+        	db.insertProfileItem(item);
+        	
 		}
 		
 	}
 	        
-	        
-	        
+	      
+	private void fetchProfileItem() {
+		if(!db.getAllProfileItems().isEmpty()){
+		profileItem = db.getAllProfileItems().get(0);
+		}
+	}
+	       
+	private void fetchProfileData() {
+		
+		allIncomes = String.format("%.2f", db.getAllIncomes());
+		allExpenses = String.format("%.2f", db.getAllExpenses());
+		allOutlays = String.format("%.2f", db.getTotalOutlays());
+	}
 	    
 
 	private void updateProfilePic() {
@@ -165,15 +180,15 @@ public class ProfileDataActivity extends Activity{
 		            	String lastName = editText_inputLastname.getText().toString();
 		            	
 		            	//create new ProfileItem
-		            	ProfileItem item = new ProfileItem (name, lastName, 1, byteArray, appInstalled);
+		            	ProfileItem item = new ProfileItem (name, lastName, 1, profileItem.getImageAsByteArray(), profileItem.getDate());
 		            	
 		            	//insert item into db
-		            	db.insertProfileItem(item);
+		            	db.updateProfileItem(item);
 		            	
 		            	
 		            	//startActivity(intent);
 		            	//finish();
-						
+						profileItem = item;
 						updateProfile();
 						
 						Toast.makeText(getApplicationContext(), "Sie haben Ihr Profil befüllt!", Toast.LENGTH_SHORT).show();
@@ -193,29 +208,7 @@ public class ProfileDataActivity extends Activity{
 	
         }
 	}
-
-
-
-	private void fetchProfileData() {
-		allIncomes = String.format("%.2f", db.getAllIncomes());
-		allExpenses = String.format("%.2f", db.getAllExpenses());
-		allOutlays = String.format("%.2f", db.getTotalOutlays());
-	}
-
 	
-	private void initDB() {
-		db = new MyBankDatabase(this);
-		db.open();
-	}
-
-
-	
-	
-	private void fetchProfileItem() {
-		if(!db.getAllProfileItems().isEmpty()){
-		profileItem = db.getAllProfileItems().get(0);
-		}
-	}
 
 
 	private void declareAllElements() {
@@ -242,12 +235,13 @@ public class ProfileDataActivity extends Activity{
 	
 	//update all views
 	private void updateProfile() {
-		fetchProfileItem();
+		
 		imageView.setImageBitmap(bitMap);
 		YourNameContent.setText(profileItem.getName());
 		YourLastNameContent.setText(profileItem.getLastName());
 		
-		appInstalledTV.setText(appInstalled);
+		appInstalledTV.setText(profileItem.getDate());
+		
 		allIncomesContentTV.setText("+" + allIncomes);
 		allExpensesContentTV.setText("+" + allExpenses);
 		allOutlaysContentTV.setText("+" + allOutlays);
