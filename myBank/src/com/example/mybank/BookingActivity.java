@@ -17,6 +17,7 @@ import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
 import com.example.mybank.items.ProfileItem;
+import com.example.mybank.items.SettingsItem;
 import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 
@@ -110,6 +111,10 @@ public class BookingActivity extends Activity {
 			db.insertGoalItem(item);
 		}
 		
+		if(db.getAllSettingsItems().isEmpty()){
+			SettingsItem item = new SettingsItem(0, 0);
+			db.insertSettingsItem(item);
+		}
 		
 		DeclareAllElements();
 		initBalance();
