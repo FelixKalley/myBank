@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
-import com.example.mybank.settings.SettingsBankingActivity;
+
 import com.example.mybank.settings.SettingsNotificationsActivity;
 
 import android.app.ActionBar;
@@ -252,12 +252,8 @@ public class ChartCategoriesActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(ChartCategoriesActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-				break;
+			
+			
 
 			}
 			

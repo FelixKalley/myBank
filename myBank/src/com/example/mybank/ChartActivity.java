@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
-import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 
 import android.app.ActionBar;
@@ -278,11 +277,13 @@ public class ChartActivity extends Activity {
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
+
 		final int BANKING = 2;
 		
 		final int KUCHEN = 0;
-		final int GESAMT = 1;
-	
+		
+
+
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -300,13 +301,7 @@ public class ChartActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(ChartActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-				break;
-	
+
 
 			}
 			
@@ -321,15 +316,9 @@ public class ChartActivity extends Activity {
 				finish();
 				break;
 
-			case GESAMT:
-				Intent j = new Intent(ChartActivity.this,
-						ChartCategoriesActivity.class);
-				startActivity(j);
-				finish();
-				break;
-			}
+		
 			
-		}
+			}}
 	}
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 

@@ -9,7 +9,6 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.adapters.MyBankListAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.BookingItem;
-import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 
 import android.app.ActionBar;
@@ -296,10 +295,11 @@ public class HistoryActivity extends Activity {
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
+
 		
 		final int KUCHEN = 0;
 		final int GESAMT = 1;
+
 	
 
 		switch (groupPosition) {
@@ -318,13 +318,7 @@ public class HistoryActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(HistoryActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-				break;
-	
+
 
 			}
 			

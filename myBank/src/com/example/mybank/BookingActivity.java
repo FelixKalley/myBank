@@ -18,7 +18,6 @@ import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
 import com.example.mybank.items.ProfileItem;
 import com.example.mybank.ProfileDataActivity;
-import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -781,10 +780,11 @@ public class BookingActivity extends Activity {
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
-		final int BANKING = 2;
+
 		
 		final int KUCHEN = 0;
 		final int GESAMT = 1;
+
 	
 
 		switch (groupPosition) {
@@ -803,14 +803,6 @@ public class BookingActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			case BANKING:
-				Intent k = new Intent(BookingActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
-				finish();
-				break;
-	
-
 			}
 			break;
 			
@@ -1022,12 +1014,6 @@ public class BookingActivity extends Activity {
 	
 	
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.booking, menu);
-		return true;
-	}
 
 }

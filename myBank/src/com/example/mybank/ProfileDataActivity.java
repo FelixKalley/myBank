@@ -10,7 +10,6 @@ import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.ProfileItem;
-import com.example.mybank.settings.SettingsBankingActivity;
 import com.example.mybank.settings.SettingsNotificationsActivity;
 
 import android.app.ActionBar;
@@ -408,12 +407,15 @@ public class ProfileDataActivity extends Activity {
 		// Childs
 
 		final int NOTIFICATION = 0;
-	
-		final int BANKING = 2;
+
 		
 		final int KUCHEN = 0;
 		final int GESAMT = 1;
 	
+
+		final int PROFIL = 1;
+
+
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -425,14 +427,15 @@ public class ProfileDataActivity extends Activity {
 				finish();
 				break;
 
-		
-			case BANKING:
-				Intent k = new Intent(ProfileDataActivity.this,
-						SettingsBankingActivity.class);
-				startActivity(k);
+
+			case PROFIL:
+				Intent j = new Intent(ProfileDataActivity.this,
+						ProfileDataActivity.class);
+				startActivity(j);
 				finish();
 				break;
-	
+
+
 
 			}
 			break;
