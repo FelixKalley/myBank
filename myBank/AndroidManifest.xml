@@ -50,6 +50,11 @@
             android:name="com.example.mybank.ChartActivity"
             android:label="@string/title_activity_chart" >
         </activity>
+        
+         <activity
+            android:name="com.example.mybank.ChartCategoriesActivity"
+            android:label="lol" >
+        </activity>
         <activity 
             android:name="com.example.mybank.ProfileDataActivity"
             android:label="@string/title_activity_add" >

@@ -136,7 +136,7 @@ public class BookingActivity extends Activity {
 			alertDialogBuilder
 					.setCancelable(false)
 					.setTitle(R.string.profile_notification_prompt_title)
-					.setPositiveButton("Jetzt AusfŸllen", new DialogInterface.OnClickListener() {
+					.setPositiveButton("Jetzt Ausfï¿½llen", new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -744,8 +744,7 @@ public class BookingActivity extends Activity {
 	
 		final int HISTORY = 1;
 		final int OUTLAY = 2;
-		final int OVERVIEW = 4;
-
+	
 
 		
 		  switch (groupPosition) {
@@ -767,12 +766,7 @@ public class BookingActivity extends Activity {
 			  finish();
 			  break; 
 		 
-		  case OVERVIEW:
-			  Intent k = new Intent(BookingActivity.this, ChartActivity.class);
-			  startActivity(k);
-			  finish();
-			  break;
-		 
+		
 		  }
 	}
 
@@ -780,11 +774,17 @@ public class BookingActivity extends Activity {
 		// Groups
 
 		final int Einstellungen = 3;
+		final int Uebersicht = 4;
 
 		// Childs
 
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
+
+		
+		final int KUCHEN = 0;
+		final int GESAMT = 1;
+
 	
 
 		switch (groupPosition) {
@@ -804,6 +804,28 @@ public class BookingActivity extends Activity {
 				finish();
 				break;
 			}
+			break;
+			
+		
+			
+		case Uebersicht:
+			switch (childPosition) {
+			case KUCHEN:
+				Intent i = new Intent(BookingActivity.this,
+						ChartActivity.class);
+				startActivity(i);
+				finish();
+				break;
+
+			case GESAMT:
+				Intent j = new Intent(BookingActivity.this,
+						ChartCategoriesActivity.class);
+				startActivity(j);
+				finish();
+				break;
+			
+			}
+			
 		}
 	}
 
@@ -811,6 +833,9 @@ public class BookingActivity extends Activity {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
+		ArrayList<ExpListChild> child_list_2;
+
+		
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -858,11 +883,23 @@ public class BookingActivity extends Activity {
 		gru4.setItems(child_list);
 
 		// Setting Group 5
-		child_list = new ArrayList<ExpListChild>();
+		
+		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+
+
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName("Kuchen");
+		child_list_2.add(ch5_1);
+
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName("Gesamt");
+		child_list_2.add(ch5_2);
 		
-		gru5.setItems(child_list);
+		
+		
+		gru5.setItems(child_list_2);
 
 		// listing all groups
 		group_list.add(gru1);
