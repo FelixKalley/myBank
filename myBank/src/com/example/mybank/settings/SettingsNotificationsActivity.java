@@ -19,6 +19,7 @@ import com.example.mybank.R.layout;
 import com.example.mybank.R.string;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.items.SettingsItem;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -77,7 +78,8 @@ public class SettingsNotificationsActivity extends Activity {
     public String[] layers;
     private ActionBarDrawerToggle drawerToggle;
 	
-	private MyBankDatabase db;
+	public MyBankDatabase db;
+	SettingsItem settingsItem;
 	Switch switchGoalReached;
 	Switch switchGoalEndangered;
 	
@@ -91,6 +93,7 @@ public class SettingsNotificationsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings__notification_);
 		initDB();
+		fetchCurrentSettingsItem();
 		DeclareAllElements();
 		updateSwitches();
 		setupGoalReachedOnChangeListener();
@@ -102,16 +105,25 @@ public class SettingsNotificationsActivity extends Activity {
 	
 	
 
+	private void fetchCurrentSettingsItem() {
+		settingsItem = db.getAllSettingsItems().get(0);
+		
+	}
+
+
+
+
 	private void updateSwitches() {
 		updateGoalReachedSwitch();
 		updateGoalEndangeredSwitch();
+		Log.d("", "GoalReached int: " + db.getAllSettingsItems().get(0).getGoalReached());
 	}
 
 
 
 
 	private void updateGoalReachedSwitch() {
-		if(db.getAllSettingsItems().get(0).getGoalReached() == 0){
+		if(settingsItem.getGoalReached() == 0){
 			switchGoalReached.setChecked(false);
 			} else {
 				switchGoalReached.setChecked(true);
@@ -119,7 +131,7 @@ public class SettingsNotificationsActivity extends Activity {
 	}
 
 	private void updateGoalEndangeredSwitch() {
-		if(db.getAllSettingsItems().get(0).getGoalEndangered() == 0){
+		if(settingsItem.getGoalEndangered() == 0){
 			switchGoalEndangered.setChecked(false);
 			} else {
 				switchGoalEndangered.setChecked(true);
@@ -159,17 +171,21 @@ public class SettingsNotificationsActivity extends Activity {
 	
 	private void setupGoalReachedOnChangeListener() {
 		
-			switchGoalReached.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			switchGoalReached.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			 
 			   @Override
 			   public void onCheckedChanged(CompoundButton buttonView,
 			     boolean isChecked) {
 			 
 			    if(isChecked){
-			    	db.updateGoalReachedNotification(1);
+			    	db.updateGoalReachedNotification(settingsItem.getGoalReached(), 1);
+			    	
+			    	Log.d("", "GoalReached int: " + db.getAllSettingsItems().get(0).getGoalReached());
+			    	fetchCurrentSettingsItem();
 			    	updateGoalReachedSwitch();
 			    }else{
-			    	db.updateGoalReachedNotification(0);
+			    	db.updateGoalReachedNotification(settingsItem.getGoalReached(), 0);
+			    	fetchCurrentSettingsItem();
 			    	updateGoalReachedSwitch();
 			    }
 			   }
@@ -178,17 +194,19 @@ public class SettingsNotificationsActivity extends Activity {
 	
 	private void setupGoalEndangeredOnChangeListener() {
 		
-			switchGoalEndangered.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			switchGoalEndangered.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			 
 			   @Override
 			   public void onCheckedChanged(CompoundButton buttonView,
 			     boolean isChecked) {
 			 
 			    if(isChecked){
-			    	db.updateGoalEndangeredNotification(1);
+			    	db.updateGoalEndangeredNotification(settingsItem.getGoalEndangered(), 1);
+			    	fetchCurrentSettingsItem();
 			    	updateGoalEndangeredSwitch();
 			    }else{
-			    	db.updateGoalEndangeredNotification(0);
+			    	db.updateGoalEndangeredNotification(settingsItem.getGoalEndangered(), 0);
+			    	fetchCurrentSettingsItem();
 			    	updateGoalEndangeredSwitch();
 			    }
 			   }

@@ -358,20 +358,20 @@ public class MyBankDatabase {
 		return item_id;
 	}
 	
-	public void updateGoalReachedNotification(int bool) {
-		String whereClause = KEY_ID + " = '" + "1" + "'";
+	public void updateGoalReachedNotification(int oldGoalReached, int newGoalReached) {
+		String whereClause = KEY_GOALREACHED + " = '" + oldGoalReached + "'";
 		
 		ContentValues values = new ContentValues();
-		values.put(KEY_GOALREACHED, bool);
+		values.put(KEY_GOALREACHED, newGoalReached);
 		
 		db.update(TABLE_SETTINGS, values, whereClause, null);
 	}
 	
-	public void updateGoalEndangeredNotification(int bool) {
-		String whereClause = KEY_ID + " = '" + "1" + "'";
+	public void updateGoalEndangeredNotification(int oldGoalEndangered, int newGoalEndangered) {
+		String whereClause = KEY_GOALENDANGERED + " = '" + oldGoalEndangered + "'";
 		
 		ContentValues values = new ContentValues();
-		values.put(KEY_GOALENDANGERED, bool);
+		values.put(KEY_GOALENDANGERED, newGoalEndangered);
 		
 		db.update(TABLE_SETTINGS, values, whereClause, null);
 	}

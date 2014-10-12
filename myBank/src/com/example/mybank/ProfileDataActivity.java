@@ -97,6 +97,8 @@ public class ProfileDataActivity extends Activity {
 		db.open();
 	}
 
+	
+	//check if this is first appstart ever
 	private void checkAppForFirstStart() {
 		if (db.getAllProfileItems().isEmpty()) {
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(),
@@ -105,14 +107,14 @@ public class ProfileDataActivity extends Activity {
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
 			byte[] bArray = stream.toByteArray();
 
-			ProfileItem item = new ProfileItem("Bitte Ausf�llen",
-					"Bitte Ausf�llen", 0, bArray, getDateTime());
+			ProfileItem item = new ProfileItem("Bitte Ausfuellen",
+					"Bitte Ausfuellen", 0, bArray, getDateTime());
 			db.insertProfileItem(item);
-
 		}
-
 	}
 
+	
+	//fetch and set current profilItem
 	private void fetchProfileItem() {
 		if (!db.getAllProfileItems().isEmpty()) {
 			profileItem = db.getAllProfileItems().get(0);
@@ -120,7 +122,7 @@ public class ProfileDataActivity extends Activity {
 	}
 
 
-	
+	//fetch profile pic bytearray and create bitMap
 	private void updateProfilePic() {
 		if (db.getCurrentProfilePic() != null) {
 			bitMap = BitmapFactory.decodeByteArray(db.getCurrentProfilePic(),
@@ -128,7 +130,8 @@ public class ProfileDataActivity extends Activity {
 		}
 
 	}
-
+	
+	//set OnClickListener on profile pic imageview
 	private void setUpImageView() {
 		imageView.setOnClickListener(new OnClickListener() {
 
@@ -142,9 +145,7 @@ public class ProfileDataActivity extends Activity {
 				startActivityForResult(intent, TAKE_PICTURE);
 
 			}
-
 		});
-
 	}
 
 	@Override
@@ -168,7 +169,9 @@ public class ProfileDataActivity extends Activity {
 		updateProfilePic();
 		updateProfile();
 	}
+	
 
+	//if its first appstart force user to input profile data
 	private void checkForCompleteProfile() {
 		if (profileItem.getCheckBoolean() == 0) {
 
@@ -252,6 +255,7 @@ public class ProfileDataActivity extends Activity {
 		}
 	}
 
+	//create all elements need on screen
 	private void declareAllElements() {
 		imageView = (ImageView) findViewById(R.id.profile_pic);
 
@@ -279,15 +283,12 @@ public class ProfileDataActivity extends Activity {
 		
 		appInstalledTV.setText(profileItem.getDate());
 		
-
 		allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
-
 		allExpensesContentTV.setText("+" + String.format("%.2f", db.getAllExpenses()));
-		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));
-		
-		
+		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));	
 	}
 
+	
 	// get current date as a string
 	private String getDateTime() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy",
@@ -296,6 +297,7 @@ public class ProfileDataActivity extends Activity {
 		return dateFormat.format(date);
 	}
 
+	
 	@Override
 	protected void onDestroy() {
 		db.close();
@@ -343,15 +345,16 @@ public class ProfileDataActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-
 	}
 
+	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		drawerToggle.syncState();
 	}
 
+	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);

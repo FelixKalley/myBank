@@ -116,6 +116,9 @@ public class BookingActivity extends Activity {
 			db.insertSettingsItem(item);
 		}
 		
+		
+		
+		
 		DeclareAllElements();
 		initBalance();
 		updateOutlay();
