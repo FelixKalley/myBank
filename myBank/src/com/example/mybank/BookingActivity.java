@@ -117,8 +117,6 @@ public class BookingActivity extends Activity {
 		}
 		
 		
-		
-		
 		DeclareAllElements();
 		initBalance();
 		updateOutlay();

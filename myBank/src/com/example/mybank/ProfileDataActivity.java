@@ -113,7 +113,6 @@ public class ProfileDataActivity extends Activity {
 		}
 	}
 
-	
 	//fetch and set current profilItem
 	private void fetchProfileItem() {
 		if (!db.getAllProfileItems().isEmpty()) {

@@ -1,22 +1,15 @@
 package com.example.mybank.settings;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-
 import com.example.mybank.BookingActivity;
 import com.example.mybank.ChartActivity;
 import com.example.mybank.ChartCategoriesActivity;
-import com.example.mybank.CustomDialogClass;
 import com.example.mybank.ExpListChild;
 import com.example.mybank.ExpListGroups;
 import com.example.mybank.HistoryActivity;
 import com.example.mybank.OutlayActivity;
 import com.example.mybank.ProfileDataActivity;
 import com.example.mybank.R;
-import com.example.mybank.R.drawable;
-import com.example.mybank.R.id;
-import com.example.mybank.R.layout;
-import com.example.mybank.R.string;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.SettingsItem;
@@ -27,22 +20,16 @@ import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -50,7 +37,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.Toast;
 
 public class SettingsNotificationsActivity extends Activity {
 
@@ -62,7 +48,7 @@ public class SettingsNotificationsActivity extends Activity {
 	Switch Switch_daily_reminder;
 	Button Button_set_daily_reminder;
 
-
+	
 	PendingIntent pendingIntent;
 	AlarmManager alarmManager;
 	BroadcastReceiver mReceiver;
@@ -74,7 +60,6 @@ public class SettingsNotificationsActivity extends Activity {
 	
     public DrawerLayout drawerLayout;
     
-  
     public String[] layers;
     private ActionBarDrawerToggle drawerToggle;
 	
@@ -82,11 +67,6 @@ public class SettingsNotificationsActivity extends Activity {
 	SettingsItem settingsItem;
 	Switch switchGoalReached;
 	Switch switchGoalEndangered;
-	
-	
-
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,24 +82,17 @@ public class SettingsNotificationsActivity extends Activity {
 		
 	}
 	
-	
-	
-
+	//fetch the current settingsItem from DB and set it
 	private void fetchCurrentSettingsItem() {
 		settingsItem = db.getAllSettingsItems().get(0);
 		
 	}
 
-
-
-
+	//update the switches due to current settingsItem
 	private void updateSwitches() {
 		updateGoalReachedSwitch();
 		updateGoalEndangeredSwitch();
-		Log.d("", "GoalReached int: " + db.getAllSettingsItems().get(0).getGoalReached());
 	}
-
-
 
 
 	private void updateGoalReachedSwitch() {
@@ -139,7 +112,7 @@ public class SettingsNotificationsActivity extends Activity {
 	}
 
 
-
+	//initialize database
 	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
@@ -160,11 +133,10 @@ public class SettingsNotificationsActivity extends Activity {
 	  }
 	 
 
-
+	//initialize all elements needed on screen
 	private void DeclareAllElements() {
 		switchGoalReached = (Switch) findViewById(R.id.switch_goal_reached_notification);
 		switchGoalEndangered = (Switch) findViewById(R.id.switch_goal_endangered_notification);
-		
 		
 		initMenuDrawer();
 	}
@@ -179,8 +151,6 @@ public class SettingsNotificationsActivity extends Activity {
 			 
 			    if(isChecked){
 			    	db.updateGoalReachedNotification(settingsItem.getGoalReached(), 1);
-			    	
-			    	Log.d("", "GoalReached int: " + db.getAllSettingsItems().get(0).getGoalReached());
 			    	fetchCurrentSettingsItem();
 			    	updateGoalReachedSwitch();
 			    }else{
@@ -213,22 +183,6 @@ public class SettingsNotificationsActivity extends Activity {
 			  });
 		
 	}
-	
-	
-	
-	/*
-	// Method to start the service
-	   public void startService(View view) {
-	      startService(new Intent(this, MyBankNotificationService.class));
-	   }
-
-	   // Method to stop the service
-	   public void stopService(View view) {
-	      stopService(new Intent(getBaseContext(), MyBankNotificationService.class));
-	   }
-
-	*/
-	
 	
 	
 	private void initMenuDrawer() {
@@ -265,12 +219,6 @@ public class SettingsNotificationsActivity extends Activity {
 
       layers = getResources().getStringArray(R.array.Menu_items);
       ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-      
-      
-    
- 
- 
-
 		
 	}
 	
