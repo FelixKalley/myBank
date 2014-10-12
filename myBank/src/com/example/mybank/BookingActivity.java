@@ -67,7 +67,6 @@ public class BookingActivity extends Activity {
 	Button Button_Add_Goal;
 	
 	
-	
 	ActionBarDrawerToggle mDrawerToggle;
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
@@ -85,8 +84,9 @@ public class BookingActivity extends Activity {
 	
 	private ArrayList<BalanceItem> balances = new ArrayList<BalanceItem>();
 	final Handler handler = new Handler();
-	public MyBankDatabase db;
 	final Context context = this;
+	public MyBankDatabase db;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +124,6 @@ public class BookingActivity extends Activity {
 		checkGoalReachability();
 		SeeIfListItemIsClicked();
 		
-		Log.d("", "db.getAllProfileItems().size(): " + db.getAllProfileItems().size());
 		
 		if(db.getAllProfileItems().isEmpty()){
 			
@@ -143,7 +142,7 @@ public class BookingActivity extends Activity {
 			alertDialogBuilder
 					.setCancelable(false)
 					.setTitle(R.string.profile_notification_prompt_title)
-					.setPositiveButton("Jetzt Ausf�llen", new DialogInterface.OnClickListener() {
+					.setPositiveButton("Jetzt Ausfuellen", new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -215,42 +214,24 @@ public class BookingActivity extends Activity {
 							//insert BookingItem into db
 							db.insertBookingItem(item);
 							
-										Log.d("", "Old Balance: "+ balances.get(balances.size()-1).getAmount());
-							
 							//create old- and newBalance as double			
 							double oldBalance = balances.get(balances.size()-1).getAmount();
 							double newBalance = oldBalance + amount;
 							
-							
-										Log.d("newBalance", "newBalance: "+ newBalance);
-							
 							//create new BalanceItem-Object for newBalance
 							BalanceItem balanceItem = new BalanceItem(newBalance);
-							
-							
-										Log.d("", "BalanceItem Count After Delete; " +db.getAllBalanceItems().size());
 										
 							//update the current Balance-Column in TABLE_BALANCE
 							db.updateBalanceItem(oldBalance, balanceItem);
 							
-										Log.d("", "KEY_ID = 1 TABLE_BALANCE Balance: " + db.getCurrentBalance());
-							
-										Log.d("", "BalanceItem Count End: " + db.getAllBalanceItems().size());
-							
-										Log.d("", "Count Balance Items in ArrayList after update: " + balances.size());
-							
-										Log.d("BookingItem Count", "BookingItem Count: " + db.getAllBookingItems().size());
-							
 							//update BalanceItem-ArrayList
 							updateBalance();
-							
-										Log.d("", "Amount balances.get(balances.size()-1).getAmount(): "+ balances.get(balances.size()-1).getAmount());
 							
 							Toast.makeText(getApplicationContext(), "Sie haben "+amount+" Euro eingebucht!", Toast.LENGTH_SHORT).show();
 							checkGoalReachability();
 						}
 						 else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
-							Toast.makeText(getApplicationContext(), "Sie haben keinen g�ltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gueltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 						}
 						 else if (editText_inputAmount.getText().toString().matches("")) {
 							 Toast.makeText(getApplicationContext(), "Sie haben nichts eingegeben!", Toast.LENGTH_SHORT).show();
@@ -314,7 +295,6 @@ public class BookingActivity extends Activity {
 							title = "Kein Zweck angegeben";
 						}
 						
-				
 						//create BookingItem
 						BookingItem item = new BookingItem(title, category, amount, getDateTime(), "-");
 						db.insertBookingItem(item);
@@ -332,16 +312,13 @@ public class BookingActivity extends Activity {
 						//update BalanceItem-ArrayList
 						updateBalance();
 						
-						//set the TextView to new Balance value (VLL in update Methode rein?)
-						
-						
 						Toast.makeText(getApplicationContext(), "Sie haben "+amount+" Euro abgebucht!", Toast.LENGTH_SHORT).show();
 						checkGoalReachability();
 						
 						}
 						else if(!editText_inputAmount.getText().toString().matches("") && !String.valueOf(categorySpinner.getSelectedItem()).matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
 							
-							Toast.makeText(getApplicationContext(), "Sie haben keinen g�ltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gueltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						//if conditions to book are not complied because current balance is not enough
@@ -369,8 +346,6 @@ public class BookingActivity extends Activity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		
 		alertDialog.show();
-		
-		
 	}
 			
 		});
@@ -408,13 +383,10 @@ public class BookingActivity extends Activity {
 						double amountOutlay = Double.parseDouble(editText_inputOutlayAmount.getText().toString());
 						String titleOutlay = editText_inputOutlayTitle.getText().toString();
 						
-					
-						
 						//create OutlayItem
 						OutlayItem item = new OutlayItem(titleOutlay, amountOutlay, getDateTime());
 						db.insertOutlayItem(item);
 						
-						//Balance noch updaten
 						//create old- and newBalance as double			
 						double currentBalance = balances.get(balances.size()-1).getAmount();
 						double newBalance = currentBalance - amountOutlay;
@@ -504,11 +476,11 @@ public class BookingActivity extends Activity {
 							checkGoalReachability();
 						}
 						else if (!editText_inputGoalAmount.getText().toString().matches("") && !editText_inputGoalAmount.getText().toString().trim().matches(regExDecimal)) {	
-							Toast.makeText(getApplicationContext(), "Sie haben keinen g�ltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Sie haben keinen gueltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
 							return;
 						}	
 						else if (editText_inputGoalAmount.getText().toString().matches("")) {
-							Toast.makeText(getApplicationContext(), "Das Feld muss ausgef�llt sein!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Das Feld muss ausgefuellt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 					}
@@ -527,13 +499,15 @@ public class BookingActivity extends Activity {
 				alertDialog.show();
 				
 			}
-			
-		});
-			
-			
-			
+		});		
 	}
 		
+	
+	//initialize Database
+	private void initDb() {
+		db = new MyBankDatabase(this);
+		db.open();
+	}
 	
 	private void initMenuDrawer() {
 		  // R.id.drawer_layout should be in every activity with exactly the same id.
@@ -569,12 +543,6 @@ public class BookingActivity extends Activity {
 
         layers = getResources().getStringArray(R.array.Menu_items);
         ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-        
-        
-      
-   
-   
-  
 		
 	}
 	
@@ -608,12 +576,12 @@ public class BookingActivity extends Activity {
 		super.onDestroy();
 	}
 	
-
+	//update to current balance
 	private void initBalance() {
 		updateBalance();
 	}
 
-
+	//clear balance arraylist, fetch current balance, set the textview
 	private void updateBalance() {
 		balances.clear();
 		balances.addAll(db.getAllBalanceItems());
@@ -665,7 +633,6 @@ public class BookingActivity extends Activity {
 
 				//create alert dialog
 				AlertDialog alertDialog = alertDialogBuilder.create();
-				
 				alertDialog.show();			
 			}
 		}
@@ -948,12 +915,6 @@ public class BookingActivity extends Activity {
 		initMenuDrawer();
 
 
-	}
-	
-	//initialize Database
-	private void initDb() {
-		db = new MyBankDatabase(this);
-		db.open();
 	}
 	
 

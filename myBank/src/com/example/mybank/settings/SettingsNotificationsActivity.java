@@ -41,18 +41,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 public class SettingsNotificationsActivity extends Activity {
 
 	TextView TextView_Settings_Notification_Screen_Name;
-	Switch Switch_Limit_Reached;
-	Switch Switch_Goal_Reached;
-	Switch Switch_Saved_to_server;
-	Switch Switch_Notifications_on_off;
-	Switch Switch_daily_reminder;
-	Button Button_set_daily_reminder;
-
 	
-	PendingIntent pendingIntent;
-	AlarmManager alarmManager;
-	BroadcastReceiver mReceiver;
-
 	ActionBarDrawerToggle mDrawerToggle;
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
