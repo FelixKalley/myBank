@@ -42,7 +42,7 @@
     <style name="TextViewStyleBlack" parent="@android:style/TextAppearance.Small">
         <item name="android:textColor">@color/COLOR_Font_in_App</item>
         <item name="android:typeface">sans</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
 
     </style>
 

@@ -11,10 +11,20 @@
    		 android:layout_height="match_parent"
    		  >
     
-
-        <ListView
+	<TextView
+	    android:id="@+id/history_intro"
+	    style="@style/TextViewStyleBlack"
+	    android:text="@string/String_history_intro"
+		android:layout_centerInParent="true"
+		android:layout_alignParentTop="true"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="10dp"/>
+	
+    <ListView
         android:id="@+id/bookingitem_listview"
         android:background="@android:color/transparent"
+        android:layout_below="@+id/history_intro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp" >

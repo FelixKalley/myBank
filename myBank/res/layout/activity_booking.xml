@@ -93,44 +93,51 @@
 
 		<Button 
 		    android:id="@+id/Button_Add_Income"
-		    style="@style/Button_General"
+		    android:background="@drawable/button_drawable"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:text="@string/String_Button_Add_Input"
+		    android:textColor="@color/COLOR_Fonts_in_white"
 		    android:layout_marginLeft="20dp"
-		    android:layout_marginRight="20dp"/>
+		    android:layout_marginRight="20dp"
+		    android:layout_marginBottom="10dp"/>
 
         
         <Button 
 		    android:id="@+id/Button_Add_Expense"
-		    style="@style/Button_General"
+		    android:background="@drawable/button_drawable"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_below="@+id/Button_Add_Income"
 		    android:text="@string/String_Button_Add_Expense"
+		   	android:textColor="@color/COLOR_Fonts_in_white"
 		    android:layout_marginLeft="20dp"
-		    android:layout_marginRight="20dp"/>
+		    android:layout_marginRight="20dp"
+		    android:layout_marginBottom="10dp"/>
 
 
         
         <Button 
 		    android:id="@+id/Button_Add_Order"
-		    style="@style/Button_General"
+		    android:background="@drawable/button_drawable"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_below="@+id/Button_Add_Expense"
 		    android:text="@string/String_Button_Add_Standing_Order"
+		    android:textColor="@color/COLOR_Fonts_in_white"
 		    android:layout_marginLeft="20dp"
-		    android:layout_marginRight="20dp"/>
+		    android:layout_marginRight="20dp"
+		    android:layout_marginBottom="10dp"/>
 
         
         <Button 
 		    android:id="@+id/Button_Add_Goal"
-		    style="@style/Button_General"
+		    android:background="@drawable/button_drawable"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_below="@+id/Button_Add_Order"
 		    android:text="@string/String_Button_Add_Goal"
+		   	android:textColor="@color/COLOR_Fonts_in_white"
 		    android:layout_marginLeft="20dp"
 		    android:layout_marginRight="20dp"
 		    android:layout_marginBottom="20dp"/>

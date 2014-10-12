@@ -7,15 +7,26 @@
     android:background="@color/COLOR_LIGHTER_DARK"
     android:padding="0.3dp">
 
+    <ImageView
+        android:id="@+id/child_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/String_description_icon"
+        android:src="@drawable/ic_navigation_drawer"/>
+    
     <TextView
         android:id="@+id/child_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/child_img"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="14dp"
         android:textColor="@color/COLOR_WHITE"
         android:textSize="16sp" 
-        android:layout_marginLeft="30dp"/>
+        android:layout_marginLeft="10dp"/>
     
        <View
                 android:id="@+id/child_line"

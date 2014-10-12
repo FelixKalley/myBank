@@ -4,26 +4,21 @@
     android:layout_height="match_parent" >
     
     
-    <RelativeLayout
+   <RelativeLayout
          android:id="@+id/MainContent"
          style="@style/BackgroundColor"
          android:layout_width="match_parent"
    		 android:layout_height="match_parent"
    		  >
     
-<LinearLayout 
-    android:id="@+id/TextContent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:orientation="vertical" >
+
 	
     <ImageView 
         android:id="@+id/profile_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
         android:contentDescription="@string/profile_pic_description"
         />
     
@@ -33,12 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_pic"
         android:text="@string/profile_data_name_text" />
 
     <TextView
         android:id="@+id/profile_data_name_content_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_data_name_textview"
         android:layout_marginLeft="5dp"
          />
     
@@ -47,12 +44,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_name_content_textview"
         android:text="@string/profile_data_lastname_text" />
 
     <TextView
         android:id="@+id/profile_data_lastname_content_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_data_lastname_textview"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="20dp"
         />
@@ -62,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_lastname_content_textview"
         android:text="@string/profile_data_app_installed_text"
         />
     
@@ -72,6 +72,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="15dp"
         android:text=""
+        android:layout_below="@+id/profile_data_app_installed_textview"
         />
     
     
@@ -80,6 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_app_installed_content_textview"
         android:text="@string/all_incomes_text"
         />
     
@@ -88,6 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_all_incomes_textview"
         android:text=""
         />
 
@@ -96,6 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_all_incomes_content"
         android:text="@string/all_expenses_text"
         />
     
@@ -104,6 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_all_expenses_textview"
         android:text=""
         />
     
@@ -113,6 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_below="@+id/profile_data_all_expenses_content"
         android:text="@string/all_outlays_text"
         />
     
@@ -120,31 +126,13 @@
         android:id="@+id/profile_data_all_outlays_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_data_all_outlays_textview"
         android:layout_marginLeft="5dp"
         android:text=""
         />
-    </LinearLayout>
+
     
-	<LinearLayout
-	    android:id="@+id/ButtonContent"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:orientation="vertical">
-    	<Button
-	        android:id="@+id/button_profile_edit"
-	        style="@style/Button_General"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/Button_Edit_Profile" />
-	
-	    <Button
-	        android:id="@+id/button_profile_reset"
-	        style="@style/Button_General"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/Button_Reset_Account" />
-	</LinearLayout>
+
 
 </RelativeLayout>
  <ExpandableListView android:id="@+id/drawerList"

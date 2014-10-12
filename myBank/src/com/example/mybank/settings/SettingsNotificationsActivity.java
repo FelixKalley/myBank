@@ -280,7 +280,7 @@ public class SettingsNotificationsActivity extends Activity {
 
 		// Childs
 
-		final int NOTIFICATION = 0;
+
 		final int PROFIL = 1;
 
 		final int KUCHEN = 0;
@@ -289,12 +289,7 @@ public class SettingsNotificationsActivity extends Activity {
 		switch (groupPosition) {
 		case Einstellungen:
 			switch (childPosition) {
-			case NOTIFICATION:
-				Intent i = new Intent(SettingsNotificationsActivity.this,
-						SettingsNotificationsActivity.class);
-				startActivity(i);
-				finish();
-				break;
+
 
 			case PROFIL:
 				Intent j = new Intent(SettingsNotificationsActivity.this,
@@ -409,6 +404,7 @@ public class SettingsNotificationsActivity extends Activity {
 			}
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 
+
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
 		ArrayList<ExpListChild> child_list_2;
@@ -419,6 +415,7 @@ public class SettingsNotificationsActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru1 = new ExpListGroups();
 		gru1.setName(getString(R.string.List_Buchung));
+		gru1.setImage(R.drawable.ic_drawer_booking);
 
 		gru1.setItems(child_list);
 
@@ -426,14 +423,16 @@ public class SettingsNotificationsActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru2 = new ExpListGroups();
 		gru2.setName(getString(R.string.List_Verlauf));
-
+		gru2.setImage(R.drawable.ic_drawer_history);
+		
 		gru2.setItems(child_list);
 
 		// Setting Group 3
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru3 = new ExpListGroups();
 		gru3.setName(getString(R.string.List_Geplant));
-
+		gru3.setImage(R.drawable.ic_drawer_planned);
+		
 		gru3.setItems(child_list);
 
 		
@@ -441,46 +440,50 @@ public class SettingsNotificationsActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
 		gru4.setName(getString(R.string.List_Einstellungen));
-
+		gru4.setImage(R.drawable.ic_drawer_settings);
+		
 		ExpListChild ch4_1 = new ExpListChild();
 		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
+		ch4_1.setImage(R.drawable.ic_drawer_notifications);
 		child_list.add(ch4_1);
 
 		ExpListChild ch4_2 = new ExpListChild();
 		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
+		ch4_2.setImage(R.drawable.ic_drawer_profile);
 		child_list.add(ch4_2);
-
 
 		gru4.setItems(child_list);
 
 		// Setting Group 5
 		
-				child_list_2 = new ArrayList<ExpListChild>();
-				ExpListGroups gru5 = new ExpListGroups();
-				gru5.setName(getString(R.string.List_Uebersicht));
+		child_list_2 = new ArrayList<ExpListChild>();
+		ExpListGroups gru5 = new ExpListGroups();
+		gru5.setName(getString(R.string.List_Uebersicht));
+		gru5.setImage(R.drawable.ic_drawer_overview);
 
 
-				ExpListChild ch5_1 = new ExpListChild();
-				ch5_1.setName(getString(R.string.List_Kuchen));
-				child_list_2.add(ch5_1);
+		ExpListChild ch5_1 = new ExpListChild();
+		ch5_1.setName(getString(R.string.List_Kuchen));
+		ch5_1.setImage(R.drawable.ic_drawer_piechart);
+		child_list_2.add(ch5_1);
 
-				ExpListChild ch5_2 = new ExpListChild();
-				ch5_2.setName(getString(R.string.List_Gesamt));
-				child_list_2.add(ch5_2);
-				
-				
-				
-				gru5.setItems(child_list_2);
+		ExpListChild ch5_2 = new ExpListChild();
+		ch5_2.setName(getString(R.string.List_Gesamt));
+		ch5_2.setImage(R.drawable.ic_drawer_gesamt);
+		child_list_2.add(ch5_2);
+		
+		
+		
+		gru5.setItems(child_list_2);
 
-				// listing all groups
-				group_list.add(gru1);
-				group_list.add(gru2);
-				group_list.add(gru3);
-				group_list.add(gru4);
-				group_list.add(gru5);
+		// listing all groups
+		group_list.add(gru1);
+		group_list.add(gru2);
+		group_list.add(gru3);
+		group_list.add(gru4);
+		group_list.add(gru5);
 
-				return group_list;
-
+		return group_list;
 
 	}
 

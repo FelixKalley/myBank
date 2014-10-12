@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">myBank</string>
+    <string name="app_name">myBudget</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -9,6 +9,7 @@
     <string name="String_drawer_open">Open Navigation Drawer</string>
     <string name="String_drawer_closed">Close Navigation Drawer</string>
     <string name="String_drawer_title">Menü</string>
+    <string name="String_description_icon">Menüicon</string>
 
     <!-- ALL STRINGS FOR EXPANDABLE LIST VIEW -->
     <string name="List_Buchung">Buchungen</string>
@@ -32,8 +33,9 @@
 	<string name="title_activity_add">Profildaten</string>
 
     <!-- ALL STRINGS FOR STARTING-SCREEN -->
-    <string name="AppName">myBank</string>
+    <string name="AppName">myBudget</string>
     <string name="AppSlogan">Consistency Pays</string>
+    <string name="logo_description">Logo</string>
    
     <!-- ALL STRINGS FOR PROFILE-DATA-SCREEN -->
     <string name="profile_data_name_text">Name</string>
@@ -114,10 +116,11 @@
     <string name="goal_prompt_amount_input_hint_text">Euro</string>
 
     <!-- ALL STRINGS FOR HISTORY-SCREEN -->
-
+	<string name="String_history_intro">Bisherige Ein- und Auszahlungen:</string>
 
     <!-- ALL STRINGS FOR OUTLAY-SCREEN -->
-    <string name="infotext_outlay">Sie löschen einzelne Auslagen durch einen langen Klick</string>
+    <string name="infotext_outlay">Bisher geplante Auszahlungen:</string>
+    <string name="infotext_outlay_delete">(Löschen durch langen Klick)</string>
 
     <!-- ALL STRINGS FOR GOAL PROMPT -->
     <string name="outlay_delete_prompt_text">Haben Sie die Auslage nun auch ausgegeben?</string>
@@ -132,24 +135,7 @@
     <string name="Switch_Notification_limit_reached">Limit erreicht</string>
     <string name="Switch_Notification_daily_reminder">Tägliche Erinnerung</string>
     <string name="Button_Set_Reminder">Erinnerung festlegen</string>
-    
-	<!-- ALL STRINGS FOR SETTINGS-PROFILE-SCREEN -->
-    <string name="TextView_Profile_Vorname">Vorname:</string>
-    <string name="TextView_Profile_Nachname">Nachname:</string>
-    <string name="TextView_Profile_Vorname_Input">kein Text VORNAME</string>
-    <string name="TextView_Profile_Nachname_Input">kein Text NACHNAME</string>
-    <string name="TextView_Profile_Member_Since">Mitglied seit</string>
-    <string name="TextView_Profile_Member_Since_Input">kein Text DATUM</string>
-    <string name="TextView_Profile_Complete_Income">Gesamte Einzahlungen:</string>
-    <string name="TextView_Profile_Complete_Income_Input">kein Text EINZAHLUNGEN</string>
-    <string name="TextView_Profile_Complete_Expense">Gesamte Ausgaben:</string>
-    <string name="TextView_Profile_Complete_Expense_Input">kein Text AUSGABEN</string>
-    <string name="TextView_Profile_Complete_Savings">Gesamte Ersparnisse:</string>
-    <string name="TextView_Profile_Complete_Savings_Input">kein Text ERSPARNISSE</string>
 
-    <string name="Button_Edit_Profile">Profil bearbeiten</string>
-    <string name="Button_Reset_Account">Profil zurücksetzen</string>
-    
     
 	<!-- ALL STRINGS FOR SETTINGS-BOOKING-SCREEN -->
 	<string name="TextView_Settings_Banking_Change_Currency">Währung</string>

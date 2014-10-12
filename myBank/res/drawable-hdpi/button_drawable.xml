@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<!-- Sources: 
+	 Button with round corners: https://github.com/donnfelker/AndroidCodeExamples/blob/master/res/drawable/rounded_corners_white.xml
+	 Button selector states: http://karanbalkar.com/2012/10/tutorial-10-customizing-buttons-in-android/ -->
+
+
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- default -->
+    <item android:state_pressed="false">
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Bottom 2dp Shadow -->
     <item>
         <shape  android:shape="rectangle">
 
-            <solid android:color="#17576E" />
+            <solid android:color="#3A3A3C" />
             <corners android:radius="7dp" />
 
         </shape>
     </item>
 
-    <!-- White Top color -->
-    <item android:bottom="3px">
+    <!-- Dark Grey Top color -->
+    <item android:bottom="10px">
 
         <shape  android:shape="rectangle">
-
-        <solid android:color="#217B9C" />
+        <solid android:color="#222222" />
         <corners android:radius="7dp" />
 
 
@@ -25,3 +35,39 @@
     </item>
 
 </layer-list>
+    </item>
+   
+    
+   
+   <!-- button pressed -->
+    <item android:state_pressed="true">
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Bottom 2dp Shadow -->
+    <item>
+        <shape  android:shape="rectangle">
+
+            <solid android:color="#3A3A3C" />
+            <corners android:radius="7dp" />
+
+
+        </shape>
+    </item>
+
+    <!-- Dark Grey Top color -->
+    <item android:bottom="10px">
+
+        <shape  android:shape="rectangle">
+        <solid android:color="#222222" />
+        <corners android:radius="7dp" />
+                    <stroke android:width="3dp"
+                	android:color="#3A3A3C"/>
+
+
+        </shape>
+
+    </item>
+
+</layer-list>
+    </item> 
+</selector>

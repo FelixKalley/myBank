@@ -7,13 +7,25 @@
     android:background="@color/COLOR_LIGHT_DARK"
     android:padding="0.3dp">
 
+        <ImageView
+        android:id="@+id/group_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/String_description_icon"
+        android:src="@drawable/ic_navigation_drawer"/>
+    
+    
     <TextView
 
         android:id="@+id/group_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:paddingLeft="20dp"
+        android:layout_toRightOf="@+id/group_img"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
         android:textColor="@color/COLOR_WHITE"

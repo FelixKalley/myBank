@@ -14,4 +14,20 @@
     <color name="COLOR_LIGHT_DARK">#3A3A3C</color>
     <color name="COLOR_LIGHTER_DARK">#58585A</color>
     <color name="COLOR_LIGHT_LINE">#949496</color>
+    
+    
+    <!-- Official Android Design Color Swatches -->
+    <!-- source: https://developer.android.com/design/style/color.html -->
+     
+   	<color name="Android_Blue">#33B5E5</color>
+    <color name="Android_Purple">#AA66CC</color>
+    <color name="Android_Green">#99CC00</color>
+    <color name="Android_Orange">#FFBB33</color>
+    <color name="Android_Red">#FF4444</color>
+    <color name="Android_Dark_Blue">#0099CC</color>
+    <color name="Android_Dark_Purple">#9933CC</color>
+    <color name="Android_Dark_Green">#669900</color>
+    <color name="Android_Dark_Orange">#FF8800</color>
+    <color name="Android_Dark_Red">#CC0000</color>
+
 </resources>

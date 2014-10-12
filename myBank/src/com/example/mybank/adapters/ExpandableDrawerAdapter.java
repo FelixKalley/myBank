@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ExpandableDrawerAdapter extends BaseExpandableListAdapter {
@@ -48,11 +49,11 @@ public class ExpandableDrawerAdapter extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.child_item, null);
         }
+        ImageView iv = (ImageView) convertView.findViewById(R.id.child_img);
+        iv.setImageResource(child.getImage());
         TextView tv = (TextView) convertView.findViewById(R.id.child_name);
         tv.setText(child.getName().toString());
-
         return convertView;
-
     }
 
     @Override
@@ -83,16 +84,18 @@ public class ExpandableDrawerAdapter extends BaseExpandableListAdapter {
             View convertView, ViewGroup parent) {
     	
     	
-    	
-    	
+    	   	
     	ExpListGroups group = (ExpListGroups) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.group_item, null);
         }
+        ImageView iv = (ImageView) convertView.findViewById(R.id.group_img);
+        iv.setImageResource(group.getImage());
         TextView tv = (TextView) convertView.findViewById(R.id.group_name);
         tv.setText(group.getName());
+        
         return convertView;
     }
 
@@ -105,5 +108,4 @@ public class ExpandableDrawerAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-
 }
