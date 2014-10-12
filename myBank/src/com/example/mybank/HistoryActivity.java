@@ -28,6 +28,7 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 
 public class HistoryActivity extends Activity {
+
 	private ArrayList<BookingItem> bookings = new ArrayList<BookingItem>();
 	private MyBankListAdapter bookings_adapter;
 	private MyBankDatabase db;
@@ -35,110 +36,96 @@ public class HistoryActivity extends Activity {
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
 	ActionBarDrawerToggle mDrawerToggle;
-    public String[] layers;
-    private ActionBarDrawerToggle drawerToggle;
-    public DrawerLayout drawerLayout;
 
-
+	private ActionBarDrawerToggle drawerToggle;
+	public DrawerLayout drawerLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history);
+
+		init();
+		updateList();
+
+	}
+
+	private void init() {
+		initDB();
+		initMenuDrawer();
+		initUI();
+	}
+
+	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
-		initMenuDrawer();
-		SeeIfListItemIsClicked();
-		initUI();
-		initTasklist();
-	}
-	
-	
-	//vll noch ne int-Column 'id' erstellen. beim vorherigen bookingitem abfrage welche id schon ist, dann um 1 erh�hen =
-	// neue id. dann k�nnt ich id vgl. zum sortieren
-	/*
-	public class BookingItemComparator implements Comparator<BookingItem> {
-		
 
-		public int compare(BookingItem item1, BookingItem item2) {
-			int a = Integer.parseInt(item1.getDate());
-		    int b = Integer.parseInt(item2.getDate());
-		    return a < b ? 1 : (a == b ? 0 : -1);
-		}
-    }
-    */
-	
-	
+	}
 
 	private void initMenuDrawer() {
-		  // R.id.drawer_layout should be in every activity with exactly the same id.
-		
 
-				ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-				ExpListItems = SetStandardGroups();
-				ExpAdapter = new ExpandableDrawerAdapter(HistoryActivity.this,
-						ExpListItems);
-				ExpandList.setAdapter(ExpAdapter);
-				
-				setUpDrawerToggle();
+		setUpDrawer();
+		SeeIfListItemIsClicked();
 
-				
-		        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+	}
 
-		        drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout, R.drawable.ic_launcher, 0, 0) 
-		        {
-		            public void onDrawerClosed(View view) 
-		            {
-		                getActionBar().setTitle(R.string.app_name);
-		            }
+	private void setUpDrawer() {
+		DeclareDrawerElements();
+		SetUpDrawerLayout();
+		setUpDrawerToggle();
 
-		            public void onDrawerOpened(View drawerView) 
-		            {
-		                getActionBar().setTitle(R.string.String_drawer_title);
-		            }
-		        };
-		        drawerLayout.setDrawerListener(drawerToggle);
+	}
 
-		        getActionBar().setDisplayHomeAsUpEnabled(true);
-		        getActionBar().setHomeButtonEnabled(true);
+	private void SetUpDrawerLayout() {
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		        layers = getResources().getStringArray(R.array.Menu_items);
-		        ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		        
-		        
-		      
-		   
-		   
-		  
-				
+		drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout,
+				R.drawable.ic_launcher, 0, 0) {
+			public void onDrawerClosed(View view) {
+				getActionBar().setTitle(R.string.app_name);
 			}
-			
-			@Override
-		    public boolean onOptionsItemSelected(MenuItem item) {
 
-		        if (drawerToggle.onOptionsItemSelected(item)) {
-		            return true;
-		        }
-		        return super.onOptionsItemSelected(item);
+			public void onDrawerOpened(View drawerView) {
+				getActionBar().setTitle(R.string.String_drawer_title);
+			}
+		};
+		drawerLayout.setDrawerListener(drawerToggle);
 
-		    }
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
 
-		    @Override
-		    protected void onPostCreate(Bundle savedInstanceState) {
-		        super.onPostCreate(savedInstanceState);
-		        drawerToggle.syncState();
-		    }
+	}
 
-		    @Override
-		    public void onConfigurationChanged(Configuration newConfig) {
-		        super.onConfigurationChanged(newConfig);
-		        drawerToggle.onConfigurationChanged(newConfig);
-		    }
+	private void DeclareDrawerElements() {
+		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+		ExpListItems = SetStandardGroups();
+		ExpAdapter = new ExpandableDrawerAdapter(HistoryActivity.this,
+				ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
 
+	}
 
-		
-	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
 
+		if (drawerToggle.onOptionsItemSelected(item)) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+
+	}
+
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		drawerToggle.syncState();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		drawerToggle.onConfigurationChanged(newConfig);
+	}
 
 	private void SeeIfListItemIsClicked() {
 		ExpandList.setOnGroupClickListener(new OnGroupClickListener() {
@@ -164,28 +151,9 @@ public class HistoryActivity extends Activity {
 
 		});
 
-		ExpandList.setOnGroupExpandListener(new OnGroupExpandListener() {
 
-			@Override
-			public void onGroupExpand(int groupPosition) {
-			//	String group_name = ExpListItems.get(groupPosition).getName();
-
-			}
-		});
-
-		ExpandList.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-			//	String group_name = ExpListItems.get(groupPosition).getName();
-
-			}
-		});
-
-		
 	}
 
-	
 	private void setUpDrawerToggle() {
 		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -199,11 +167,14 @@ public class HistoryActivity extends Activity {
 										 * nav drawer image to replace 'Up'
 										 * caret
 										 */
-		R.string.String_drawer_open, /* "open drawer" description for accessibility */
+		R.string.String_drawer_open, /*
+									 * "open drawer" description for
+									 * accessibility
+									 */
 		R.string.String_drawer_closed /*
-										 * "close drawer" description for
-										 * accessibility
-										 */
+									 * "close drawer" description for
+									 * accessibility
+									 */
 		) {
 			@Override
 			public void onDrawerClosed(View drawerView) {
@@ -226,13 +197,7 @@ public class HistoryActivity extends Activity {
 		});
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-	
 
-		
-	}
-
-	private void initTasklist() {
-		updateList();
 	}
 
 	private void initUI() {
@@ -248,41 +213,36 @@ public class HistoryActivity extends Activity {
 
 	private void initListView() {
 		ListView listview = (ListView) findViewById(R.id.bookingitem_listview);
-		
+
 	}
 
 	private void updateList() {
 		bookings.clear();
 		bookings.addAll(db.getAllBookingItems());
-		//Collections.sort(bookings, new BookingItemComparator());
+		// Collections.sort(bookings, new BookingItemComparator());
 		bookings_adapter.notifyDataSetChanged();
-		
+
 	}
-	
+
 	private void isGroupClicked(int groupPosition) {
 		final int BOOKING = 0;
 		final int OUTLAY = 2;
-	
 
+		switch (groupPosition) {
 
-		
-		  switch (groupPosition) {
-		  
-		  case BOOKING:
-			  Intent i = new Intent(HistoryActivity.this, BookingActivity.class);
-			  startActivity(i);
-			  finish();
-			  break;
-		  
-		  
-		  case OUTLAY:
-			  Intent j = new Intent(HistoryActivity.this, OutlayActivity.class);
-			  startActivity(j);
-			  finish();
-			  break; 
-		 
-		
-		  }
+		case BOOKING:
+			Intent i = new Intent(HistoryActivity.this, BookingActivity.class);
+			startActivity(i);
+			finish();
+			break;
+
+		case OUTLAY:
+			Intent j = new Intent(HistoryActivity.this, OutlayActivity.class);
+			startActivity(j);
+			finish();
+			break;
+
+		}
 	}
 
 	private void isChildSettingClicked(int groupPosition, int childPosition) {
@@ -296,11 +256,8 @@ public class HistoryActivity extends Activity {
 		final int NOTIFICATION = 0;
 		final int PROFIL = 1;
 
-		
 		final int KUCHEN = 0;
 		final int GESAMT = 1;
-
-	
 
 		switch (groupPosition) {
 		case Einstellungen:
@@ -319,37 +276,34 @@ public class HistoryActivity extends Activity {
 				finish();
 				break;
 
-
 			}
-			
+
 			break;
-			
+
 		case Uebersicht:
 			switch (childPosition) {
 			case KUCHEN:
 				Intent i = new Intent(HistoryActivity.this,
-						ChartActivity.class);
+						ChartCategoriesActivity.class);
 				startActivity(i);
 				finish();
 				break;
 
 			case GESAMT:
-				Intent j = new Intent(HistoryActivity.this,
-						ChartCategoriesActivity.class);
+				Intent j = new Intent(HistoryActivity.this, ChartActivity.class);
 				startActivity(j);
 				finish();
 				break;
 			}
-			
+
 		}
 	}
+
 	private ArrayList<ExpListGroups> SetStandardGroups() {
 
 		ArrayList<ExpListGroups> group_list = new ArrayList<ExpListGroups>();
 		ArrayList<ExpListChild> child_list;
 		ArrayList<ExpListChild> child_list_2;
-
-		
 
 		// Setting Group 1
 		child_list = new ArrayList<ExpListChild>();
@@ -364,7 +318,7 @@ public class HistoryActivity extends Activity {
 		ExpListGroups gru2 = new ExpListGroups();
 		gru2.setName(getString(R.string.List_Verlauf));
 		gru2.setImage(R.drawable.ic_drawer_history);
-		
+
 		gru2.setItems(child_list);
 
 		// Setting Group 3
@@ -372,16 +326,15 @@ public class HistoryActivity extends Activity {
 		ExpListGroups gru3 = new ExpListGroups();
 		gru3.setName(getString(R.string.List_Geplant));
 		gru3.setImage(R.drawable.ic_drawer_planned);
-		
+
 		gru3.setItems(child_list);
 
-		
 		// Setting Group 4
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
 		gru4.setName(getString(R.string.List_Einstellungen));
 		gru4.setImage(R.drawable.ic_drawer_settings);
-		
+
 		ExpListChild ch4_1 = new ExpListChild();
 		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
 		ch4_1.setImage(R.drawable.ic_drawer_notifications);
@@ -395,12 +348,11 @@ public class HistoryActivity extends Activity {
 		gru4.setItems(child_list);
 
 		// Setting Group 5
-		
+
 		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
 		gru5.setImage(R.drawable.ic_drawer_overview);
-
 
 		ExpListChild ch5_1 = new ExpListChild();
 		ch5_1.setName(getString(R.string.List_Kuchen));
@@ -411,9 +363,7 @@ public class HistoryActivity extends Activity {
 		ch5_2.setName(getString(R.string.List_Gesamt));
 		ch5_2.setImage(R.drawable.ic_drawer_gesamt);
 		child_list_2.add(ch5_2);
-		
-		
-		
+
 		gru5.setItems(child_list_2);
 
 		// listing all groups
