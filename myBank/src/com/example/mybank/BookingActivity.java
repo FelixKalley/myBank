@@ -96,37 +96,71 @@ public class BookingActivity extends Activity {
 		
 		//Reihenfolge der Methodenaufrufe nicht ï¿½ndern wegen DB-Zugriffen !!
 		initDb();
+		checkIfNewMonthStarted();
 		
-		if(!db.getAllBookingItems().isEmpty()){
-			checkForNewMonth();
-		}
-		
-		
-		if(db.getAllBalanceItems().isEmpty()){
-			BalanceItem item = new BalanceItem(initDouble);
-			db.insertBalanceItem(item);
-		}
-		if(db.getAllGoalItems().isEmpty()) {
-			GoalItem item = new GoalItem(initDouble);
-			db.insertGoalItem(item);
-		}
-		
-		if(db.getAllSettingsItems().isEmpty()){
-			SettingsItem item = new SettingsItem(0, 0);
-			db.insertSettingsItem(item);
-		}
-		
-		
+		handleDatabaseFirstCreation();
 		DeclareAllElements();
 		initBalance();
 		updateOutlay();
 		updateGoal();
 		checkGoalReachability();
 		SeeIfListItemIsClicked();
+		checkForFirstAppStart();
+		setOnAllClickListeners();	
+					
+	}
 		
-		
+	
+	
+	//initialize Database
+	private void initDb() {
+		db = new MyBankDatabase(this);
+		db.open();
+	}
+	
+	
+	//check database table to be filled
+	private void handleDatabaseFirstCreation() {
+		checkIfBalanceItemPresent();
+		checkIfGoalItemPresent();
+		checkIfSettingsItemPresent();
+	}
+
+
+	private void checkIfBalanceItemPresent() {
+		if(db.getAllBalanceItems().isEmpty()){
+			BalanceItem item = new BalanceItem(initDouble);
+			db.insertBalanceItem(item);
+		}
+	}
+
+
+	private void checkIfGoalItemPresent() {
+		if(db.getAllGoalItems().isEmpty()) {
+			GoalItem item = new GoalItem(initDouble);
+			db.insertGoalItem(item);
+		}
+	}
+
+
+	private void checkIfSettingsItemPresent() {
+		if(db.getAllSettingsItems().isEmpty()){
+			SettingsItem item = new SettingsItem(0, 0);
+			db.insertSettingsItem(item);
+		}
+	}
+
+
+	private void checkIfNewMonthStarted() {
+		if(!db.getAllBookingItems().isEmpty()){
+			checkForNewMonth();
+		}
+	}
+
+
+	//check if this is first appstart ever
+	private void checkForFirstAppStart() {
 		if(db.getAllProfileItems().isEmpty()){
-			
 			
 			LayoutInflater li = LayoutInflater.from(context);
 			View promptsView = li.inflate(R.layout.profile_notification_prompt, null);
@@ -150,112 +184,111 @@ public class BookingActivity extends Activity {
 							Intent intent = new Intent(BookingActivity.this, ProfileDataActivity.class);
 							
 							startActivity(intent);
-			            	finish();
-								
+			            	finish();	
 						}
 					});
-					
-					
-			
-			
-			//create alert dialog
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			
-			alertDialog.show();
-		}
-		
-	
-		
-		
-		
-		
-		//---------------------------------------------------------------------------------------------------  					
-		// Test: OnClickListener on INCOME-textview & open prompt for user data input (store data in DB)
-		    
-		Button_Add_Income.setOnClickListener(new OnClickListener(){
 
-		@Override
-		public void onClick(View arg0) {
-			
-			LayoutInflater li = LayoutInflater.from(context);
-			View promptsView = li.inflate(R.layout.add_income_booking_prompt, null);
-										
-			
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-			
-			//set view on prompt
-			alertDialogBuilder.setView(promptsView);
-			
-			//elements to appear in prompt
-			final TextView askAmountTV = (TextView) promptsView.findViewById(R.id.income_booking_prompt_ask_amount_textview);
-			final EditText editText_inputAmount = (EditText) promptsView.findViewById(R.id.income_booking_prompt_amount_input_edittext);
-			final TextView askTitleTV = (TextView) promptsView.findViewById(R.id.income_booking_prompt_ask_title_textview);
-			final EditText editText_inputTitle = (EditText) promptsView.findViewById(R.id.income_booking_prompt_title_input_edittext);
-			
-			alertDialogBuilder
-					.setCancelable(false)
-					.setTitle(R.string.income_booking_prompt_title)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							
-							if (!editText_inputAmount.getText().toString().matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
-							// fetch data from edittext's
-							double amount = Double.parseDouble(editText_inputAmount.getText().toString());
-							String title = editText_inputTitle.getText().toString();
-							
-							if(title.matches("")){
-								title = altTitle;
-							}
-							
-							//create new BookingItem out of user input
-							BookingItem item = new BookingItem(title, "", amount, getDateTime(), "+");
-							//insert BookingItem into db
-							db.insertBookingItem(item);
-							
-							//create old- and newBalance as double			
-							double oldBalance = balances.get(balances.size()-1).getAmount();
-							double newBalance = oldBalance + amount;
-							
-							//create new BalanceItem-Object for newBalance
-							BalanceItem balanceItem = new BalanceItem(newBalance);
-										
-							//update the current Balance-Column in TABLE_BALANCE
-							db.updateBalanceItem(oldBalance, balanceItem);
-							
-							//update BalanceItem-ArrayList
-							updateBalance();
-							
-							Toast.makeText(getApplicationContext(), "Sie haben "+amount+" Euro eingebucht!", Toast.LENGTH_SHORT).show();
-							checkGoalReachability();
-						}
-						 else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
-							Toast.makeText(getApplicationContext(), "Sie haben keinen gueltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
-						}
-						 else if (editText_inputAmount.getText().toString().matches("")) {
-							 Toast.makeText(getApplicationContext(), "Sie haben nichts eingegeben!", Toast.LENGTH_SHORT).show();
-						 }
-						}
-					})
-					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.cancel();	
-						}
-					});
-			
 			//create alert dialog
 			AlertDialog alertDialog = alertDialogBuilder.create();
-			
 			alertDialog.show();
 		}
-		
-	});
-		    
-	//-----------------------------------------------------------------------------------------------------
-		//Test: OnClickListener on EXPENSE-textview & open prompt (store data in DB)
+	}
+	
+
+	//setup all clicklisteners
+	private void setOnAllClickListeners() {
+		setOnIncomeClickListener();
+		setOnExpenseClickListener();
+		setOnOutlayListener();
+		setOnGoalListener();
+	}
+
+
+
+	// setup add an income button
+	private void setOnIncomeClickListener() {
+				    
+				Button_Add_Income.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View arg0) {
+					
+					LayoutInflater li = LayoutInflater.from(context);
+					View promptsView = li.inflate(R.layout.add_income_booking_prompt, null);
+
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+					
+					//set view on prompt
+					alertDialogBuilder.setView(promptsView);
+					
+					//elements to appear in prompt
+					final TextView askAmountTV = (TextView) promptsView.findViewById(R.id.income_booking_prompt_ask_amount_textview);
+					final EditText editText_inputAmount = (EditText) promptsView.findViewById(R.id.income_booking_prompt_amount_input_edittext);
+					final TextView askTitleTV = (TextView) promptsView.findViewById(R.id.income_booking_prompt_ask_title_textview);
+					final EditText editText_inputTitle = (EditText) promptsView.findViewById(R.id.income_booking_prompt_title_input_edittext);
+					
+					alertDialogBuilder
+							.setCancelable(false)
+							.setTitle(R.string.income_booking_prompt_title)
+							.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									
+									if (!editText_inputAmount.getText().toString().matches("") && editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
+									// fetch data from edittext's
+									double amount = Double.parseDouble(editText_inputAmount.getText().toString());
+									String title = editText_inputTitle.getText().toString();
+									
+									if(title.matches("")){ title = altTitle; }
+									
+									//create new BookingItem out of user input
+									BookingItem item = new BookingItem(title, "", amount, getDateTime(), "+");
+									//insert BookingItem into db
+									db.insertBookingItem(item);
+									
+									//create old- and newBalance as double			
+									double oldBalance = balances.get(balances.size()-1).getAmount();
+									double newBalance = oldBalance + amount;
+									
+									//create new BalanceItem-Object for newBalance
+									BalanceItem balanceItem = new BalanceItem(newBalance);
+												
+									//update the current Balance-Column in TABLE_BALANCE
+									db.updateBalanceItem(oldBalance, balanceItem);
+									
+									//update BalanceItem-ArrayList
+									updateBalance();
+									
+									Toast.makeText(getApplicationContext(), "Sie haben "+amount+" Euro eingebucht!", Toast.LENGTH_SHORT).show();
+									checkGoalReachability();
+								}
+								 else if (!editText_inputAmount.getText().toString().matches("") && !editText_inputAmount.getText().toString().trim().matches(regExDecimal)) {
+									Toast.makeText(getApplicationContext(), "Sie haben keinen gueltigen Betrag eingegeben!", Toast.LENGTH_SHORT).show();
+								}
+								 else if (editText_inputAmount.getText().toString().matches("")) {
+									 Toast.makeText(getApplicationContext(), "Sie haben nichts eingegeben!", Toast.LENGTH_SHORT).show();
+								 }
+								}
+							})
+							.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									dialog.cancel();	
+								}
+							});
+					
+					//create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();	
+					alertDialog.show();
+				}
+			});
+	}
+
+
+	//setup add an expense button
+	private void setOnExpenseClickListener() {
 		
 		Button_Add_Expense.setOnClickListener(new OnClickListener(){
 
@@ -291,9 +324,7 @@ public class BookingActivity extends Activity {
 						double amount = Double.parseDouble(editText_inputAmount.getText().toString());
 						String title = editText_inputTitle.getText().toString();
 						String category = String.valueOf(categorySpinner.getSelectedItem());
-						if(title.matches("")){
-							title = "Kein Zweck angegeben";
-						}
+						if(title.matches("")){ title = "Kein Zweck angegeben"; }
 						
 						//create BookingItem
 						BookingItem item = new BookingItem(title, category, amount, getDateTime(), "-");
@@ -329,7 +360,7 @@ public class BookingActivity extends Activity {
 						}
 						//if conditions to book are not complied because not all fields are filled
 						else if (editText_inputAmount.getText().toString().matches("") || !String.valueOf(categorySpinner.getSelectedItem()).matches("")){
-							Toast.makeText(getApplicationContext(), "Alle Felder mï¿½ssen ausgefï¿½llt sein!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Alle Felder mue½ssen ausgefue½llt sein!", Toast.LENGTH_SHORT).show();
 							return;
 						}
 					}
@@ -343,15 +374,15 @@ public class BookingActivity extends Activity {
 				});
 		
 		//create alert dialog
-		AlertDialog alertDialog = alertDialogBuilder.create();
-		
+		AlertDialog alertDialog = alertDialogBuilder.create();	
 		alertDialog.show();
+			}	
+	});
 	}
-			
-		});
-		
-		//--------------------------------------------------------------------------------------------------- 
-		// Outlay OnClickListener
+	
+
+	//setup add an outlay button
+	private void setOnOutlayListener() {
 		
 		Button_Add_Scheduled_Booking.setOnClickListener(new OnClickListener(){
 
@@ -430,12 +461,15 @@ public class BookingActivity extends Activity {
 			
 				//create alert dialog
 				AlertDialog alertDialog = alertDialogBuilder.create();
-				
 				alertDialog.show();
 			}
 		});
-		
-			Button_Add_Goal.setOnClickListener(new OnClickListener() {
+	}
+	
+	
+	//setup add a goal button
+	private void setOnGoalListener() {
+		Button_Add_Goal.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -495,19 +529,12 @@ public class BookingActivity extends Activity {
 			
 				//create alert dialog
 				AlertDialog alertDialog = alertDialogBuilder.create();
-				
-				alertDialog.show();
-				
+				alertDialog.show();	
 			}
-		});		
+		});
 	}
-		
 	
-	//initialize Database
-	private void initDb() {
-		db = new MyBankDatabase(this);
-		db.open();
-	}
+	
 	
 	private void initMenuDrawer() {
 		  // R.id.drawer_layout should be in every activity with exactly the same id.
@@ -950,14 +977,11 @@ public class BookingActivity extends Activity {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(currentDate);
 		int currentMonth = cal.get(Calendar.MONTH);
-		Log.d("", "int month: "+currentMonth);
 		
 		//fetch last date app was opened
 		Date lastAddDate = getDateFromString(db.getLastBookingItemDate());
-		Log.d("", "Date lastAddDate: "+lastAddDate);
 		cal.setTime(lastAddDate);
 		int lastBookingItemMonth = cal.get(Calendar.MONTH);
-		Log.d("", "int lastAddedMonth: "+lastBookingItemMonth);
 		
 		//drop TABLE GOAL every and TABLE BOOKINGS every two month
 		if(currentMonth != lastBookingItemMonth){
@@ -972,7 +996,7 @@ public class BookingActivity extends Activity {
 		
 	}
 	
-	//inform user if monthly goal has been reached
+	//inform user if monthly goal has been reached if notification is set
 	private void informUserAboutGoal() {
 		if(db.getAllSettingsItems().get(0).getGoalReached() == 1){
 			if(db.getCurrentBalance() >= db.getCurrentGoal()){
@@ -1005,8 +1029,5 @@ public class BookingActivity extends Activity {
 		}
 	}
 	
-	
-
-
 
 }
