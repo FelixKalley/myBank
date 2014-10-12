@@ -36,18 +36,40 @@ public class ChartCategoriesActivity extends Activity {
 	ExpandableListView ExpandList;
 
 	public DrawerLayout drawerLayout;
-
-	public String[] layers;
 	private ActionBarDrawerToggle drawerToggle;
-
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chartactivity);
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_chartactivity);
+	
+	
+	init();
+	checkIfExpensesPresent();
+	createCategorieChart();
+
+	
+	}
+
+	private void createCategorieChart() {
+		Intent achartIntent = new CategoriesChart(cat1, cat2, cat3, cat4, cat5,
+				cat6, cat7, cat8, cat9).execute(ChartCategoriesActivity.this,
+				LayoutToDisplayChart);
+
+		
+		
+	}
+
+	private void init() {
 		LayoutToDisplayChart = (RelativeLayout) findViewById(R.id.relative_layout_chart);
 		initDb();
-		initMenuDrawer();
-		SeeIfListItemIsClicked();
+		initMenuDrawer();	
+		DeclareAllElements();
+	}
+
+	private void DeclareAllElements() {
+		
 		this.cat1 = db.getCategoryOccurenceInBookings("Freizeit");
 		this.cat2 = db.getCategoryOccurenceInBookings("Geschaeftlich");
 		this.cat3 = db.getCategoryOccurenceInBookings("Haushalt");
@@ -58,12 +80,8 @@ public class ChartCategoriesActivity extends Activity {
 		this.cat8 = db.getCategoryOccurenceInBookings("Studium");
 		this.cat9 = db.getCategoryOccurenceInBookings("Wohnung");
 
-		checkIfExpensesPresent();
 		
-		Intent achartIntent = new CategoriesChart(cat1, cat2, cat3, cat4, cat5,
-				cat6, cat7, cat8, cat9).execute(ChartCategoriesActivity.this,
-				LayoutToDisplayChart);
-
+		
 	}
 
 	private void checkIfExpensesPresent() {
@@ -87,17 +105,20 @@ public class ChartCategoriesActivity extends Activity {
 	}
 
 	private void initMenuDrawer() {
-		// R.id.drawer_layout should be in every activity with exactly the same
-		// id.
+		
+		setUpDrawer();
+		SeeIfListItemIsClicked();
 
-		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(ChartCategoriesActivity.this,
-				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
+	}
 
+	private void setUpDrawer() {
+		DeclareDrawerElements();
+		SetUpDrawerLayout();
 		setUpDrawerToggle();
+		
+	}
 
+	private void SetUpDrawerLayout() {
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 		drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout,
@@ -114,10 +135,16 @@ public class ChartCategoriesActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
+		
+	}
 
-		layers = getResources().getStringArray(R.array.Menu_items);
+	private void DeclareDrawerElements() {
 		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-
+		ExpListItems = SetStandardGroups();
+		ExpAdapter = new ExpandableDrawerAdapter(ChartCategoriesActivity.this,
+				ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
+		
 	}
 
 	@Override
@@ -233,7 +260,7 @@ public class ChartCategoriesActivity extends Activity {
 		final int PROFIL = 1;
 
 
-		final int KUCHEN = 0;
+		final int GESAMT = 1;
 	
 
 		switch (groupPosition) {
@@ -252,23 +279,21 @@ public class ChartCategoriesActivity extends Activity {
 				startActivity(j);
 				finish();
 				break;
-			
-			
-
 			}
-			
 			break;
 
 		case Uebersicht:
 			switch (childPosition) {
-			case KUCHEN:
-				Intent i = new Intent(ChartCategoriesActivity.this,
-						ChartActivity.class);
-				startActivity(i);
+			
+
+			case GESAMT:
+				Intent j = new Intent(ChartCategoriesActivity.this, ChartActivity.class);
+				startActivity(j);
 				finish();
 				break;
 
 			}
+
 
 		}
 	}

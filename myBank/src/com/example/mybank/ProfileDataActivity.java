@@ -63,42 +63,53 @@ public class ProfileDataActivity extends Activity {
 
 	String allIncomes, allExpenses, allOutlays, appInstalled;
 
-
 	MyBankDatabase db;
 	ProfileItem profileItem;
 	Bitmap bitMap;
 	byte[] byteArray;
 	final Context context = this;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_data);
 
-		initDB();
-		checkAppForFirstStart();
-		initMenuDrawer();
-		SeeIfListItemIsClicked();
-
-		fetchProfileItem();
-		updateProfilePic();
-		declareAllElements();
-		updateProfile();
-		setUpImageView();
-		checkForCompleteProfile();
+		
+		init();
+		updateApp();
+		checkProfileFillOut();
+		
 
 	}
 
+	private void checkProfileFillOut() {
+		checkAppForFirstStart();
+		checkForCompleteProfile();		
+	}
 
-	    
+	private void updateApp() {
+		fetchProfileItem();
+		updateProfilePic();
+		//updateProfile();
+		
+	}
+
+	private void init() {
+		initDB();	
+		initMenuDrawer();
+		declareAllElements();
+		
+		SeeIfListItemIsClicked();
+
+
+	}
+
 	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
 	}
 
-	
-	//check if this is first appstart ever
+	// check if this is first appstart ever
 	private void checkAppForFirstStart() {
 		if (db.getAllProfileItems().isEmpty()) {
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(),
@@ -113,15 +124,14 @@ public class ProfileDataActivity extends Activity {
 		}
 	}
 
-	//fetch and set current profilItem
+	// fetch and set current profilItem
 	private void fetchProfileItem() {
 		if (!db.getAllProfileItems().isEmpty()) {
 			profileItem = db.getAllProfileItems().get(0);
 		}
 	}
 
-
-	//fetch profile pic bytearray and create bitMap
+	// fetch profile pic bytearray and create bitMap
 	private void updateProfilePic() {
 		if (db.getCurrentProfilePic() != null) {
 			bitMap = BitmapFactory.decodeByteArray(db.getCurrentProfilePic(),
@@ -129,8 +139,8 @@ public class ProfileDataActivity extends Activity {
 		}
 
 	}
-	
-	//set OnClickListener on profile pic imageview
+
+	// set OnClickListener on profile pic imageview
 	private void setUpImageView() {
 		imageView.setOnClickListener(new OnClickListener() {
 
@@ -168,9 +178,8 @@ public class ProfileDataActivity extends Activity {
 		updateProfilePic();
 		updateProfile();
 	}
-	
 
-	//if its first appstart force user to input profile data
+	// if its first appstart force user to input profile data
 	private void checkForCompleteProfile() {
 		if (profileItem.getCheckBoolean() == 0) {
 
@@ -232,13 +241,17 @@ public class ProfileDataActivity extends Activity {
 
 										Toast.makeText(
 												getApplicationContext(),
+												
 												"Sie haben Ihr Profil befuellt!",
+
 												Toast.LENGTH_SHORT).show();
 
 									} else {
 										Toast.makeText(
 												getApplicationContext(),
+
 												"Alle Felder muessen ausgefuellt sein!",
+
 												Toast.LENGTH_SHORT).show();
 										checkForCompleteProfile();
 									}
@@ -254,7 +267,7 @@ public class ProfileDataActivity extends Activity {
 		}
 	}
 
-	//create all elements need on screen
+	// create all elements need on screen
 	private void declareAllElements() {
 		imageView = (ImageView) findViewById(R.id.profile_pic);
 
@@ -270,24 +283,29 @@ public class ProfileDataActivity extends Activity {
 		allExpensesContentTV = (TextView) findViewById(R.id.profile_data_all_expenses_content);
 		allOutlaysTV = (TextView) findViewById(R.id.profile_data_all_outlays_textview);
 		allOutlaysContentTV = (TextView) findViewById(R.id.profile_data_all_outlays_content);
+		
+		setUpImageView();
+
 
 	}
 
 	// update all views
 	private void updateProfile() {
-		
+
 		imageView.setImageBitmap(bitMap);
 		YourNameContent.setText(profileItem.getName());
 		YourLastNameContent.setText(profileItem.getLastName());
-		
+
 		appInstalledTV.setText(profileItem.getDate());
-		
-		allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
-		allExpensesContentTV.setText("+" + String.format("%.2f", db.getAllExpenses()));
-		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));	
+
+		allIncomesContentTV.setText("+"
+				+ String.format("%.2f", db.getAllIncomes()));
+		allExpensesContentTV.setText("+"
+				+ String.format("%.2f", db.getAllExpenses()));
+		allOutlaysContentTV.setText("+"
+				+ String.format("%.2f", db.getTotalOutlays()));
 	}
 
-	
 	// get current date as a string
 	private String getDateTime() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy",
@@ -296,7 +314,6 @@ public class ProfileDataActivity extends Activity {
 		return dateFormat.format(date);
 	}
 
-	
 	@Override
 	protected void onDestroy() {
 		db.close();
@@ -304,17 +321,22 @@ public class ProfileDataActivity extends Activity {
 	}
 
 	private void initMenuDrawer() {
-		// R.id.drawer_layout should be in every activity with exactly the same
-		// id.
+		
+		
+		setUpDrawer();
+		SeeIfListItemIsClicked();
 
-		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(ProfileDataActivity.this,
-				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
 
-		setUpDrawerToggle();
+	
+	}
 
+	private void setUpDrawer() {
+		DeclareDrawerElements();
+		SetUpDrawerLayout();
+		setUpDrawerToggle();		
+	}
+
+	private void SetUpDrawerLayout() {
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 		drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout,
@@ -331,10 +353,16 @@ public class ProfileDataActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
+		
+	}
 
-		// layers = getResources().getStringArray(R.array.Menu_items);
-		// ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-
+	private void DeclareDrawerElements() {
+		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+		ExpListItems = SetStandardGroups();
+		ExpAdapter = new ExpandableDrawerAdapter(ProfileDataActivity.this,
+				ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
+		
 	}
 
 	@Override
@@ -346,14 +374,12 @@ public class ProfileDataActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		drawerToggle.syncState();
 	}
 
-	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
@@ -416,13 +442,8 @@ public class ProfileDataActivity extends Activity {
 
 		final int NOTIFICATION = 0;
 
-		
 		final int KUCHEN = 0;
 		final int GESAMT = 1;
-	
-
-		final int PROFIL = 1;
-
 
 
 		switch (groupPosition) {
@@ -436,18 +457,9 @@ public class ProfileDataActivity extends Activity {
 				break;
 
 
-			case PROFIL:
-				Intent j = new Intent(ProfileDataActivity.this,
-						ProfileDataActivity.class);
-				startActivity(j);
-				finish();
-				break;
-
-
-
 			}
 			break;
-			
+
 		case Uebersicht:
 			switch (childPosition) {
 			case KUCHEN:
@@ -464,7 +476,7 @@ public class ProfileDataActivity extends Activity {
 				finish();
 				break;
 			}
-			
+
 		}
 	}
 
@@ -531,24 +543,7 @@ public class ProfileDataActivity extends Activity {
 
 		});
 
-		ExpandList.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-			@Override
-			public void onGroupExpand(int groupPosition) {
-				String group_name = ExpListItems.get(groupPosition).getName();
-
-			}
-		});
-
-		ExpandList.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-				String group_name = ExpListItems.get(groupPosition).getName();
-
-			}
-		});
-
+	
 	}
 
 	private ArrayList<ExpListGroups> SetStandardGroups() {
@@ -568,6 +563,8 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru2 = new ExpListGroups();
 		gru2.setName(getString(R.string.List_Verlauf));
+		gru2.setImage(R.drawable.ic_drawer_history);
+
 
 		gru2.setItems(child_list);
 
@@ -575,6 +572,8 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru3 = new ExpListGroups();
 		gru3.setName(getString(R.string.List_Geplant));
+		gru3.setImage(R.drawable.ic_drawer_planned);
+
 
 		gru3.setItems(child_list);
 
@@ -582,6 +581,7 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
 		gru4.setName(getString(R.string.List_Einstellungen));
+		gru4.setImage(R.drawable.ic_drawer_settings);
 
 		ExpListChild ch4_1 = new ExpListChild();
 		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
@@ -593,11 +593,12 @@ public class ProfileDataActivity extends Activity {
 
 		gru4.setItems(child_list);
 
-	// Setting Group 5
-		
+
+		// Setting Group 5
 		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
+		gru5.setImage(R.drawable.ic_drawer_overview);
 
 
 		ExpListChild ch5_1 = new ExpListChild();
@@ -607,9 +608,7 @@ public class ProfileDataActivity extends Activity {
 		ExpListChild ch5_2 = new ExpListChild();
 		ch5_2.setName(getString(R.string.List_Gesamt));
 		child_list_2.add(ch5_2);
-		
-		
-		
+
 		gru5.setItems(child_list_2);
 
 		// listing all groups
