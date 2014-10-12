@@ -38,20 +38,20 @@
     <string name="logo_description">Logo</string>
    
     <!-- ALL STRINGS FOR PROFILE-DATA-SCREEN -->
-    <string name="profile_data_name_text">Name</string>
-    <string name="profile_data_lastname_text">Nachname</string>
+    <string name="profile_data_name_text">Vorname:</string>
+    <string name="profile_data_lastname_text">Nachname:</string>
     <string name="profile_data_save_button_text">Speichern</string>
-    <string name="profile_prompt_name_hint">Name</string>
+    <string name="profile_prompt_name_hint">Vorame</string>
     <string name="profile_prompt_lastname_hint">Nachname</string>
-    <string name="profile_prompt_name_text">Name:</string>
+    <string name="profile_prompt_name_text">Vorname:</string>
     <string name="profile_prompt_lastname_text">Nachname:</string>
     <string name="update_profile_prompt_title">Profil ausfüllen</string>
-    <string name="profile_header_text">Mein Profil</string>
+
     <string name="profile_pic_description">Profilbild</string>
     <string name="all_incomes_text">Alle Einbuchungen:</string>
     <string name="all_expenses_text">Alle Ausgaben:</string>
     <string name="all_outlays_text">Alle Auslagen:</string>
-    <string name="profile_data_app_installed_text">App installiert am:</string>
+    <string name="profile_data_app_installed_text">installiert am:</string>
    
     <!-- ALL STRINGS FOR BOOKING-SCREEN -->
     <string name="String_TextView_Balance">Kontostand:</string>
