@@ -5,6 +5,7 @@ Chart Activities: aChartEngine
 - http://anusreeanair.blogspot.de/2012/12/draw-pie-chart-in-your-android.html
 
 - http://stackoverflow.com/questions/17474643/achartengine-android-special-pie-chart
+--------------------------------------------------------------------------------------------------------------------
 
 
 MyBankDatabase:
@@ -13,6 +14,7 @@ MyBankDatabase:
 
 - http://stackoverflow.com/questions/11563732/change-a-value-in-a-column-in-sqlite
 
+--------------------------------------------------------------------------------------------------------------------
 
 ProfileDataActivity: Profilbild
 
@@ -28,6 +30,7 @@ ProfileDataActivity: Profilbild
 
 - http://stackoverflow.com/questions/13758560/android-bitmap-to-byte-array-and-back-skimagedecoderfactory-returned-null
 
+--------------------------------------------------------------------------------------------------------------------
 
 BookingActivity: Textviews, Calendar, Dialoge, Spinner
 
@@ -43,6 +46,7 @@ BookingActivity: Textviews, Calendar, Dialoge, Spinner
 
 - http://examples.javacodegeeks.com/android/core/ui/spinner/android-spinner-drop-down-list-example/
 
+--------------------------------------------------------------------------------------------------------------------
 
 SettingsNotificationsActivity: Switch
 
@@ -50,17 +54,39 @@ SettingsNotificationsActivity: Switch
 
 - http://developer.android.com/design/building-blocks/switches.html
 
+--------------------------------------------------------------------------------------------------------------------
+
+
 Colors: Android Color Swatches, Shades 
 
 - https://developer.android.com/design/style/color.html
 
 - https://stackoverflow.com/questions/12761655/how-to-use-android-color-swatches
 
+--------------------------------------------------------------------------------------------------------------------
+
 Button Drawable: Rounded Corners, Selector
 
 - https://github.com/donnfelker/AndroidCodeExamples/blob/master/res/drawable/rounded_corners_white.xml
 
 - http://karanbalkar.com/2012/10/tutorial-10-customizing-buttons-in-android/
+
+-------------------------------------------------------------------------------------------------------------------
+
+Menu Drawer + ExpListChild + ExpListGroup:
+
+- http://stackoverflow.com/questions/18177447/expandablelistview-and-the-navigationdrawer
+
+- http://www.java-forum.org/java-basics-anfaenger-themen/103744-arraylist-daten-fuellen.html
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+MainActivity: Timer and AsyncTask :
+
+- http://stackoverflow.com/questions/6477608/timer-and-timertask-in-android
+
+
 
 
 
