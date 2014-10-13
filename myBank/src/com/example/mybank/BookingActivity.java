@@ -51,7 +51,6 @@ public class BookingActivity extends Activity {
 	TextView TEXTVIEW_Outlay_Content;
 	TextView TEXTVIEW_Goal;
 	TextView TEXTVIEW_Goal_Content;
-
 	Button Button_Add_Income;
 	Button Button_Add_Expense;
 	Button Button_Add_Scheduled_Booking;
@@ -81,8 +80,7 @@ public class BookingActivity extends Activity {
 		setContentView(R.layout.activity_booking);
 
 		// Reihenfolge der Methodenaufrufe nicht �ndern wegen DB-Zugriffen !!
-		
-		
+
 		initDb();
 		DeclareAllElements();
 		checkIfNewMonthStarted();
@@ -334,16 +332,13 @@ public class BookingActivity extends Activity {
 				alertDialogBuilder.setView(promptsView);
 
 				// elements to appear in prompt
-				final TextView askAmountTV = (TextView) promptsView
-						.findViewById(R.id.booking_prompt_ask_amount_textview);
+
 				final EditText editText_inputAmount = (EditText) promptsView
 						.findViewById(R.id.booking_prompt_amount_input_edittext);
-				final TextView askTitleTV = (TextView) promptsView
-						.findViewById(R.id.booking_prompt_ask_title_textview);
+
 				final EditText editText_inputTitle = (EditText) promptsView
 						.findViewById(R.id.booking_prompt_title_edittext);
-				final TextView askCategoryTV = (TextView) promptsView
-						.findViewById(R.id.booking_prompt_ask_category_textview);
+
 				final Spinner categorySpinner = (Spinner) promptsView
 						.findViewById(R.id.booking_prompt_spinner_category);
 
@@ -517,12 +512,9 @@ public class BookingActivity extends Activity {
 				// set view on prompt
 				alertDialogBuilder.setView(promptsView);
 
-				final TextView askOutlayAmountTV = (TextView) promptsView
-						.findViewById(R.id.outlay_prompt_ask_amount_textview);
 				final EditText editText_inputOutlayAmount = (EditText) promptsView
 						.findViewById(R.id.outlay_prompt_amount_input_edittext);
-				final TextView askTitleOutlayTV = (TextView) promptsView
-						.findViewById(R.id.outlay_prompt_ask_title_textview);
+
 				final EditText editText_inputOutlayTitle = (EditText) promptsView
 						.findViewById(R.id.outlay_prompt_title_input_edittext);
 
@@ -677,8 +669,6 @@ public class BookingActivity extends Activity {
 				// set view on prompt
 				alertDialogBuilder.setView(promptsView);
 
-				final TextView askGoalAmountTV = (TextView) promptsView
-						.findViewById(R.id.goal_prompt_ask_amount_textview);
 				final EditText editText_inputGoalAmount = (EditText) promptsView
 						.findViewById(R.id.goal_prompt_amount_input_edittext);
 
@@ -764,7 +754,7 @@ public class BookingActivity extends Activity {
 	}
 
 	private void initMenuDrawer() {
-		
+
 		setUpDrawer();
 		SeeIfListItemIsClicked();
 
@@ -776,7 +766,6 @@ public class BookingActivity extends Activity {
 		SetUpDrawerLayout();
 		setUpDrawerToggle();
 
-		
 	}
 
 	private void SetUpDrawerLayout() {
@@ -796,7 +785,7 @@ public class BookingActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		
+
 	}
 
 	private void DeclareDrawerElements() {
@@ -804,7 +793,7 @@ public class BookingActivity extends Activity {
 		ExpListItems = SetStandardGroups();
 		ExpAdapter = new ExpandableDrawerAdapter(BookingActivity.this,
 				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);		
+		ExpandList.setAdapter(ExpAdapter);
 	}
 
 	@Override

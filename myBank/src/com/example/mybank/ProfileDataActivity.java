@@ -5,13 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
-import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.ProfileItem;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,7 +17,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,7 +26,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -38,8 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
+
 
 public class ProfileDataActivity extends Activity {
 
@@ -47,10 +41,7 @@ public class ProfileDataActivity extends Activity {
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
-
 	public DrawerLayout drawerLayout;
-
-	public String[] layers;
 	private ActionBarDrawerToggle drawerToggle;
 
 	static int TAKE_PICTURE = 1;
@@ -75,23 +66,34 @@ public class ProfileDataActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_data);
-
-		initDB();
+		
+		init();
 		checkAppForFirstStart();
-		initMenuDrawer();
-		SeeIfListItemIsClicked();
-
-		fetchProfileItem();
-		updateProfilePic();
-		declareAllElements();
+		setUpProfile();
 		updateProfile();
-		setUpImageView();
+		TakeInAppPicture();
 		checkForCompleteProfile();
 
 	}
 
 
 	    
+	private void setUpProfile() {
+		fetchProfileItem();
+		updateProfilePic();
+		declareAllElements();		
+	}
+
+
+
+	private void init() {
+		initDB();	
+		initMenuDrawer();
+
+	}
+
+
+
 	private void initDB() {
 		db = new MyBankDatabase(this);
 		db.open();
@@ -131,7 +133,7 @@ public class ProfileDataActivity extends Activity {
 	}
 	
 	//set OnClickListener on profile pic imageview
-	private void setUpImageView() {
+	private void TakeInAppPicture() {
 		imageView.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -256,8 +258,8 @@ public class ProfileDataActivity extends Activity {
 
 	//create all elements need on screen
 	private void declareAllElements() {
+		
 		imageView = (ImageView) findViewById(R.id.profile_pic);
-
 		YourName = (TextView) findViewById(R.id.profile_data_name_textview);
 		YourNameContent = (TextView) findViewById(R.id.profile_data_name_content_textview);
 		YourLastName = (TextView) findViewById(R.id.profile_data_lastname_textview);
@@ -282,7 +284,7 @@ public class ProfileDataActivity extends Activity {
 		
 		appInstalledTV.setText(profileItem.getDate());
 		
-		allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
+	//	allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
 		allExpensesContentTV.setText("+" + String.format("%.2f", db.getAllExpenses()));
 		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));	
 	}
@@ -304,17 +306,24 @@ public class ProfileDataActivity extends Activity {
 	}
 
 	private void initMenuDrawer() {
-		// R.id.drawer_layout should be in every activity with exactly the same
-		// id.
+		setUpDrawer();
+		SeeIfListItemIsClicked();
 
-		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableDrawerAdapter(ProfileDataActivity.this,
-				ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
+	}
 
+	private void setUpDrawer() {
+		
+		DeclareDrawerElements();
+		SetUpDrawerLayout();
 		setUpDrawerToggle();
 
+	
+	}
+
+
+	
+
+	private void SetUpDrawerLayout() {
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 		drawerToggle = new ActionBarDrawerToggle((Activity) this, drawerLayout,
@@ -330,12 +339,20 @@ public class ProfileDataActivity extends Activity {
 		drawerLayout.setDrawerListener(drawerToggle);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
-
-		// layers = getResources().getStringArray(R.array.Menu_items);
-		// ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
-
+		getActionBar().setHomeButtonEnabled(true);		
 	}
+
+
+
+	private void DeclareDrawerElements() {
+		ExpandList = (ExpandableListView) findViewById(R.id.drawerList);
+		ExpListItems = SetStandardGroups();
+		ExpAdapter = new ExpandableDrawerAdapter(ProfileDataActivity.this,
+				ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);		
+	}
+
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -531,24 +548,7 @@ public class ProfileDataActivity extends Activity {
 
 		});
 
-		ExpandList.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-			@Override
-			public void onGroupExpand(int groupPosition) {
-				String group_name = ExpListItems.get(groupPosition).getName();
-
-			}
-		});
-
-		ExpandList.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-				String group_name = ExpListItems.get(groupPosition).getName();
-
-			}
-		});
-
+	
 	}
 
 	private ArrayList<ExpListGroups> SetStandardGroups() {
