@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.ProfileItem;
 import com.example.mybank.settings.SettingsNotificationsActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,7 +54,7 @@ public class ProfileDataActivity extends Activity {
 			appInstalledTV;
 	ImageView imageView;
 
-	String allIncomes, allExpenses, allOutlays, appInstalled;
+	String appInstalled;
 
 
 	MyBankDatabase db;
@@ -559,6 +561,7 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru1 = new ExpListGroups();
 		gru1.setName(getString(R.string.List_Buchung));
+		gru1.setImage(R.drawable.ic_drawer_booking);
 
 		gru1.setItems(child_list);
 
@@ -566,6 +569,7 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru2 = new ExpListGroups();
 		gru2.setName(getString(R.string.List_Verlauf));
+		gru2.setImage(R.drawable.ic_drawer_history);
 
 		gru2.setItems(child_list);
 
@@ -573,6 +577,7 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru3 = new ExpListGroups();
 		gru3.setName(getString(R.string.List_Geplant));
+		gru3.setImage(R.drawable.ic_drawer_planned);
 
 		gru3.setItems(child_list);
 
@@ -580,34 +585,37 @@ public class ProfileDataActivity extends Activity {
 		child_list = new ArrayList<ExpListChild>();
 		ExpListGroups gru4 = new ExpListGroups();
 		gru4.setName(getString(R.string.List_Einstellungen));
+		gru4.setImage(R.drawable.ic_drawer_settings);
 
 		ExpListChild ch4_1 = new ExpListChild();
 		ch4_1.setName(getString(R.string.List_Einstellung_Bencharichtigungen));
+		ch4_1.setImage(R.drawable.ic_drawer_notifications);
 		child_list.add(ch4_1);
 
 		ExpListChild ch4_2 = new ExpListChild();
 		ch4_2.setName(getString(R.string.List_Einstellung_Profil));
+		ch4_2.setImage(R.drawable.ic_drawer_profile);
 		child_list.add(ch4_2);
 
 		gru4.setItems(child_list);
 
-	// Setting Group 5
-		
+		// Setting Group 5
+
 		child_list_2 = new ArrayList<ExpListChild>();
 		ExpListGroups gru5 = new ExpListGroups();
 		gru5.setName(getString(R.string.List_Uebersicht));
-
+		gru5.setImage(R.drawable.ic_drawer_overview);
 
 		ExpListChild ch5_1 = new ExpListChild();
 		ch5_1.setName(getString(R.string.List_Kuchen));
+		ch5_1.setImage(R.drawable.ic_drawer_piechart);
 		child_list_2.add(ch5_1);
 
 		ExpListChild ch5_2 = new ExpListChild();
 		ch5_2.setName(getString(R.string.List_Gesamt));
+		ch5_2.setImage(R.drawable.ic_drawer_gesamt);
 		child_list_2.add(ch5_2);
-		
-		
-		
+
 		gru5.setItems(child_list_2);
 
 		// listing all groups
@@ -618,6 +626,7 @@ public class ProfileDataActivity extends Activity {
 		group_list.add(gru5);
 
 		return group_list;
+
 
 	}
 

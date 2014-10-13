@@ -377,13 +377,6 @@ public class MyBankDatabase {
 	}
 	
 	
-	/*
-	public void deleteBalanceItem(BalanceItem item) {
-		String whereClause = KEY_CURRENT_BALANCE + " = '" + item.getAmount() + "'";
-
-		db.delete(TABLE_BALANCE, whereClause, null);
-	}
-	*/
 	
 	public double getTotalOutlays() {
 		double totalOutlays = 0;
@@ -519,15 +512,6 @@ public class MyBankDatabase {
 	}
 	
 	
-	/*
-	private String getDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = new Date();
-        return dateFormat.format(date);
-	}
-	*/
-	
 	
 	private class MyBankDBOpenHelper extends SQLiteOpenHelper {
 		//Bookings table create statement
@@ -582,12 +566,6 @@ public class MyBankDatabase {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKINGS);
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_BALANCE);
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_OUTLAYS);
-			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOAL);
-			//onCreate(db);
-			
 		}
 	}
 	

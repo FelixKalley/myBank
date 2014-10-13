@@ -59,7 +59,7 @@ public class CategoriesChart {
 	   renderer.setShowLabels(true);
 	   renderer.setLabelsTextSize(20);
 	   renderer.setLegendTextSize(20);
-	   renderer.setChartTitle("Anzahl Ausgaben pro Kategorie");
+	   renderer.setChartTitle("Anzahl Ausgaben/Kategorie");
 	   renderer.setChartTitleTextSize(40);
 	   
 	   

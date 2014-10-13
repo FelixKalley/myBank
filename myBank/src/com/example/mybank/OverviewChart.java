@@ -46,7 +46,7 @@ public class OverviewChart {
 	   renderer.setShowLabels(true);
 	   renderer.setLabelsTextSize(20);
 	   renderer.setLegendTextSize(20);
-	   renderer.setChartTitle("Verhaeltnis Balance:Ausgaben");
+	   renderer.setChartTitle("Verhaeltnis Balance/Ausgaben");
 	   renderer.setChartTitleTextSize(40);
 	   
 	   

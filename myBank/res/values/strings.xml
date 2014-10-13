@@ -24,8 +24,8 @@
 
     <!-- ALL STRINGS FOR ACTIVITY NAMES -->
     <string name="title_activity_booking">Buchung</string>
-    <string name="title_activity_settings_profile">Einstellungen Profil</string>
-    <string name="title_activity_settings_notifications">Einstellungen Benachrichtigungen</string>
+    <string name="title_activity_settings_profile">Profil</string>
+    <string name="title_activity_settings_notifications">Benachrichtigungen</string>
     <string name="title_activity_settings_banking">Buchung</string>
     <string name="title_activity_history">Verlauf</string>
 	<string name="title_activity_outlay">Geplant</string>
@@ -70,14 +70,15 @@
     <string name="income_booking_prompt_ask_amount_text">Wieviel möchten Sie einbuchen?</string>
     <string name="income_booking_prompt_amount_input_hint_text">Euro</string>
     <string name="income_booking_prompt_ask_title_text">Woher?</string>
+    <string name="income_booking_prompt_hint_text">Quelle</string>
 
     <!-- ALL STRINGS FOR EXPENSE BOOKING PROMPT -->
     <string name="expense_booking_prompt_title">Abbuchen</string>
     <string name="booking_prompt_amount_input_hint_text">Euro</string>
     <string name="booking_prompt_ask_amount_text">Wieviel möchten Sie abbuchen?</string>
-    <string name="booking_prompt_ask_title_text">Zu welchem Zweck?</string>
+    <string name="booking_prompt_ask_title_text">Zweck</string>
     <string name="booking_prompt_ask_category_text">In welcher Ausgaben-Kategorie?</string>
-    <string name="booking_prompt_title_hint_text">Wofür?</string>
+    <string name="booking_prompt_title_hint_text">Zweck?</string>
     <string-array name="categories_array">
         <item>Freizeit</item>
         <item>Geschaeftlich</item>

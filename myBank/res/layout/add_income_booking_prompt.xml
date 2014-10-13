@@ -32,7 +32,7 @@
         android:id="@+id/income_booking_prompt_title_input_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/booking_prompt_title_hint_text"
+        android:hint="@string/income_booking_prompt_hint_text"
         />
 
 </LinearLayout>
