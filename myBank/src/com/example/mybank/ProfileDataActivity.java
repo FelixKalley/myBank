@@ -234,13 +234,13 @@ public class ProfileDataActivity extends Activity {
 
 										Toast.makeText(
 												getApplicationContext(),
-												"Sie haben Ihr Profil bef�llt!",
+												"Sie haben Ihr Profil befuellt!",
 												Toast.LENGTH_SHORT).show();
 
 									} else {
 										Toast.makeText(
 												getApplicationContext(),
-												"Alle Felder m�ssen ausgef�llt sein!",
+												"Alle Felder muessen ausgefuellt sein!",
 												Toast.LENGTH_SHORT).show();
 										checkForCompleteProfile();
 									}

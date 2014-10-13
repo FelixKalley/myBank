@@ -1,0 +1,72 @@
+Chart Activities: aChartEngine
+
+- http://www.achartengine.org
+
+- http://anusreeanair.blogspot.de/2012/12/draw-pie-chart-in-your-android.html
+
+- http://stackoverflow.com/questions/17474643/achartengine-android-special-pie-chart
+
+
+MyBankDatabase:
+
+- http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/
+
+- http://stackoverflow.com/questions/11563732/change-a-value-in-a-column-in-sqlite
+
+
+ProfileDataActivity: Profilbild
+
+- http://stackoverflow.com/questions/17127139/how-to-select-an-image-from-internal-storage-and-insert-it-in-sqlite
+
+- http://stackoverflow.com/questions/9357668/how-to-store-image-in-sqlite-database
+
+- http://stackoverflow.com/questions/22188251/how-to-retrieve-image-path-stored-in-database-and-display-in-image-view
+
+- http://stackoverflow.com/questions/5991319/capture-image-from-camera-and-display-in-activity
+
+- http://hmkcode.com/android-camera-taking-photos-camera/
+
+- http://stackoverflow.com/questions/13758560/android-bitmap-to-byte-array-and-back-skimagedecoderfactory-returned-null
+
+
+BookingActivity: Textviews, Calendar, Dialoge, Spinner
+
+- http://stackoverflow.com/questions/21725115/edit-text-accept-only-numbers-not-decimal-numbers-in-android
+
+- http://stackoverflow.com/questions/18806104/how-to-get-month-name-using-current-date-as-input-in-function
+
+- http://developer.android.com/design/building-blocks/dialogs.html
+
+- http://www.mkyong.com/android/android-prompt-user-input-dialog-example/
+
+- http://developer.android.com/guide/topics/ui/controls/spinner.html
+
+- http://examples.javacodegeeks.com/android/core/ui/spinner/android-spinner-drop-down-list-example/
+
+
+SettingsNotificationsActivity: Switch
+
+- http://www.panayiotisgeorgiou.net/android-switch-button-example/
+
+- http://developer.android.com/design/building-blocks/switches.html
+
+Colors: Android Color Swatches, Shades 
+
+- https://developer.android.com/design/style/color.html
+
+- https://stackoverflow.com/questions/12761655/how-to-use-android-color-swatches
+
+Button Drawable: Rounded Corners, Selector
+
+- https://github.com/donnfelker/AndroidCodeExamples/blob/master/res/drawable/rounded_corners_white.xml
+
+- http://karanbalkar.com/2012/10/tutorial-10-customizing-buttons-in-android/
+
+
+
+
+
+
+
+
+
