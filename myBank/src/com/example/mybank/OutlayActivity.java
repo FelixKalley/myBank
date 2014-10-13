@@ -13,23 +13,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.adapters.MyBankOutlayAdapter;
 import com.example.mybank.data.MyBankDatabase;
@@ -180,8 +174,7 @@ public class OutlayActivity extends Activity {
 				alertDialogBuilder.setView(promptsView);
 
 				// elements to appear in prompt
-				final TextView askOutlaySpentTV = (TextView) promptsView
-						.findViewById(R.id.outlay_delete_prompt_ask_spent_textview);
+			
 
 				alertDialogBuilder
 						.setCancelable(false)

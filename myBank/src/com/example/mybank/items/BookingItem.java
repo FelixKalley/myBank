@@ -1,11 +1,6 @@
 package com.example.mybank.items;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import android.net.ParseException;
 
 public class BookingItem {
 	// int id;

@@ -185,12 +185,10 @@ public class ProfileDataActivity extends Activity {
 			// set view on prompt
 			alertDialogBuilder.setView(promptsView);
 
-			final TextView askNameTV = (TextView) promptsView
-					.findViewById(R.id.profile_prompt_name_textview);
+		
 			final EditText editText_inputName = (EditText) promptsView
 					.findViewById(R.id.profile_prompt_input_name_edittext);
-			final TextView askLastName = (TextView) promptsView
-					.findViewById(R.id.profile_prompt_lastname_textview);
+			
 			final EditText editText_inputLastname = (EditText) promptsView
 					.findViewById(R.id.profile_prompt_input_lastname_edittext);
 
@@ -284,7 +282,7 @@ public class ProfileDataActivity extends Activity {
 		
 		appInstalledTV.setText(profileItem.getDate());
 		
-	//	allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
+	    allIncomesContentTV.setText("+" + String.format("%.2f",db.getAllIncomes()));
 		allExpensesContentTV.setText("+" + String.format("%.2f", db.getAllExpenses()));
 		allOutlaysContentTV.setText("+" + String.format("%.2f", db.getTotalOutlays()));	
 	}

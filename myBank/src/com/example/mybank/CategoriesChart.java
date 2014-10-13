@@ -5,9 +5,7 @@ import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
-
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.Intent;
 import android.graphics.Color;
 import android.widget.RelativeLayout;
@@ -17,7 +15,6 @@ public class CategoriesChart {
 	int category1, category2, category3, category4, category5, category6, category7, category8, category9;
 	
 	private GraphicalView mChartView2;
-	private GraphicalView mChartView3;
 	static int count=9;
 
 	 
@@ -60,10 +57,10 @@ public class CategoriesChart {
 	   renderer.setPanEnabled(false);
 	   renderer.setLabelsColor(Color.WHITE);
 	   renderer.setShowLabels(true);
-	   renderer.setLabelsTextSize(30);
-	   renderer.setLegendTextSize(30);
+	   renderer.setLabelsTextSize(20);
+	   renderer.setLegendTextSize(20);
 	   renderer.setChartTitle("Anzahl Ausgaben pro Kategorie");
-	   renderer.setChartTitleTextSize(50);
+	   renderer.setChartTitleTextSize(40);
 	   
 	   
 	   

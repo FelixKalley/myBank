@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -27,11 +25,11 @@ import android.widget.Toast;
 public class ChartActivity extends Activity {
 
 	ActionBarDrawerToggle mDrawerToggle;
-
 	ExpandableDrawerAdapter ExpAdapter;
 	ArrayList<ExpListGroups> ExpListItems;
 	ExpandableListView ExpandList;
 
+	
 	RelativeLayout LayoutToDisplayChart;
 	/** Called when the activity is first created. */
 	

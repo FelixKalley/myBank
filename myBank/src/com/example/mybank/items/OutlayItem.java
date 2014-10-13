@@ -1,7 +1,5 @@
 package com.example.mybank.items;
 
-import java.util.Date;
-
 public class OutlayItem {
 
 	String title;

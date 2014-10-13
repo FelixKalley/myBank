@@ -15,7 +15,6 @@ import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.SettingsItem;
 import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -28,8 +27,7 @@ import android.widget.ExpandableListView;
 import android.widget.Switch;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
+
 
 public class SettingsNotificationsActivity extends Activity {
 

@@ -16,7 +16,7 @@ public class OverviewChart {
 	int balance;
 	int expense;
 	private GraphicalView mChartView2;
-	private GraphicalView mChartView3;
+	
 	static int count=2;
 	 
 	 
@@ -44,10 +44,10 @@ public class OverviewChart {
 	   renderer.setPanEnabled(false);
 	   renderer.setLabelsColor(Color.WHITE);
 	   renderer.setShowLabels(true);
-	   renderer.setLabelsTextSize(30);
-	   renderer.setLegendTextSize(30);
-	   renderer.setChartTitle("Verhältnis Balance zu Ausgaben");
-	   renderer.setChartTitleTextSize(50);
+	   renderer.setLabelsTextSize(20);
+	   renderer.setLegendTextSize(20);
+	   renderer.setChartTitle("Verhaeltnis Balance:Ausgaben");
+	   renderer.setChartTitleTextSize(40);
 	   
 	   
 	   

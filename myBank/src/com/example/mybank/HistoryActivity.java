@@ -1,16 +1,11 @@
 package com.example.mybank;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.adapters.MyBankListAdapter;
 import com.example.mybank.data.MyBankDatabase;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.settings.SettingsNotificationsActivity;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,8 +19,6 @@ import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
 
 public class HistoryActivity extends Activity {
 

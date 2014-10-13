@@ -149,8 +149,6 @@ public class BookingActivity extends Activity {
 			alertDialogBuilder.setView(promptsView);
 
 			// elements to appear in prompt
-			final TextView infoTV = (TextView) promptsView
-					.findViewById(R.id.profile_notification_prompt_info_textview);
 
 			alertDialogBuilder
 					.setCancelable(false)
@@ -204,12 +202,10 @@ public class BookingActivity extends Activity {
 				alertDialogBuilder.setView(promptsView);
 
 				// elements to appear in prompt
-				final TextView askAmountTV = (TextView) promptsView
-						.findViewById(R.id.income_booking_prompt_ask_amount_textview);
+
 				final EditText editText_inputAmount = (EditText) promptsView
 						.findViewById(R.id.income_booking_prompt_amount_input_edittext);
-				final TextView askTitleTV = (TextView) promptsView
-						.findViewById(R.id.income_booking_prompt_ask_title_textview);
+
 				final EditText editText_inputTitle = (EditText) promptsView
 						.findViewById(R.id.income_booking_prompt_title_input_edittext);
 
@@ -861,18 +857,14 @@ public class BookingActivity extends Activity {
 			if (db.getAllSettingsItems().get(0).getGoalEndangered() == 1) {
 
 				LayoutInflater li = LayoutInflater.from(context);
-				View promptsView = li.inflate(
-						R.layout.profile_notification_prompt, null);
+				View promptsView = li.inflate(R.layout.goal_endangered_prompt,
+						null);
 
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						context);
 
 				// set view on prompt
 				alertDialogBuilder.setView(promptsView);
-
-				// elements to appear in prompt
-				final TextView infoTV = (TextView) promptsView
-						.findViewById(R.id.goal_endangered_prompt_textview);
 
 				alertDialogBuilder
 						.setCancelable(false)

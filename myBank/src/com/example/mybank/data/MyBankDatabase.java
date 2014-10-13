@@ -143,7 +143,7 @@ public class MyBankDatabase {
 			do {
 				String diff = cursor.getString(COLUMN_DIFF_INDEX);
 				double amount = cursor.getDouble(COLUMN_AMOUNT_INDEX);
-				if(diff.matches("+")){
+				if((!diff.matches("-"))){
 					incomes += amount;
 				}
 				
