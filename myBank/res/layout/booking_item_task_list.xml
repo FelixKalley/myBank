@@ -4,7 +4,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:id="@+id/bookingitem_listview"
     android:background="@android:color/transparent"
-    android:padding="12dp" >
+    android:padding="10dp" >
     
     
     <RelativeLayout 
@@ -16,24 +16,26 @@
         <TextView 
         android:id="@+id/booking_title"
         android:gravity="center_vertical"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:textColor="#FFFFFF"
         android:padding="2dp"
-	    android:textSize="17sp"
+	    
         />
     
         <TextView 
         android:id="@+id/booking_amount"
         android:gravity="center_vertical"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:textColor="#FFFFFF"
         android:layout_alignParentRight="true"
         android:layout_alignBaseline="@+id/booking_title"
         android:padding="2dp"
-	    android:textSize="17sp"
+	    
         />
     
     	</RelativeLayout>
@@ -48,23 +50,25 @@
          <TextView
 		        android:id="@+id/booking_category"
 		        android:gravity="center_vertical"
+		        style="@style/TextViewStyleBlack"
 		        android:layout_width="wrap_content"
 		        android:layout_height="fill_parent"
 		        android:layout_alignParentLeft="true"
 		        android:textColor="#FFFFFF"
 		        android:padding="2dp"
-			    android:textSize="16sp" />
+			     />
     
        <TextView 
 	        android:id="@+id/booking_date"
 	         android:gravity="center_vertical"
+	         style="@style/TextViewStyleBlack"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:textColor="#FFFFFF"
         android:layout_alignParentRight="true"
         android:layout_alignBaseline="@+id/booking_category"
         android:padding="2dp"
-	    android:textSize="16sp" />
+	     />
  
   </RelativeLayout>
        

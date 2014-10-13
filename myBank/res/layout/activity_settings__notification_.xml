@@ -8,8 +8,17 @@
            style="@style/BackgroundColor"
          android:layout_width="match_parent"
    		 android:layout_height="match_parent"
+   		 android:padding="10dp"
    		  >
-
+	
+    <TextView
+        android:id="@+id/notification_settings_intro"
+        style="@style/TextViewStyleBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_margin="10dp"
+        android:text="@string/notification_intro"/>
  
     <Switch
         android:id="@+id/switch_goal_reached_notification"
@@ -17,8 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="14dp"
-        android:text="Sparziel erfüllt Benachrichtigung" />
+        android:layout_margin="20dp"
+        android:layout_below="@+id/notification_settings_intro"
+        android:text="@string/goal_achieved" />
 
     <Switch
         android:id="@+id/switch_goal_endangered_notification"
@@ -27,39 +37,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/switch_goal_reached_notification"
-        android:layout_marginTop="14dp"
-        android:text="Sparziel gefährdet Benachrichtigung" />
+        android:layout_margin="20dp"
+        android:text="@string/goal_in_danger" />
 
     
     
     
     
-    <!-- 
-    <Button 
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/switch_daily_reminder"
-        android:layout_marginTop="14dp"
-        android:onClick="startService"
-        android:text="Start Service"
-        />
-    
-     <Button 
-        android:id="@+id/stopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/startButton"
-        android:layout_marginTop="14dp"
-        android:onClick="stopService"
-        android:text="Stop Service"
-        />
-    -->
-    
+
     </RelativeLayout>
     
     <ExpandableListView android:id="@+id/drawerList"

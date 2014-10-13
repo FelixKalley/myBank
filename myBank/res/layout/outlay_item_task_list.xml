@@ -12,6 +12,7 @@
         <TextView 
         android:id="@+id/outlay_title"
         android:gravity="center_vertical"
+        style="@style/TextViewStyleWhite"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginRight="110dp"
@@ -23,6 +24,7 @@
         <TextView 
         android:id="@+id/outlay_amount"
         android:gravity="center_vertical"
+        style="@style/TextViewStyleBlack"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:textColor="#FFFFFF"

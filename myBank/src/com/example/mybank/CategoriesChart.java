@@ -7,6 +7,7 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.Intent;
 import android.graphics.Color;
 import android.widget.RelativeLayout;
@@ -18,10 +19,11 @@ public class CategoriesChart {
 	private GraphicalView mChartView2;
 	private GraphicalView mChartView3;
 	static int count=9;
+
 	 
-	int[] Mycolors = new int[] { Color.GRAY, Color.WHITE, Color.RED, Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.DKGRAY };
+	
 	 
-	 public CategoriesChart(int cat1, int cat2, int cat3, int cat4, int cat5, int cat6, int cat7, int cat8, int cat9) {
+	 public CategoriesChart( int cat1, int cat2, int cat3, int cat4, int cat5, int cat6, int cat7, int cat8, int cat9) {
 		this.category1 = cat1;
 		this.category2 = cat2;
 		this.category3 = cat3;
@@ -37,6 +39,17 @@ public class CategoriesChart {
 	public Intent execute(Context context,RelativeLayout parent) {
 	  
 	  int[] colors = new int[count];
+	  int[] Mycolors = new int[] { 
+			  context.getResources().getColor(R.color.Android_Dark_Red), 
+			  context.getResources().getColor(R.color.Android_Red), 
+			  context.getResources().getColor(R.color.Android_Orange), 
+			  context.getResources().getColor(R.color.Android_Dark_Orange), 
+			  context.getResources().getColor(R.color.Android_Dark_Green), 
+			  context.getResources().getColor(R.color.Android_Green),
+			  context.getResources().getColor(R.color.Android_Purple),
+			  context.getResources().getColor(R.color.Android_Dark_Purple), 
+			  context.getResources().getColor(R.color.Android_Dark_Blue) 
+	  };
 	  
 	  for(int i=0;i<count;i++) {
 	   colors[i]=Mycolors[i];
@@ -47,16 +60,16 @@ public class CategoriesChart {
 	   renderer.setPanEnabled(false);
 	   renderer.setLabelsColor(Color.WHITE);
 	   renderer.setShowLabels(true);
-	   renderer.setLabelsTextSize(18);
-	   renderer.setLegendTextSize(20);
-	   renderer.setChartTitle("Balance - Ausgaben");
-	   renderer.setChartTitleTextSize(32);
+	   renderer.setLabelsTextSize(30);
+	   renderer.setLegendTextSize(30);
+	   renderer.setChartTitle("Anzahl Ausgaben pro Kategorie");
+	   renderer.setChartTitleTextSize(50);
 	   
 	   
 	   
 	  CategorySeries categorySeries = new CategorySeries("Ausgaben - Kategorien");
 	  categorySeries.add("Freizeit", category1);
-	  categorySeries.add("GeschŠftlich", category2);
+	  categorySeries.add("Geschaeftlich", category2);
 	  categorySeries.add("Haushalt", category3);
 	  categorySeries.add("Privat", category4);
 	  categorySeries.add("Schule", category5);

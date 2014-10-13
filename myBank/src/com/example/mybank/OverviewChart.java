@@ -19,7 +19,6 @@ public class OverviewChart {
 	private GraphicalView mChartView3;
 	static int count=2;
 	 
-	int[] Mycolors = new int[] { Color.GRAY, Color.parseColor("#CC66CC") };
 	 
 	 public OverviewChart(int balance2, int expense2) {
 		this.balance = balance2;
@@ -30,6 +29,10 @@ public class OverviewChart {
 	public Intent execute(Context context,RelativeLayout parent) {
 	  int balanceForChart = balance;
 	  int expenseForChart = expense;
+	  int[] Mycolors = new int[] { 
+			  context.getResources().getColor(R.color.Android_Dark_Blue), 
+			  context.getResources().getColor(R.color.blue10) 
+	  };
 	  int[] colors = new int[count];
 	  
 	  for(int i=0;i<count;i++) {
@@ -41,10 +44,10 @@ public class OverviewChart {
 	   renderer.setPanEnabled(false);
 	   renderer.setLabelsColor(Color.WHITE);
 	   renderer.setShowLabels(true);
-	   renderer.setLabelsTextSize(18);
-	   renderer.setLegendTextSize(20);
-	   renderer.setChartTitle("Balance - Ausgaben");
-	   renderer.setChartTitleTextSize(32);
+	   renderer.setLabelsTextSize(30);
+	   renderer.setLegendTextSize(30);
+	   renderer.setChartTitle("VerhŠltnis Balance zu Ausgaben");
+	   renderer.setChartTitleTextSize(50);
 	   
 	   
 	   
