@@ -79,7 +79,7 @@ public class BookingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_booking);
 
-		// Reihenfolge der Methodenaufrufe nicht �ndern wegen DB-Zugriffen !!
+		
 
 		initDb();
 		DeclareAllElements();
