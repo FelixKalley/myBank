@@ -24,13 +24,15 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.adapters.MyBankOutlayAdapter;
 import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.helpers.ExpListChild;
+import com.example.mybank.helpers.ExpListGroups;
 import com.example.mybank.items.BalanceItem;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.OutlayItem;
-import com.example.mybank.settings.SettingsNotificationsActivity;
 
 public class OutlayActivity extends Activity {
 

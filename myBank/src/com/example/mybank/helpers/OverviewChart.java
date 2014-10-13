@@ -1,10 +1,13 @@
-package com.example.mybank;
+package com.example.mybank.helpers;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
+
+import com.example.mybank.R;
+import com.example.mybank.R.color;
 
 import android.content.Context;
 import android.content.Intent;

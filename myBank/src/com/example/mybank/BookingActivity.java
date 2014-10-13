@@ -7,15 +7,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.helpers.ExpListChild;
+import com.example.mybank.helpers.ExpListGroups;
 import com.example.mybank.items.BalanceItem;
 import com.example.mybank.items.BookingItem;
 import com.example.mybank.items.GoalItem;
 import com.example.mybank.items.OutlayItem;
 import com.example.mybank.items.SettingsItem;
 import com.example.mybank.ProfileDataActivity;
-import com.example.mybank.settings.SettingsNotificationsActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -66,7 +69,7 @@ public class BookingActivity extends Activity {
 	double initDouble = 0.00;
 	private ActionBarDrawerToggle drawerToggle;
 
-	String altTitle = "Kein Zweck";
+	String altTitle = "Kein Angabe";
 	String regExDecimal = "^[1-9]+[0-9]*[.]?[0-9]?[0-9]?$";
 
 	private ArrayList<BalanceItem> balances = new ArrayList<BalanceItem>();
@@ -374,7 +377,7 @@ public class BookingActivity extends Activity {
 													.valueOf(categorySpinner
 															.getSelectedItem());
 											if (title.matches("")) {
-												title = "Kein Zweck angegeben";
+												title = altTitle;
 											}
 
 											// create BookingItem

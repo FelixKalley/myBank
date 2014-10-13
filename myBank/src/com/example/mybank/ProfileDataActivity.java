@@ -8,8 +8,9 @@ import java.util.Locale;
 
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.helpers.ExpListChild;
+import com.example.mybank.helpers.ExpListGroups;
 import com.example.mybank.items.ProfileItem;
-import com.example.mybank.settings.SettingsNotificationsActivity;
 
 import android.app.ActionBar;
 import android.app.Activity;

@@ -1,18 +1,14 @@
-package com.example.mybank.settings;
+package com.example.mybank;
 
 import java.util.ArrayList;
-import com.example.mybank.BookingActivity;
-import com.example.mybank.ChartActivity;
-import com.example.mybank.ChartCategoriesActivity;
-import com.example.mybank.ExpListChild;
-import com.example.mybank.ExpListGroups;
-import com.example.mybank.HistoryActivity;
-import com.example.mybank.OutlayActivity;
-import com.example.mybank.ProfileDataActivity;
+
 import com.example.mybank.R;
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.helpers.ExpListChild;
+import com.example.mybank.helpers.ExpListGroups;
 import com.example.mybank.items.SettingsItem;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.content.Intent;

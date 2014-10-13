@@ -19,7 +19,7 @@
     <string name="List_Einstellung_Profil">Profil</string>
     <string name="List_Einstellung_Bencharichtigungen">Benachrichtigungen</string>
     <string name="List_Uebersicht">Übersicht</string>
-    <string name="List_Kuchen">Kuchen</string>
+    <string name="List_Kuchen">Kategorien</string>
     <string name="List_Gesamt">Gesamt</string>
 
     <!-- ALL STRINGS FOR ACTIVITY NAMES -->
@@ -29,10 +29,9 @@
     <string name="title_activity_settings_banking">Buchung</string>
     <string name="title_activity_history">Verlauf</string>
 	<string name="title_activity_outlay">Geplant</string>
-	<string name="title_activity_chart">Übersicht Gesamt</string>
-	<string name="title_activity_chart_pie">Übersicht Kuchen</string>
+	<string name="title_activity_chart">Gesamt</string>
+	<string name="title_activity_chart_pie">Kategorien</string>
 	<string name="title_activity_add">Profildaten</string>
-	<string name="title_activity_custom_dialog">CustomDialogActivity</string>
 
     <!-- ALL STRINGS FOR STARTING-SCREEN -->
     <string name="AppName">myBudget</string>

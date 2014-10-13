@@ -1,11 +1,14 @@
 package com.example.mybank;
 
 import java.util.ArrayList;
+
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.adapters.MyBankListAdapter;
 import com.example.mybank.data.MyBankDatabase;
+import com.example.mybank.helpers.ExpListChild;
+import com.example.mybank.helpers.ExpListGroups;
 import com.example.mybank.items.BookingItem;
-import com.example.mybank.settings.SettingsNotificationsActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;

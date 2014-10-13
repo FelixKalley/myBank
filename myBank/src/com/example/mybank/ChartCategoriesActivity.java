@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import com.example.mybank.adapters.ExpandableDrawerAdapter;
 import com.example.mybank.data.MyBankDatabase;
-import com.example.mybank.settings.SettingsNotificationsActivity;
+import com.example.mybank.helpers.CategoriesChart;
+import com.example.mybank.helpers.ExpListChild;
+import com.example.mybank.helpers.ExpListGroups;
 
 import android.app.ActionBar;
 import android.app.Activity;
